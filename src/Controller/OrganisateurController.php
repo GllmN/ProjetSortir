@@ -12,6 +12,7 @@ class OrganisateurController extends AbstractController
 
     {
         $Test= 2;
+        {{#data face}}
 
 
     }
