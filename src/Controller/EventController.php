@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(path="/Accueil", name="Accueil_")
+ * @Route(path="", name="accueil")
  */
 class EventController extends AbstractController
 {
@@ -25,18 +25,26 @@ class EventController extends AbstractController
         $event->setDateAndHour(new \DateTime());
         $event->setRegistrationLimit(new \DateTime());
 
+
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-
+            $event->setStatus(1);
             $entityManager->persist($event);
             $entityManager->flush();
         }
 
-        return $this->render('sorties/create.html.twig', ['eventForm'=>$form->createView()]);
+        return $this->render('events/create.html.twig', ['eventForm'=>$form->createView()]);
 
+    }
 
+    /**
+     * @Route(path="/accueil")
+     */
+    public function list(EntityManagerInterface $entityManager){
+        $event = $entityManager->getRepository('App:Event')->findAll();
+        return $this->render('events/event.html.twig', ['list'=>$event]);
     }
 
 

@@ -74,6 +74,12 @@ class Event
      */
     private $postalCode;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=EventStatus::class, inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -207,6 +213,18 @@ class Event
     public function setPostalCode(int $postalCode): self
     {
         $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getStatus(): ?EventStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?EventStatus $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

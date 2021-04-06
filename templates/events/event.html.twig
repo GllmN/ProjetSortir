@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <ul style="list-style: none">
+        {% for event in list %}
+            <li>
+                {{ event.eventName }} =>
+                Début : {{ event.dateAndHour | date("d/m/y") }},
+                Limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }},
+                Statut : {{ event.status }},
+                Nb de place : {{ event.numberOfPlaces }}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
