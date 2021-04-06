@@ -97,4 +97,9 @@ class Cities
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->city;
+    }
 }
