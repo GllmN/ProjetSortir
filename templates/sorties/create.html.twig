@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    {{ form_start(eventForm) }}
-    {{ form_widget(eventForm) }}
-    {{ form_end(eventForm) }}
-
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            {{ form_start(eventForm) }}
+            {{ form_widget(eventForm) }}
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            {{ form_end(eventForm) }}
+        </div>
+        <div class="col-sm"></div>
+    </div>
 {% endblock %}
