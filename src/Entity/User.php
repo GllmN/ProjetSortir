@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=AdminRepository::class)
  * @ORM\Table(name="`admin`")
  */
-class Admin
+class User
 {
     /**
      * @ORM\Id
@@ -57,6 +57,11 @@ class Admin
      * @ORM\Column(type="string", length=255)
      */
     private $photo;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $roles;
 
     public function getId(): ?int
     {
@@ -155,6 +160,18 @@ class Admin
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getRoles(): ?string
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(string $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
