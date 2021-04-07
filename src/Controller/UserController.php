@@ -19,16 +19,7 @@ class UserController extends AbstractController
      */
     public function profilUser(Request $request, EntityManagerInterface $entityManager){
         $profilUser =  new User();
-
         $profilUser = $this->getUser();
-
-        //$profilUser->setPseudo('yoyo');
-        //$profilUser = $entityManager->getRepository(User::class)->find(1);
-
-        //$profilUser->setFirstName($this->getUser()->getFirstName());
-        //$profilUser->setLastName();
-
-        //$this->getUser()->getUsername()
 
         $profilUserForm = $this->createForm(UserType::class, $profilUser);
 
@@ -36,17 +27,11 @@ class UserController extends AbstractController
         $profilUserForm->handleRequest($request);
 
         if ($profilUserForm->isSubmitted() && $profilUserForm->isValid()){
-            $updateUser = $entityManager->getRepository(User::class);
-
-            $profilUser->setUser($updateUser);
+            $updateProfil = $entityManager->getRepository(User::class);
             $entityManager->persist($profilUser);
             $entityManager->flush();
             $this->addFlash('success', 'Profil mise à jour!');
         }
-
-        //$profilUser = $entityManager->getRepository(User::class)->find(1);
-
-
 
         return $this->render('user/profilUser.html.twig', ['profilUserForm'=> $profilUserForm->createView()]);
 
