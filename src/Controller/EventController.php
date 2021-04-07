@@ -30,11 +30,30 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $statusCreate = $entityManager->getRepository(EventStatus::class)->find(1);
-            $event->setStatus($statusCreate);
-            $entityManager->persist($event);
-            $entityManager->flush();
-            $this->addFlash('success','Sortie créée !');
+
+            //Si l'utilisateur clique sur le bouton Enregistrer('save')
+            //La sortie est enregistrée en BDD avec le statut created(id1)
+            if ($form->get('save')->isClicked()){
+                $statusCreate = $entityManager->getRepository(EventStatus::class)->find(1);
+                $event->setStatus($statusCreate);
+                $entityManager->persist($event);
+                $entityManager->flush();
+                $this->addFlash('success','Sortie créée !');
+            } elseif($form->get('publish')->isClicked());{
+                $statusCreate = $entityManager->getRepository(EventStatus::class)->find(2);
+                $event->setStatus($statusCreate);
+                $entityManager->persist($event);
+                $entityManager->flush();
+                $this->addFlash('success','Sortie créée !');
+            }
+
+
+
+
+
+
+
+
             //return $this->redirectToRoute();
         }
 
@@ -47,7 +66,7 @@ class EventController extends AbstractController
      */
     public function list(EntityManagerInterface $entityManager){
         $event = $entityManager->getRepository('App:Event')->getAll();
-        return $this->render('events/event.html.twig', ['list'=>$event]);
+        return $this->render('home/home.html.twig', ['list'=>$event]);
     }
 
 }
