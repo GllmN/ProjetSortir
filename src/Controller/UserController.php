@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route(path="/profilUser", name="profil_user" ,methods={"GET"})
+     * @Route(path="/profilUser", name="profil_user", methods={"GET", "POST"})
      */
     public function profilUser(Request $request, EntityManagerInterface $entityManager){
         $profilUser =  new User();
@@ -22,6 +22,7 @@ class UserController extends AbstractController
         $profilUserForm = $this->createForm(UserType::class, $profilUser);
 
         //$profilUser = $entityManager->getRepository(User::class)->find(1);
+
 
 
         return $this->render('user/profilUser.html.twig', ['profilUserForm'=> $profilUserForm->createView()]);
