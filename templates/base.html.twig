@@ -12,6 +12,25 @@
         {% block javascripts %}
 
         {% endblock %}
+
+        {% block header %}
+            <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+            <p class="h5 my-0 me-md-auto fw-normal"></p>
+            <nav class="my-2 my-md-0 me-md-3">
+                <a class="p-2 text-dark" href="{{ url('home_home') }}">Accueil</a>
+                <a class="p-2 text-dark" href="{{ url('app_logout') }}">Deconnexion</a>
+                <a class="p-2 text-dark" href="{{ url('profil_user') }}">Mon profil</a>
+                {% if app.user %}
+                    <span style="color:red">Bonjour {{ app.user.LastName }} !</span>
+
+                {% else %}
+                    <a class="p-2 text-dark" href="{{ path('app_login') }}">Login</a>
+                {% endif %}
+            </nav>
+            {# <a class="btn btn-outline-primary" href="#">Sign up</a>  #}
+            </header>
+        {% endblock %}
+
     </head>
     <body>
         {% block body %}{% endblock %}
