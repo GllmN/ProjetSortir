@@ -38,21 +38,21 @@ class EventController extends AbstractController
                 $event->setStatus($statusCreate);
                 $entityManager->persist($event);
                 $entityManager->flush();
-                $this->addFlash('success','Sortie créée !');
-            } elseif($form->get('publish')->isClicked());{
+                //$this->addFlash('success','Sortie créée mais non publier !');
+            }
+            //Si l'utilisateur clique sur le bouton Publier('publish')
+            //La sortie est enregistrée en BDD avec le statut open(id2)
+            elseif($form->get('publish')->isClicked()){
                 $statusCreate = $entityManager->getRepository(EventStatus::class)->find(2);
                 $event->setStatus($statusCreate);
                 $entityManager->persist($event);
                 $entityManager->flush();
-                $this->addFlash('success','Sortie créée !');
+                //$this->addFlash('success','Sortie publiée !');
             }
+            elseif ($form->get('cancel')->isClicked()){
 
-
-
-
-
-
-
+                return $this->render('home/home.html.twig');
+            }
 
             //return $this->redirectToRoute();
         }
@@ -68,5 +68,4 @@ class EventController extends AbstractController
         $event = $entityManager->getRepository('App:Event')->getAll();
         return $this->render('home/home.html.twig', ['list'=>$event]);
     }
-
 }
