@@ -13,17 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route(path="deconnexion", name="deconnexion", methods={"GET"})
-     */
-    public function deconnexion() {
-        return $this->render('security/login.html.twig');
-    }
-
-    /**
      * @Route(path="home", name="home", methods={"GET"})
      */
     public function home() {
         return $this->render('home/home.html.twig');
+    }
+
+    /**
+     * @Route(path="profil", name="profil", methods={"GET"})
+     */
+    public function profil() {
+        return $this->render('user/profilUser.html.twig');
     }
 
 }
