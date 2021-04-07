@@ -19,5 +19,12 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
+    public function getAll(){
+        $req = $this->createQueryBuilder('event')
+            ->orderBy('event.registrationLimit', 'DESC');
+        return $req->getQuery()->getResult();
+
+    }
+
 
 }

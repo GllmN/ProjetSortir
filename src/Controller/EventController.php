@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(path="", name="accueil")
+ * @Route(path="/sortie", name="sortie_")
  */
 class EventController extends AbstractController
 {
     /**
-     * @Route(path="/create", name="create")
+     * @Route(path="/creation", name="creation")
      */
     public function create(Request $request, EntityManagerInterface $entityManager) : Response{
         $event = new Event();
@@ -40,13 +40,11 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route(path="/accueil")
+     * @Route(path="/afficher", name="afficher")
      */
     public function list(EntityManagerInterface $entityManager){
-        $event = $entityManager->getRepository('App:Event')->findAll();
+        $event = $entityManager->getRepository('App:Event')->getAll();
         return $this->render('events/event.html.twig', ['list'=>$event]);
     }
-
-
 
 }
