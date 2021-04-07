@@ -80,6 +80,12 @@ class Event
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organizer;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -225,6 +231,18 @@ class Event
     public function setStatus(?EventStatus $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getOrganizer(): ?User
+    {
+        return $this->organizer;
+    }
+
+    public function setOrganizer(?User $organizer): self
+    {
+        $this->organizer = $organizer;
 
         return $this;
     }

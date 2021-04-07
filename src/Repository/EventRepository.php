@@ -21,7 +21,7 @@ class EventRepository extends ServiceEntityRepository
 
     public function getAll(){
         $req = $this->createQueryBuilder('event')
-            ->orderBy('event.registrationLimit', 'DESC');
+            ->orderBy('event.registrationLimit', 'ASC');
         return $req->getQuery()->getResult();
 
     }
