@@ -54,6 +54,7 @@ class EventController extends AbstractController
                 return $this->render('home/home.html.twig');
             }
 
+
             //return $this->redirectToRoute();
         }
 
