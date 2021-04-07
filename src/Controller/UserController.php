@@ -19,7 +19,13 @@ class UserController extends AbstractController
     public function profilUser(Request $request, EntityManagerInterface $entityManager){
         $profilUser =  new User();
 
+        $profilUser->setPseudo($this->getUser()->getUsername());
+
+
         $profilUserForm = $this->createForm(UserType::class, $profilUser);
+
+        // Visualiser dans le champs ce que l'on a recuperer
+        $profilUserForm->handleRequest($request);
 
         //$profilUser = $entityManager->getRepository(User::class)->find(1);
 

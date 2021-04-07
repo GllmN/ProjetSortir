@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Campus;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -30,10 +31,9 @@ class UserType extends AbstractType
                 'first_options' =>array('label' => 'Mot de passe :'),
                 'second_options' =>array('label' =>'Confirmation :'),
             ))
-            ->add('campus', EntityType::class, array(
-                'class' => '',
-                'property' => 'pseudo',
-            ))
+            ->add('campus', EntityType::class, [
+                'class' => Campus::class,
+            ])
             // voir page symfony sur l'upload
             ->add('photo',TextType::class,  ['label' => 'Photo:'])
         ;
