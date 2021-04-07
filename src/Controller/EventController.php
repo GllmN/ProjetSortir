@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Event;
+use App\Entity\EventStatus;
 use App\Form\EventType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,14 +26,16 @@ class EventController extends AbstractController
         $event->setDateAndHour(new \DateTime());
         $event->setRegistrationLimit(new \DateTime());
 
-
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $event->setStatus(1);
+            $statusCreate = $entityManager->getRepository(EventStatus::class)->find(1);
+            $event->setStatus($statusCreate);
             $entityManager->persist($event);
             $entityManager->flush();
+            $this->addFlash('success','Sortie créée !');
+            //return $this->redirectToRoute();
         }
 
         return $this->render('events/create.html.twig', ['eventForm'=>$form->createView()]);
