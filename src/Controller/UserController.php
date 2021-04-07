@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,16 +14,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route(path="/profilUser/", name="profil_user" ,methods={"GET"})
+     * @Route(path="/profilUser", name="profil_user" ,methods={"GET"})
      */
-
     public function profilUser(Request $request, EntityManagerInterface $entityManager){
-        $profilUser = $entityManager->getRepository(User::class)->find(1);
+        $profilUser =  new User();
+
+        $profilUserForm = $this->createForm(UserType::class, $profilUser);
+
+        //$profilUser = $entityManager->getRepository(User::class)->find(1);
 
 
-        return $this->render('user/profilUser.html.twig', ['user' => $profilUser]);
+        return $this->render('user/profilUser.html.twig', ['profilUserForm'=> $profilUserForm->createView()]);
 
     }
+
+
 
 
 
