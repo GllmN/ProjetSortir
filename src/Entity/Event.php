@@ -78,6 +78,11 @@ class Event
      */
     private $location;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbRegistration;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -211,6 +216,18 @@ class Event
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    public function getNbRegistration(): ?int
+    {
+        return $this->nbRegistration;
+    }
+
+    public function setNbRegistration(?int $nbRegistration): self
+    {
+        $this->nbRegistration = $nbRegistration;
 
         return $this;
     }

@@ -44,7 +44,7 @@
         },
         "sort-packages": true,
         "platform": {
-            "php": "7.4.*"
+            "php": "7.4.0"
         }
     },
     "autoload": {
@@ -85,5 +85,8 @@
             "allow-contrib": false,
             "require": "4.4.*"
         }
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4"
     }
 }

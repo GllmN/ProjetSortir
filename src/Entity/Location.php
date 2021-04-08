@@ -100,6 +100,6 @@ class Location
 
     public function __toString()
     {
-        return $this->zipCode.$this->street;
+        return $this->street." ".$this->zipCode;
     }
 }
