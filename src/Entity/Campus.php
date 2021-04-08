@@ -30,7 +30,7 @@ class Campus
     private $events;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="campus")
+     * @ORM\Column(type="string", length=50)
      */
     private $participants;
 

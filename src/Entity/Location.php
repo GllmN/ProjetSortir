@@ -20,6 +20,11 @@ class Location
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $name;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $street;
@@ -33,6 +38,8 @@ class Location
      * @ORM\OneToMany(targetEntity=Event::class, mappedBy="Location", orphanRemoval=true)
      */
     private $events;
+
+
 
     public function __construct()
     {
@@ -100,6 +107,18 @@ class Location
 
     public function __toString()
     {
-        return $this->street." ".$this->zipCode;
+        return $this->name;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }

@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\EventStatus;
+use App\Entity\Location;
 use App\Entity\User;
 use App\Form\EventType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,6 +34,10 @@ class EventController extends AbstractController
 
         //modif de l'objet avec l'organisateur
         $event->setOrganizer($user);
+
+        //récup du lieu
+        $location = $entityManager->getRepository(Location::class)->find(2);
+
 
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
