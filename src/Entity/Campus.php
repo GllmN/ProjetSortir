@@ -88,14 +88,14 @@ class Campus
     }
 
     /**
-     * @return Collection|Participant[]
+     * @return Collection|User[]
      */
     public function getParticipants(): Collection
     {
         return $this->participants;
     }
 
-    public function addParticipant(Participant $participant): self
+    public function addParticipant(User $participant): self
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
@@ -105,7 +105,7 @@ class Campus
         return $this;
     }
 
-    public function removeParticipant(Participant $participant): self
+    public function removeParticipant(User $participant): self
     {
         if ($this->participants->contains($participant)) {
             $this->participants->removeElement($participant);
