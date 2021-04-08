@@ -69,4 +69,26 @@ class EventController extends AbstractController
         $event = $entityManager->getRepository('App:Event')->getAll();
         return $this->render('home/home.html.twig', ['list'=>$event]);
     }
+
+
+    /**
+     * @Route(path="/registration", name="registration")
+     */
+    public function registration(EntityManagerInterface $entityManager, Request $request){
+        $event = $entityManager->getRepository(Event::class)->find($this->getUser()->getId());
+
+        if(count($event->getParticipants()) < $event->getNumberOfPlaces()){
+
+            $event->addParticipant($this->getUser());
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+        }
+        else
+        {
+            $this->addFlash('danger', "Plus de places !!!");
+        }
+        return $this->redirectToRoute('home_home');
+    }
+
 }

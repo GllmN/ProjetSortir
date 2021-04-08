@@ -19,6 +19,9 @@
                 Statut : {{ event.status }},
                 Nb de place : {{ event.numberOfPlaces }}
                 Organisateur : {{ event.organizer }}
+                <button>
+                    <a href="{{ url('sortie_registration') }}">S'inscrire</a>
+                </button>
             </li>
         {% endfor %}
     </ul>

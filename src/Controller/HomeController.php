@@ -21,10 +21,10 @@ class HomeController extends AbstractController
         if ($this->getUser()) {
             $event = $entityManager->getRepository('App:Event')->getAll();
             return $this->render('home/home.html.twig', ['list' => $event]);
-            //return $this->render('home/home.html.twig', ['list' => $event]);
+
         }
         return $this->redirectToRoute('app_login');
-        //return $this->render('security/login.html.twig');
+
     }
 
     /**
