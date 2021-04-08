@@ -46,7 +46,6 @@ class UserType extends AbstractType
             // voir page symfony sur l'upload
             ->add('photo',TextType::class,  ['label' => 'Photo:'])
             ->add('save', SubmitType::class, ['label'=>'Enregistrer'])
-            ->add('abort', SubmitType::class, ['label'=>'Annuler'])
         ;
     }
 
