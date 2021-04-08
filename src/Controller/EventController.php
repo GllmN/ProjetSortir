@@ -79,15 +79,19 @@ class EventController extends AbstractController
     /**
      * @Route(path="/registration", name="registration")
      */
-    public function registration(EntityManagerInterface $entityManager, Request $request){
-        $event = $entityManager->getRepository(Event::class)->find($this->getUser()->getId());
+    public function registration(EntityManagerInterface $entityManager, Request $request, $id){
+        $event = new Event();
+        $event = $entityManager->getRepository(Event::class)->find($id);
 
-        if(count($event->getParticipants()) < $event->getNumberOfPlaces()){
 
+       // $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
+
+
+        if(count($event->getParticipants()) < $event->getNumberOfPlaces())
+        {
             $event->addParticipant($this->getUser());
             $entityManager->persist($event);
             $entityManager->flush();
-
         }
         else
         {

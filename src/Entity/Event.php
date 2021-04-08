@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -82,6 +83,16 @@ class Event
      * @ORM\Column(type="integer", nullable=true)
      */
     private $nbRegistration;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="eventsUtilisateur")
+     */
+    private $participants;
+
+    //public function __construct()
+    //{
+    //    $this->participants = new ArrayCollection();
+   // }
 
     public function getId(): ?int
     {
@@ -231,4 +242,31 @@ class Event
 
         return $this;
     }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(User $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(User $participant): self
+    {
+        if ($this->participants->contains($participant)) {
+            $this->participants->removeElement($participant);
+        }
+
+        return $this;
+    }
+
 }
