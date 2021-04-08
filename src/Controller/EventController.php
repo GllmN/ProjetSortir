@@ -23,6 +23,8 @@ class EventController extends AbstractController
      * @Route(path="/creation", name="creation")
      */
     public function create(Request $request, EntityManagerInterface $entityManager) : Response{
+        //status....
+
         $event = new Event();
         $event->setDateAndHour(new \DateTime());
         $event->setRegistrationLimit(new \DateTime());
@@ -57,9 +59,7 @@ class EventController extends AbstractController
 
             return $this->redirectToRoute('home_home');
         }
-
         return $this->render('events/create.html.twig', ['eventForm'=>$form->createView()]);
-
     }
 
     /**

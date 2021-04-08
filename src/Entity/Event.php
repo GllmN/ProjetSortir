@@ -59,20 +59,6 @@ class Event
      */
     private $city;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $location;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $street;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $postalCode;
 
     /**
      * @ORM\ManyToOne(targetEntity=EventStatus::class, inversedBy="events")
@@ -85,6 +71,12 @@ class Event
      * @ORM\JoinColumn(nullable=false)
      */
     private $organizer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Location::class, inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $location;
 
     public function getId(): ?int
     {
@@ -187,42 +179,6 @@ class Event
         return $this;
     }
 
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    public function getStreet(): ?string
-    {
-        return $this->street;
-    }
-
-    public function setStreet(string $street): self
-    {
-        $this->street = $street;
-
-        return $this;
-    }
-
-    public function getPostalCode(): ?int
-    {
-        return $this->postalCode;
-    }
-
-    public function setPostalCode(int $postalCode): self
-    {
-        $this->postalCode = $postalCode;
-
-        return $this;
-    }
-
     public function getStatus(): ?EventStatus
     {
         return $this->status;
@@ -243,6 +199,18 @@ class Event
     public function setOrganizer(?User $organizer): self
     {
         $this->organizer = $organizer;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }
