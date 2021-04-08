@@ -21,19 +21,28 @@ class UserController extends AbstractController
         $profilUser =  new User();
         $profilUser = $this->getUser();
 
-        $profilUserForm = $this->createForm(UserType::class, $profilUser);
+        if ($profilUser) {
 
-        // Visualiser dans le champs ce que l'on a recuperer
-        $profilUserForm->handleRequest($request);
+            $profilUserForm = $this->createForm(UserType::class, $profilUser);
 
-        if ($profilUserForm->isSubmitted() && $profilUserForm->isValid()){
-            $updateProfil = $entityManager->getRepository(User::class);
-            $entityManager->persist($profilUser);
-            $entityManager->flush();
-            $this->addFlash('success', 'Profil mise à jour!');
+            // Visualiser dans le champs ce que l'on a recuperer
+            $profilUserForm->handleRequest($request);
+
+            if ($profilUserForm->isSubmitted() && $profilUserForm->isValid()){
+                $updateProfil = $entityManager->getRepository(User::class);
+                $entityManager->persist($profilUser);
+                $entityManager->flush();
+                $this->addFlash('success', 'Profil mise à jour!');
+            }
+            return $this->render('user/profilUser.html.twig', ['profilUserForm'=> $profilUserForm->createView()]);
+
         }
 
-        return $this->render('user/profilUser.html.twig', ['profilUserForm'=> $profilUserForm->createView()]);
+        return $this->redirectToRoute('app_login');
+
+
+
+
 
     }
 
