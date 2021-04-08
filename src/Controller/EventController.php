@@ -9,8 +9,11 @@ use App\Entity\EventStatus;
 use App\Entity\Location;
 use App\Entity\User;
 use App\Form\EventType;
+use App\Repository\LocationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +26,7 @@ class EventController extends AbstractController
     /**
      * @Route(path="/creation", name="creation")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager) : Response{
+    public function create(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository, SerializerInterface $serializer) : Response{
         //status....
 
         $event = new Event();
@@ -34,10 +37,6 @@ class EventController extends AbstractController
 
         //modif de l'objet avec l'organisateur
         $event->setOrganizer($user);
-
-        //récup du lieu
-        $location = $entityManager->getRepository(Location::class)->find(2);
-
 
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -64,7 +63,9 @@ class EventController extends AbstractController
 
             return $this->redirectToRoute('home_home');
         }
-        return $this->render('events/create.html.twig', ['eventForm'=>$form->createView()]);
+
+        $location = $repository->findAll();
+        return $this->render('events/create.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location]);
     }
 
     /**

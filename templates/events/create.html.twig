@@ -5,9 +5,33 @@
         <div class="col-sm"></div>
         <div class="col-sm">
             {{ form_start(eventForm) }}
-            {{ form_widget(eventForm) }}
+            {{ form_row(eventForm.eventName) }}
+            {{ form_row(eventForm.dateAndHour) }}
+            {{ form_row(eventForm.registrationLimit) }}
+            {{ form_row(eventForm.numberOfPlaces) }}
+            {{ form_row(eventForm.duration) }}
+            {{ form_row(eventForm.description) }}
+            {{ form_row(eventForm.campus) }}
+            {{ form_row(eventForm.city) }}
             {{ form_row(eventForm.location) }}
+            <ul style="list-style: none">
+                {% for lieu in location %}
+                    <li>
+                        <label for="rue" class="required">Rue</label><input class="form-control" type="text" name="rue" id="rue" value="{{ lieu.street }}"><br>
+                        <label for="cp" class="required">Code postal</label><input class="form-control" type="text" name="cp" id="cp" value="{{ lieu.zipCode }}">
+
+                    </li>
+                {% endfor %}
+
+            </ul>
+            {{ form_row(eventForm.save) }}
+            {{ form_row(eventForm.publish) }}
             {{ form_end(eventForm) }}
+
+
+
+
+
             <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>
         </div>
         <div class="col-sm"></div>
