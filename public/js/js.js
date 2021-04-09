@@ -5,6 +5,12 @@ selectElement.addEventListener('change',
     (event)=>{
     var value = event.currentTarget.value;
     console.log(value);
-    document.getElementById(value).children[2].style.display="none";
+    var li = document.querySelectorAll('#ullocation li');
+    li.forEach(function (el){
+        el.style.display="none";
+    });
+
+    document.getElementById(value).style.display="block";
+
     });
 

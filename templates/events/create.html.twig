@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h2>Création d'une sortie</h2>
     <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
@@ -14,9 +15,9 @@
             {{ form_row(eventForm.campus) }}
             {{ form_row(eventForm.city) }}
             {{ form_row(eventForm.location) }}
-            <ul>
+            <ul style="list-style: none" id="ullocation">
                 {% for lieu in location %}
-                    <li id="{{ lieu.id }}">
+                    <li id="{{ lieu.id }}" style="display: none">
                         <label for="rue" class="required">Rue</label>
                         <input class="form-control" type="text" name="rue" id="rue" value="{{ lieu.street }}">
                         <label for="cp" class="required">Code postal</label>

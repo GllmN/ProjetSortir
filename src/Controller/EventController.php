@@ -27,7 +27,14 @@ class EventController extends AbstractController
      * @Route(path="/creation", name="creation")
      */
     public function create(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository, SerializerInterface $serializer) : Response{
-        //status....
+        //status:
+        //1-created
+        //2-open
+        //3-closed
+        //4-in progresse
+        //5-finished
+        //6-canceled
+        //7-archived
 
         $event = new Event();
         $event->setDateAndHour(new \DateTime());
@@ -48,14 +55,14 @@ class EventController extends AbstractController
             if ($form->get('save')->isClicked()){
                 $statusCreate = $entityManager->getRepository(EventStatus::class)->find(1);
 
-                //$this->addFlash('success','Sortie créée mais non publier !');
+                $this->addFlash('success','Sortie créée mais non publier !');
             }
             //Si l'utilisateur clique sur le bouton Publier('publish')
             //La sortie est enregistrée en BDD avec le statut open(id2)
             elseif($form->get('publish')->isClicked()){
                 $statusCreate = $entityManager->getRepository(EventStatus::class)->find(2);
 
-                //$this->addFlash('success','Sortie publiée !');
+                $this->addFlash('success','Sortie publiée !');
             }
             $event->setStatus($statusCreate);
             $entityManager->persist($event);
@@ -65,16 +72,38 @@ class EventController extends AbstractController
         }
 
         $location = $repository->findAll();
+        //dump($location);
+        //$json = serialize($location);
+        //$test = json_encode($json);
+        //$test = $serializer->serialize($location, 'json');
+        //$rep = new JsonResponse();
+        //$rep->setContent($test);
+
+        //dump($test);
+        //dump($json);
+
         return $this->render('events/create.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location]);
     }
 
     /**
      * @Route(path="/afficher", name="afficher")
      */
-    public function detail(EntityManagerInterface $entityManager){
-        $event = $entityManager->getRepository('App:Event')->getAll();
-        return $this->render('home/home.html.twig', ['list'=>$event]);
+    public function detail(Request $request, EntityManagerInterface $entityManager){
+        $id = $request->get('id');
+        $event = $entityManager->getRepository(Event::class)->find($id);
+        return $this->render('events/detail.html.twig', ['event'=>$event]);
     }
+
+    /**
+     * @Route(path="/modifier{id}", name="modifier")
+     */
+    public function modify(){
+
+    }
+
+
+
+
 
 
     /**

@@ -31,6 +31,12 @@
                 <button>
                     <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
                 </button>
+                <button>
+                    <a href="{{ url('sortie_afficher', {'id': event.id}) }}">Afficher la sortie</a>
+                </button>
+                <button>
+                    <a href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier la sortie</a>
+                </button>
 
             </li>
         {% endfor %}
