@@ -95,14 +95,42 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route(path="/modifier{id}", name="modifier")
+     * @Route(path="/modifier{", name="modifier")
      */
-    public function modify(){
+    public function modify(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository){
+        $id = $request->get('id');
+        $event = $entityManager->getRepository(Event::class)->find($id);
 
+        $form= $this->createForm(EventType::class, $event);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            //Si l'utilisateur clique sur le bouton Enregistrer('save')
+            //La sortie est enregistrée en BDD avec le statut created(id1)
+            if ($form->get('save')->isClicked()){
+                $statusCreate = $entityManager->getRepository(EventStatus::class)->find(1);
+
+                $this->addFlash('success','Sortie modifiée !');
+            }
+            //Si l'utilisateur clique sur le bouton Publier('publish')
+            //La sortie est enregistrée en BDD avec le statut open(id2)
+            elseif($form->get('publish')->isClicked()){
+                $statusCreate = $entityManager->getRepository(EventStatus::class)->find(2);
+
+                $this->addFlash('success','Sortie publiée !');
+            }
+            $event->setStatus($statusCreate);
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home_home');
+        }
+
+        $location = $repository->findAll();
+
+        return $this->render('events/modify.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location]);
     }
-
-
-
 
 
 
