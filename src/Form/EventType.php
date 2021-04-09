@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Event;
 
 
-use phpDocumentor\Reflection\Types\Null_;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;

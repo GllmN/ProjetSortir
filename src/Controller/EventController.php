@@ -6,15 +6,13 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\EventStatus;
-use App\Entity\Location;
 use App\Entity\User;
 use App\Form\EventType;
 use App\Repository\LocationRepository;
 use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
-use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,7 +25,7 @@ class EventController extends AbstractController
     /**
      * @Route(path="/creation", name="creation")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository, SerializerInterface $serializer) : Response{
+    public function create(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository) : Response{
         //status:
         //1-created
         //2-open
@@ -38,8 +36,8 @@ class EventController extends AbstractController
         //7-archived
 
         $event = new Event();
-        $event->setDateAndHour(new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris')));
-        $event->setRegistrationLimit(new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris')));
+        $event->setDateAndHour(new DateTime('NOW', new DateTimeZone('EUROPE/Paris')));
+        $event->setRegistrationLimit(new DateTime('NOW', new DateTimeZone('EUROPE/Paris')));
         //Récup de l'user connecté avec son id
         $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId()) ;
 
@@ -141,8 +139,7 @@ class EventController extends AbstractController
     /**
      * @Route(path="/registration", name="registration")
      */
-    public function registration(EntityManagerInterface $entityManager, Request $request)
-    {
+    public function registration(EntityManagerInterface $entityManager, Request $request){
 
         /** @var Event $event */
         $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
