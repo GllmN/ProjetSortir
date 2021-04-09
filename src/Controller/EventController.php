@@ -37,8 +37,8 @@ class EventController extends AbstractController
         //7-archived
 
         $event = new Event();
-        $event->setDateAndHour(new \DateTime());
-        $event->setRegistrationLimit(new \DateTime());
+        $event->setDateAndHour(new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris')));
+        $event->setRegistrationLimit(new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris')));
         //Récup de l'user connecté avec son id
         $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId()) ;
 

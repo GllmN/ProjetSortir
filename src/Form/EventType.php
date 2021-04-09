@@ -5,7 +5,10 @@ namespace App\Form;
 use App\Entity\Event;
 
 
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,8 +20,14 @@ class EventType extends AbstractType
     {
         $builder
             ->add('eventName', TextType::class,['label'=>'Nom de la sortie'])
-            ->add('dateAndHour',null,['label'=>'Date et heure de la sortie'])
-            ->add('registrationLimit',null,['label'=>'Date limite d\'inscription'])
+            ->add('dateAndHour',DateTimeType::class,[
+                'label'=>'Date et heure de la sortie',
+                'date_format'=>'dd-MM-yyyy',
+            ])
+            ->add('registrationLimit',DateType::class,[
+                'label'=>'Date limite d\'inscription',
+                'format'=>"dd-MM-yyyy",
+                ])
             ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
             ->add('duration',null,['label'=>'Durée'])
             ->add('description',null,['label'=>'Description et infos'])
