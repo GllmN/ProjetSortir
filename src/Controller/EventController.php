@@ -82,23 +82,29 @@ class EventController extends AbstractController
      */
     public function registration(EntityManagerInterface $entityManager, Request $request){
 
-        $event = $entityManager->getRepository(Event::class)->find($this->getUser()->getId());
-        $event = new Event();
+        /** @var Event $event */
+        $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
 
 
-       // $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
+
+
+        $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
+
 
 
         if(count($event->getParticipants()) < $event->getNumberOfPlaces())
         {
+
             $event->addParticipant($this->getUser());
             $entityManager->persist($event);
             $entityManager->flush();
+
         }
         else
         {
             $this->addFlash('danger', "Plus de places !!!");
         }
+
         return $this->redirectToRoute('home_home');
     }
 

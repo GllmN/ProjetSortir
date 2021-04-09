@@ -20,9 +20,11 @@
                 Nb de place : {{ event.numberOfPlaces }}
                 Organisateur : {{ event.organizer }}
                 id : {{ event.id }}
+
                 <button>
-                    <a href="{{ url('sortie_registration') }}">S'inscrire</a>
+                    <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
                 </button>
+
             </li>
         {% endfor %}
     </ul>
