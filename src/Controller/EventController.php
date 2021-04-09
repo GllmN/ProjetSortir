@@ -180,4 +180,5 @@ class EventController extends AbstractController
         //return $this->redirectToRoute('home_home');
     }
 
+
 }
