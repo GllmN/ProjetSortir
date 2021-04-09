@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\EventStatus;
-use App\Entity\User;
+
 use App\Form\UserType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,11 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route(path="/profilUser", name="profil_user", methods={"GET", "POST"})
+     * @Route(path="/monprofil", name="profil_user", methods={"GET", "POST"})
      */
     public function profilUser(Request $request, EntityManagerInterface $entityManager){
-        // Déclaration des variables et instances
-        $profilUser = new User();
 
         // Récupération des données de l'utilisateur
         $profilUser = $this->getUser();
@@ -34,8 +30,7 @@ class UserController extends AbstractController
 
             // Si le champs est valide et soumis
             if ($profilUserForm->isSubmitted() && $profilUserForm->isValid()){
-                // On stocke les données à envoyer sur la BDD
-                $updateProfil = $entityManager->getRepository(User::class);
+
                 // On envoie sur la BDD
                 $entityManager->persist($profilUser);
                 $entityManager->flush();

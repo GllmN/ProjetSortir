@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -112,24 +113,24 @@ class Event
         return $this;
     }
 
-    public function getDateAndHour(): ?\DateTimeInterface
+    public function getDateAndHour(): ?DateTimeInterface
     {
         return $this->dateAndHour;
     }
 
-    public function setDateAndHour(\DateTimeInterface $dateAndHour): self
+    public function setDateAndHour(DateTimeInterface $dateAndHour): self
     {
         $this->dateAndHour = $dateAndHour;
 
         return $this;
     }
 
-    public function getRegistrationLimit(): ?\DateTimeInterface
+    public function getRegistrationLimit(): ?DateTimeInterface
     {
         return $this->registrationLimit;
     }
 
-    public function setRegistrationLimit(\DateTimeInterface $registrationLimit): self
+    public function setRegistrationLimit(DateTimeInterface $registrationLimit): self
     {
         $this->registrationLimit = $registrationLimit;
 

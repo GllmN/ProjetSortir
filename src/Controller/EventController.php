@@ -78,8 +78,6 @@ class EventController extends AbstractController
         //$rep = new JsonResponse();
         //$rep->setContent($test);
 
-        //dump($test);
-        //dump($json);
 
         return $this->render('events/create.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location]);
     }
@@ -94,7 +92,7 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route(path="/modifier{", name="modifier")
+     * @Route(path="/modifier", name="modifier")
      */
     public function modify(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository){
         $id = $request->get('id');
@@ -132,14 +130,12 @@ class EventController extends AbstractController
     }
 
 
-
-
-
-
     /**
      * @Route(path="/registration", name="registration")
+     * @param EntityManagerInterface $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function registration(EntityManagerInterface $entityManager, Request $request){
+    public function registration(EntityManagerInterface $entityManager){
 
         /** @var Event $event */
         $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
@@ -176,6 +172,4 @@ class EventController extends AbstractController
         return $this->render('home/home.html.twig');
         //return $this->redirectToRoute('home_home');
     }
-
-
 }
