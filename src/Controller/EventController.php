@@ -134,6 +134,9 @@ class EventController extends AbstractController
 
 
 
+
+
+
     /**
      * @Route(path="/registration", name="registration")
      */
