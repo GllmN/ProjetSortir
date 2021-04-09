@@ -98,14 +98,15 @@ class EventController extends AbstractController
             $event->addParticipant($this->getUser());
             $entityManager->persist($event);
             $entityManager->flush();
-
+            $this->addFlash('success', "Bien joué tu as été inscris !!");
+            return $this->redirectToRoute('home_home');
         }
         else
         {
             $this->addFlash('danger', "Plus de places !!!");
         }
-
-        return $this->redirectToRoute('home_home');
+        return $this->render('home/home.html.twig');
+        //return $this->redirectToRoute('home_home');
     }
 
 }

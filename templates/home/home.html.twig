@@ -10,6 +10,13 @@
 
     <h3>Filtrer les sorties</h3>
 
+    {# permet l'affichage d'un message lorsque l'utilisateur a réussis son inscription !  #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <ul style="list-style: none">
         {% for event in list %}
             <li>
