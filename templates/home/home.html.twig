@@ -23,6 +23,12 @@
         </div>
     {% endfor %}
 
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <ul style="list-style: none">
         {% for event in list %}
             <li>

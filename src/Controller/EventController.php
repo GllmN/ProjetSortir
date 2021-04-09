@@ -10,6 +10,7 @@ use App\Entity\Location;
 use App\Entity\User;
 use App\Form\EventType;
 use App\Repository\LocationRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -140,35 +141,38 @@ class EventController extends AbstractController
     /**
      * @Route(path="/registration", name="registration")
      */
-    public function registration(EntityManagerInterface $entityManager, Request $request){
+    public function registration(EntityManagerInterface $entityManager, Request $request)
+    {
 
         /** @var Event $event */
         $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
 
-
-
+        $today = new DateTime();
 
         $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
 
 
+        if ($event->getParticipants()->contains($user)) {
+            $this->addFlash('warning', "Vous êtes déja inscrit à cet event ! ");
+            return $this->redirectToRoute("home_home");
+        }
 
-        if(count($event->getParticipants()) <= $event->getNumberOfPlaces())
-        {
+
+        if (count($event->getParticipants()) <= $event->getNumberOfPlaces() && $event->getRegistrationLimit() > $today){
 
             $event->addParticipant($this->getUser());
-            if($event->getNumberOfPlaces() >= 0 )
-            {
-                $event->setNbRegistration($event->getNbRegistration()+1);
-                $event->setNumberOfPlaces($event->getNumberOfPlaces()-1);
+
+            if ($event->getNumberOfPlaces() >= 0) {
+                $event->setNbRegistration($event->getNbRegistration() + 1);
+                $event->setNumberOfPlaces($event->getNumberOfPlaces() - 1);
             }
 
             $entityManager->persist($event);
             $entityManager->flush();
-            $this->addFlash('success', "Bien joué tu as été inscris !!");
+            $this->addFlash('success', "Bien joué tu as été inscrit !!");
             return $this->redirectToRoute('home_home');
-        }
-        else
-        {
+
+        } else {
             $this->addFlash('danger', "Plus de places !!!");
             return $this->redirectToRoute('home_home');
         }
