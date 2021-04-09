@@ -155,14 +155,14 @@ class EventController extends AbstractController
         }
 
 
-        if (count($event->getParticipants()) <= $event->getNumberOfPlaces() && $event->getRegistrationLimit() > $today){
+        if ($event->getNumberOfPlaces() >= 1 && $event->getRegistrationLimit() > $today){
 
             $event->addParticipant($this->getUser());
 
-            if ($event->getNumberOfPlaces() >= 0) {
-                $event->setNbRegistration($event->getNbRegistration() + 1);
-                $event->setNumberOfPlaces($event->getNumberOfPlaces() - 1);
-            }
+
+            $event->setNbRegistration($event->getNbRegistration() + 1);
+            $event->setNumberOfPlaces($event->getNumberOfPlaces() - 1);
+
 
             $entityManager->persist($event);
             $entityManager->flush();
@@ -170,7 +170,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('home_home');
 
         } else {
-            $this->addFlash('danger', "Plus de places !!!");
+            $this->addFlash('danger', "Inscription impossible ou alors il n'y a plus de places !!!");
             return $this->redirectToRoute('home_home');
         }
         return $this->render('home/home.html.twig');

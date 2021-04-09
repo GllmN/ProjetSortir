@@ -117,8 +117,8 @@ class AppFixtures extends Fixture
 
             $event->setEventName($faker->sentence(5));
             $event->setDateAndHour($faker->dateTimeBetween('- 6 months', 'now') );
-            $event->setRegistrationLimit(new \DateTime());
-            $event->setNumberOfPlaces(mt_rand(1, 100));
+            $event->setRegistrationLimit($faker->dateTimeBetween('now', '+ 6 months'));
+            $event->setNumberOfPlaces(mt_rand(0, 100));
             $event->setDuration(mt_rand(60, 600));
             $event->setDescription($faker->realText(100));
             //nb_registration
