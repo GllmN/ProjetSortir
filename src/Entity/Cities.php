@@ -20,7 +20,7 @@ class Cities
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=200)
      */
     private $city;
 
@@ -33,6 +33,26 @@ class Cities
      * @ORM\OneToMany(targetEntity=Event::class, mappedBy="city", orphanRemoval=true)
      */
     private $events;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $departement;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $insee;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lng;
 
     public function __construct()
     {
@@ -101,5 +121,53 @@ class Cities
     public function __toString()
     {
         return $this->city;
+    }
+
+    public function getDepartement(): ?string
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(string $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getInsee(): ?string
+    {
+        return $this->insee;
+    }
+
+    public function setInsee(string $insee): self
+    {
+        $this->insee = $insee;
+
+        return $this;
+    }
+
+    public function getLat(): ?string
+    {
+        return $this->lat;
+    }
+
+    public function setLat(string $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    public function setLng(float $lng): self
+    {
+        $this->lng = $lng;
+
+        return $this;
     }
 }

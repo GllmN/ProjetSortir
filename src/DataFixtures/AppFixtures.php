@@ -13,7 +13,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Campus;
+use App\Entity\Cities;
 use App\Entity\Event;
+use App\Entity\EventStatus;
+use App\Entity\Location;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -21,71 +25,104 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    //on se fait passer l'encodeur de mot de passe dans le contructeur
+    //----------- PASSWORD / HASHAGE ------------
+    //on passe le hashage de mot de passe dans le contructeur
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
-    {
+    public function __construct(UserPasswordEncoderInterface $encoder){
         $this->encoder = $encoder;
     }
 
     //cette méthode est appelée quand on exécute la commande php bin/console d:f:l
     //on reçoit un entitymanager en argument \o/
-    public function load(ObjectManager $manager)
-    {
+    public function load(ObjectManager $manager){
+
+        //-------------INSERTION DE DONNEES DANS LES TABLES : ---------------
+        //-------------- STATUS, LOCATION, CITIES, CAMPUS -------------------
         //charge un fichier sql et exécute les requêtes qui s'y trouvent
-        $sql = file_get_contents(__DIR__  . '/city.sql');
+        $sql = file_get_contents(__DIR__ . '/insert.sql');
         $stmt = $manager->getConnection()->prepare($sql);
         $stmt->execute();
         //nécessaire sinon ça pète une erreur
         $stmt->closeCursor();
 
+
+        //--------------FAKER--------------
         //nous permet de générer des données bidons
         //voir ici pour tout ce qu'on peut générer :
         //https://fakerphp.github.io/formatters/numbers-and-strings/
         $faker = \Faker\Factory::create("fr_FR");
 
-        //on crée un user normal fixe
-        $user = new User();
-        $user->setEmail('yo@yo.com');
-        $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
-        $user->setRoles(['ROLE_USER']);
-        $manager->persist($user);
+
+        //-----------TABLE USER------------
 
         //on crée un admin
         $user = new User();
-        $user->setEmail('admin@yo.com');
+        $user->setPseudo($faker->userName);
+        $user->setFirstName($faker->firstName());
+        $user->setLastName($faker->firstName());
+        $user->setPhone('0667676767');
+        $user->setEmail($faker->email);
+        // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
         $user->setPassword($this->encoder->encodePassword($user, 'admin'));
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['admin']);
+        $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+        $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
+
         $manager->persist($user);
+
+        //on crée un user normal fixe
+        for($i = 0; $i < 15; $i++) {
+        $user = new User();
+        $user->setPseudo($faker->userName.$i);
+        $user->setFirstName($faker->firstName());
+        $user->setLastName($faker->firstName());
+        $user->setPhone('0606060606');
+        $user->setEmail($faker->email);
+        // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
+        $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
+        $user->setRoles(['user']);
+        $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+        $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
+
+        $manager->persist($user);
+        }
 
         //on sauvegarde en bdd tout de suite
         $manager->flush();
 
-        //on récupère tous les users pour pouvoir les associer en tant qu'organisateur d'événement ci-dessous
+        //-----------TABLE EVENT------------
+        //on récupère tous les users, les status, les campus pour pouvoir les associer en tant qu'organisateur d'événement ci-dessous
+        $allCampus = $manager->getRepository(Campus::class)->findAll();
+        $allCities = $manager->getRepository(Cities::class)->findAll();
+        $allStatus = $manager->getRepository(EventStatus::class)->findAll();
         $allUsers = $manager->getRepository(User::class)->findAll();
+        $allLocation = $manager->getRepository(Location::class)->findAll();
 
         //plein de création d'événements
-        for($i = 0; $i < 100; $i++) {
+        for($i = 0; $i < 50; $i++) {
 
             $event = new Event();
-            $event->setEventName($faker->sentence );
+
+            //campus_id => un campus au hasard pour l'utilisateur
+            $event->setCampus($faker->randomElement($allCampus));
+            //city_ID
+            $event->setCity($faker->randomElement($allCities));
+            //status_ID
+            $event->setStatus($faker->randomElement($allStatus));
+            //organizer_ID => un utilisateur au hasard en tant qu'organisateur
+            $event->setOrganizer($faker->randomElement($allUsers));
+            //location_ID
+            $event->setLocation($faker->randomElement($allLocation));
+
+            $event->setEventName($faker->sentence(5));
             $event->setDateAndHour($faker->dateTimeBetween('- 6 months', 'now') );
             $event->setRegistrationLimit(new \DateTime());
             $event->setNumberOfPlaces(mt_rand(1, 100));
             $event->setDuration(mt_rand(60, 600));
-            $event->setDescription($faker->realText(1000));
-            //organizer_ID
-            $event->setOrganizer(1);
-            //status_ID
-            $event->setStatus(1);
-            //location_ID
-            $event->setLocation(1);
-            $event->setNbRegistration();
-
-
-            //un utilisateur au hasard en tant qu'organisateur
-            $event->setOrganizer( $faker->randomElement($allUsers) );
+            $event->setDescription($faker->realText(100));
+            //nb_registration
+            $event->setNbRegistration(mt_rand(1, 1));
 
             //on sauvegarde dans la boucle
             $manager->persist($event);
