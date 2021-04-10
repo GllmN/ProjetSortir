@@ -37,8 +37,11 @@
         <div class="col-sm-2">
             <button type="button" class="btn btn-primary">
                 <a href="">Rechercher</a>
-            </button></div>
+            </button>
+        </div>
     </div>
+
+
 
     <div class="row">
         <div class="col-sm-1"></div>
@@ -66,7 +69,7 @@
                     <td class="text-center align-middle">??/{{ event.numberOfPlaces }}</td>
                     <td class="text-center align-middle">{{ event.status }}</td>
                     <td class="text-center align-middle">??</td>
-                    <td><button type="button" class="btn btn-link">
+                    <td class="text-center align-middle"><button type="button" class="btn btn-link">
                             <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
                         </button>
                         <button type="button" class="btn btn-link">
