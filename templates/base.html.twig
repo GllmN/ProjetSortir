@@ -32,7 +32,7 @@
                     <h1 class="pb-0 mb-0">SORTIR.COM</h1>
                 </div>
                 <nav class="fa fa-bars my-2 my-md-0 me-md-3">
-                    {% if app.user.roles.0 %}
+                    {% if app.user.roles.0.1 == "ROLE_ADMIN" %}
                         <a class="p-3 text-white" href="{{ url('admin_campus') }}">Campus</a>
                         <a class="p-3 text-white" href="{{ url('admin_ville') }}">Villes</a>
                     {% else %}
@@ -52,7 +52,6 @@
                 {# <a class="btn btn-outline-primary" href="#">Sign up</a>  #}
             </header>
 
-            {{ dump (app.user.roles.0.1) }}
         {% endblock %}
 
         {% block body %}

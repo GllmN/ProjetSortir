@@ -4,9 +4,10 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Form\FilterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route(path="accueil", name="home_")
@@ -19,8 +20,14 @@ class HomeController extends AbstractController
     public function home(EntityManagerInterface $entityManager) {
 
         if ($this->getUser()) {
+
+            //création d'un formulaire filter dans l'acceuil
+            $filterForm = $this->createForm(FilterType::class);
+
             $event = $entityManager->getRepository('App:Event')->getAll();
-            return $this->render('home/home.html.twig', ['list' => $event]);
+
+            return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
+
         }
         return $this->redirectToRoute('app_login');
     }
@@ -31,4 +38,5 @@ class HomeController extends AbstractController
     public function profil() {
         return $this->render('user/profilUser.html.twig');
     }
+
 }

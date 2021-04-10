@@ -12,10 +12,7 @@ body {
     margin: 0;
 }
 
-h1 {
-    color: red;
-    font-size: 50px;
-}
+
 
 h3 {
     font-size: 25px;
@@ -39,8 +36,19 @@ table {
 }
 
 /* POLICES*/
+.filtre{
+    background: white;
+    padding-bottom: 15px;
+    border: 0px black solid;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* POLICES*/
 @font-face {
     font-family: 'game';
     src: url('ttf/GameOnPersonalUseOnly.ttf') format('truetype');
     /*src: url('ttf/AmongUs-Regular.ttf') format('truetype');*/
 }
+
