@@ -23,26 +23,34 @@
 
             <div class="row mb-5">
                 <div class="col-sm-1"></div>
+
                 <div class="col-sm-4">
-                    <div class="mb-3">Campus
-                        {{ form_start(filterForm) }}
-                        {{ form_widget(filterForm) }}
-                        {{ form_end(filterForm) }}
-                    </div>
-                    <div class="mb-3">Le nom de la sortie contient :
-                    </div>
-                    <div class="mb-3">Entre :
-                        et
+                    {{ form_start(filterForm) }}
+                    <div class="group mb-3">
+                        {{ form_row(filterForm.campus) }}
+                        {{ form_row(filterForm.keyWord) }}
+                        <div class="col">
+                            Entre :
+                            {{ form_row(filterForm.dateStart) }}
+                            et
+                            {{ form_row(filterForm.dateEnd) }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
-
+                    Le nom de la sortie contient :
+                    {{ form_row(filterForm.eventOrganizer) }}
+                    {{ form_row(filterForm.eventSuscriber) }}
+                    {{ form_row(filterForm.eventNotSuscriber) }}
+                    {{ form_row(filterForm.eventOld) }}
                 </div>
                 <div class="col-sm-2">
+                    {{ form_row(filterForm.search) }}
                     <button type="button" class="btn btn-primary">
                         <a href="">Rechercher</a>
                     </button>
                 </div>
+                {{ form_end(filterForm) }}
             </div>
         </div>
         <div class="col-sm-1"></div>
@@ -56,19 +64,21 @@
             <table class="table table-striped">
                 <thead>
                 <tr class="text-light bg-dark">
-                    <th class="pl-4" scope="col">Nom de la sortie</th>
-                    <th scope="col">Organisateur</th>
-                    <th class="text-center" scope="col">Date de la sortie</th>
-                    <th class="text-center" scope="col">Clôture</th>
-                    <th class="text-center" scope="col">Inscrits / Places</th>
-                    <th class="text-center" scope="col">Etat</th>
-                    <th class="text-center" scope="col">Inscrits</th>
-                    <th class="text-center" scope="col">Actions</th>
+                    <th class="pl-4 text-center align-middle" scope="col">#</th>
+                    <th class="pl-4 align-middle" scope="col">Nom de la sortie</th>
+                    <th class="align-middle" scope="col">Organisateur</th>
+                    <th class="text-center align-middle" scope="col">Date de la sortie</th>
+                    <th class="text-center align-middle" scope="col">Clôture</th>
+                    <th class="text-center align-middle" scope="col">Inscrits / Places</th>
+                    <th class="text-center align-middle" scope="col">Etat</th>
+                    <th class="text-center align-middle" scope="col">Inscrits</th>
+                    <th class="text-center align-middle" scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for event in list %}
                 <tr class="table-sm">
+                    <td class="align-middle pl-4">{{ event.id }}</td>
                     <td class="align-middle pl-4">{{ event.eventName }}.</td>
                     <td class="align-middle">{{ event.organizer }}</td>
                     <td class="text-center align-middle">{{ event.dateAndHour | date("d-m-Y") }}</td>
