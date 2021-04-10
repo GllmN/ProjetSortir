@@ -8,7 +8,10 @@ header {
 
 body {
     font-family: 'Ubuntu','Roboto', sans-serif;
-    background: #f5f1f1;
+    background-color: #f5f1f1;
+    background-image: url("img/background-beach-and-sea.jpg");
+    background-size: cover;
+    background-position: center;
     margin: 0;
 }
 
@@ -37,11 +40,11 @@ table {
 
 /* POLICES*/
 .conteneur{
-    background: white;
     border: 0px black solid;
     border-radius: 10px;
     padding-bottom: 15px;
     overflow: hidden;
+    background-color: rgba(255,255,255,.90);
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
