@@ -47,7 +47,7 @@ class AdminController extends AbstractController{
             $cities = $paginator->paginate(
                 $donnes,
                 $request->query->getInt('page', 1),
-                10
+                20
             );
 
         }
