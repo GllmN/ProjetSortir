@@ -5,57 +5,86 @@
 
 {% block body %}
 
-    <span style="color:red">Participant : {{ app.user.LastName }} !</span><br>
-    <span style="color:blue">Date du jour : {{ "now"|date('d/m/Y') }} </span><br>
-
-    <h3>Filtrer les sorties</h3>
-
-    {# permet l'affichage d'un message lorsque l'utilisateur a réussis son inscription !  #}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
+    <div class="row mt-5">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-2">
+            <span style="color:blue">Date du jour : {{ "now"|date('d/m/Y') }} </span><br>
+            <h4 style="color:#0040ff">HELLO {{ app.user.LastName }} !</h4><br>
         </div>
-    {% endfor %}
+    </div>
 
-    {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger">
-            {{ message }}
+    <div class="row mb-1">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h3>Filtrer les sorties</h3>
         </div>
-    {% endfor %}
+    </div>
 
-    {% for message in app.flashes('warning') %}
-        <div class="alert alert-warning">
-            {{ message }}
+    <div class="row mb-5">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+            <div class="mb-3">Campus
+            </div>
+            <div class="mb-3">Le nom de la sortie contient :
+            </div>
+            <div class="mb-3">Entre :
+                et
+            </div>
         </div>
-    {% endfor %}
+        <div class="col-sm-4">
 
-    <ul style="list-style: none">
-        {% for event in list %}
-            <li>
-                {{ event.eventName }} =>
-                Début : {{ event.dateAndHour | date("d-m-Y") }},
-                Limite d'inscription : {{ event.registrationLimit | date("d-m-Y")  }},
-                Statut : {{ event.status }},
-                Nb de place : {{ event.numberOfPlaces }}
-                Organisateur : {{ event.organizer }}
-                id : {{ event.id }}
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary">
+                <a href="">Rechercher</a>
+            </button></div>
+    </div>
 
-                <button>
-                    <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
-                </button>
-                <button>
-                    <a href="{{ url('sortie_afficher', {'id': event.id}) }}">Afficher la sortie</a>
-                </button>
-                <button>
-                    <a href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier la sortie</a>
-                </button>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 shadow p-0 m-0">
+            <table class="table table-striped">
+                <thead>
+                <tr class="text-light bg-dark">
+                    <th class="pl-4" scope="col">Nom de la sortie</th>
+                    <th scope="col">Organisateur</th>
+                    <th class="text-center" scope="col">Date de la sortie</th>
+                    <th class="text-center" scope="col">Clôture</th>
+                    <th class="text-center" scope="col">Inscrits / Places</th>
+                    <th class="text-center" scope="col">Etat</th>
+                    <th class="text-center" scope="col">Inscrits</th>
+                    <th class="text-center" scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in list %}
+                <tr class="table-sm">
+                    <td class="align-middle pl-4">{{ event.eventName }}.</td>
+                    <td class="align-middle">{{ event.organizer }}</td>
+                    <td class="text-center align-middle">{{ event.dateAndHour | date("d-m-Y") }}</td>
+                    <td class="text-center align-middle">{{ event.registrationLimit | date("d-m-Y")  }}</td>
+                    <td class="text-center align-middle">??/{{ event.numberOfPlaces }}</td>
+                    <td class="text-center align-middle">{{ event.status }}</td>
+                    <td class="text-center align-middle">??</td>
+                    <td><button type="button" class="btn btn-link">
+                            <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
+                        </button>
+                        <button type="button" class="btn btn-link">
+                            <a href="{{ url('sortie_afficher', {'id': event.id}) }}">Afficher la sortie</a>
+                        </button>
+                        <button type="button" class="btn btn-link">
+                            <a href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier la sortie</a>
+                        </button></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
 
 
-            </li>
-        {% endfor %}
-    </ul>
-
-    <button> <a href="{{ url('sortie_creation') }}">
-        Créer une sortie</a>
+    <button type="button" class="btn btn-primary">
+        <a href="{{ url('sortie_creation') }}">Créer une sortie</a>
     </button>
 {% endblock %}

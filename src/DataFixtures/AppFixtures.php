@@ -73,19 +73,19 @@ class AppFixtures extends Fixture
 
         //on crée un user normal fixe
         for($i = 0; $i < 15; $i++) {
-        $user = new User();
-        $user->setPseudo($faker->userName.$i);
-        $user->setFirstName($faker->firstName());
-        $user->setLastName($faker->firstName());
-        $user->setPhone('0606060606');
-        $user->setEmail($faker->email);
-        // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
-        $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
-        $user->setRoles(['ROLE_USER']);
-        $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
-        $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
+            $user = new User();
+            $user->setPseudo($faker->userName.$i);
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->firstName());
+            $user->setPhone('0606060606');
+            $user->setEmail($faker->email);
+            // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
+            $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
+            $user->setRoles(['ROLE_USER']);
+            $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+            $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
-        $manager->persist($user);
+            $manager->persist($user);
         }
 
         //on sauvegarde en bdd tout de suite
