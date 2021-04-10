@@ -6,6 +6,7 @@ use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method Event|null find($id, $lockMode = null, $lockVersion = null)
  * @method Event|null findOneBy(array $criteria, array $orderBy = null)
@@ -24,4 +25,5 @@ class EventRepository extends ServiceEntityRepository
             ->orderBy('event.registrationLimit', 'ASC');
         return $req->getQuery()->getResult();
     }
+
 }

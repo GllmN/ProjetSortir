@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,10 +21,8 @@ class HomeController extends AbstractController
         if ($this->getUser()) {
             $event = $entityManager->getRepository('App:Event')->getAll();
             return $this->render('home/home.html.twig', ['list' => $event]);
-
         }
         return $this->redirectToRoute('app_login');
-
     }
 
     /**
@@ -32,7 +31,4 @@ class HomeController extends AbstractController
     public function profil() {
         return $this->render('user/profilUser.html.twig');
     }
-
-
-
 }
