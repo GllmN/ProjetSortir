@@ -88,6 +88,7 @@ class EventController extends AbstractController
     public function detail(Request $request, EntityManagerInterface $entityManager){
         $id = $request->get('id');
         $event = $entityManager->getRepository(Event::class)->find($id);
+
         return $this->render('events/detail.html.twig', ['event'=>$event]);
     }
 
