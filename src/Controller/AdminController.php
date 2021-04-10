@@ -6,7 +6,9 @@ namespace App\Controller;
 use App\Entity\Campus;
 use App\Entity\Cities;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -36,11 +38,18 @@ class AdminController extends AbstractController{
     /**
      * @Route(path="/ville", name="ville")
      */
-    public function city(EntityManagerInterface $em){
+    public function city(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request){
 
         if($this->getUser()){
-            //à optimiser avec une méthode en repository
-            $cities = $em->getRepository(Cities::class)->findAll();
+
+            $donnes = $em->getRepository(Cities::class)->getAll();
+            //Pagination avec "composer req knplabs/knp-paginator-bundle"
+            $cities = $paginator->paginate(
+                $donnes,
+                $request->query->getInt('page', 1),
+                10
+            );
+
         }
         return $this->render('admin/city.html.twig', ['cities'=>$cities]);
     }

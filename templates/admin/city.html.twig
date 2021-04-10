@@ -4,5 +4,6 @@
     {% for city in cities %}
         {{ city.city }}
         {{ city.postalCode }}<br>
-    {% endfor %}
+    {% endfor %}<br>
+    {{ knp_pagination_render(cities) }}
 {% endblock %}

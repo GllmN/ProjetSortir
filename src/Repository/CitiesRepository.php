@@ -19,32 +19,9 @@ class CitiesRepository extends ServiceEntityRepository
         parent::__construct($registry, Cities::class);
     }
 
-    // /**
-    //  * @return Cities[] Returns an array of Cities objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function getAll(){
+        $req = $this->createQueryBuilder('city');
+        return $req->getQuery()->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Cities
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

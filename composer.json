@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.8",
         "fakerphp/faker": "^1.14",
         "jms/serializer-bundle": "^3.9",
+        "knplabs/knp-paginator-bundle": "^5.4",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
