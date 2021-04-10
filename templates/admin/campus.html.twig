@@ -2,4 +2,8 @@
 {% block body %}
     <h2>Campus</h2>
 
+    {% for campus in campus %}
+        {{ campus.campus }}<br>
+    {% endfor %}
+
 {% endblock %}

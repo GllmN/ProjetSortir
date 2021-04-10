@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h2>Villes</h2>
-
+    {% for city in cities %}
+        {{ city.city }}
+        {{ city.postalCode }}<br>
+    {% endfor %}
 {% endblock %}
