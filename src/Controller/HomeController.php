@@ -3,18 +3,17 @@
 
 namespace App\Controller;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(path="", name="home_")
+ * @Route(path="accueil", name="home_")
  */
 class HomeController extends AbstractController
 {
     /**
-     * @Route(path="accueil", name="home", methods={"GET"})
+     * @Route(path="", name="home", methods={"GET"})
      */
     public function home(EntityManagerInterface $entityManager) {
 
