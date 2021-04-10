@@ -65,7 +65,7 @@ class AppFixtures extends Fixture
         $user->setEmail($faker->email);
         // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
         $user->setPassword($this->encoder->encodePassword($user, 'admin'));
-        $user->setRoles(['admin']);
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
         $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
@@ -81,7 +81,7 @@ class AppFixtures extends Fixture
         $user->setEmail($faker->email);
         // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
         $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
-        $user->setRoles(['user']);
+        $user->setRoles(['ROLE_USER']);
         $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
         $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 

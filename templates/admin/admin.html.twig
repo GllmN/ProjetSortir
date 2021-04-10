@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>Accueil ADMIN</h2>
+    <button>
+        <a href="{{ url('admin_campus') }}">Campus</a>
+    </button>
+
+    <button>
+        <a href="{{ url('admin_ville') }}">Villes</a>
+    </button>
+
+{% endblock %}
