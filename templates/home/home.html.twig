@@ -5,55 +5,57 @@
 
 {% block body %}
     <div>
-        <div class="col-sm-10">
-            <div class="row mt-5">
-                <div class="col-sm-9"></div>
-                <div class="col-sm-2">
-                    <span style="color:blue">Date du jour : {{ "now"|date('d/m/Y') }} </span><br>
-                    <h4 style="color:#0040ff">HELLO {{ app.user.LastName }} !</h4><br>
-                </div>
-            </div>
-
-            <div class="row mb-1">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-10">
-                    <h3>Filtrer les sorties</h3>
-                </div>
-            </div>
-
-            <div class="row mb-5">
-                <div class="col-sm-1"></div>
-
-                <div class="col-sm-4">
-                    {{ form_start(filterForm) }}
-                    <div class="group mb-3">
-                        {{ form_row(filterForm.campus) }}
-                        {{ form_row(filterForm.keyWord) }}
-                        <div class="col">
-                            Entre :
-                            {{ form_row(filterForm.dateStart) }}
-                            et
-                            {{ form_row(filterForm.dateEnd) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    Le nom de la sortie contient :
-                    {{ form_row(filterForm.eventOrganizer) }}
-                    {{ form_row(filterForm.eventSuscriber) }}
-                    {{ form_row(filterForm.eventNotSuscriber) }}
-                    {{ form_row(filterForm.eventOld) }}
-                </div>
-                <div class="col-sm-2">
-                    {{ form_row(filterForm.search) }}
-                    <button type="button" class="btn btn-primary">
-                        <a href="">Rechercher</a>
-                    </button>
-                </div>
-                {{ form_end(filterForm) }}
+        <div class="row mt-5">
+            <div class="col-sm-9"></div>
+            <div class="col-sm-2">
+                <span style="color:blue">Date du jour : {{ "now"|date('d/m/Y') }} </span><br>
+                <h4 style="color:#0040ff">HELLO {{ app.user.LastName }} !</h4><br>
             </div>
         </div>
-        <div class="col-sm-1"></div>
+
+        {# todo #}
+        <div class="col-sm-2 mx-3"></div>
+        <div class="col-sm-10 mx-3">
+            <div class="conteneur">
+                <div class="row mb-1">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <h3>Filtrer les sorties</h3>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">
+                        {{ form_start(filterForm) }}
+                        <div class="group mb-3">
+                            {{ form_row(filterForm.campus) }}
+                            {{ form_row(filterForm.keyWord) }}
+                            <div class="form-group">
+                                <div class="col-sm-6">{{ form_row(filterForm.dateStart) }}</div>
+                                <div class="col-sm-6">{{ form_row(filterForm.dateEnd) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="my-3 pt-3 align-middle">{{ form_row(filterForm.eventOrganizer) }}</div>
+                        <div class="my-3 pt-3 align-middle">{{ form_row(filterForm.eventSuscriber) }}</div>
+                        <div class="my-3 pt-3 align-middle">{{ form_row(filterForm.eventNotSuscriber) }}</div>
+                        <div class="my-3 pt-3 align-middle">{{ form_row(filterForm.eventOld) }}</div>
+                    </div>
+                    <div class="col-sm-2">
+                        {{ form_row(filterForm.search) }}
+                        <button type="button" class="btn btn-primary">
+                            <a href="">Rechercher</a>
+                        </button>
+                    </div>
+                    {{ form_end(filterForm) }}
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
     </div>
 
 
