@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h2>Villes</h2>
-    {% for city in cities %}
-        {{ city.city }}
-        {{ city.postalCode }}<br>
-    {% endfor %}<br>
-    {{ knp_pagination_render(cities) }}
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+             <h2>Gerer les villes</h2>
+            {% for city in cities %}
+                {{ city.city }}
+                {{ city.postalCode }}<br>
+            {% endfor %}<br>
+            {{ knp_pagination_render(cities) }}
+        </div>
+        <div class="col-sm"></div>
+    </div>
 {% endblock %}

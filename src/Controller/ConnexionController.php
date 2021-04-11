@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\FilterType;
+use App\Form\LoginType;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,16 +18,19 @@ class ConnexionController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-         if ($this->getUser()) {
+        //création d'un formulaire filter dans l'acceuil
+        $loginForm = $this->createForm(LoginType::class);
+
+        if ($this->getUser()) {
             return $this->redirectToRoute('home_home');
-         }
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'loginForm' => $loginForm->createView()]);
     }
 
     /**

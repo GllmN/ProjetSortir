@@ -20,16 +20,16 @@ class FilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('campus', ChoiceType::class, [] )
+            ->add('campus', ChoiceType::class, ['data' => 'Choisissez votre campus'] )
             ->add('keyWord', TextType::class, [
                 'label'=>'Le nom de la sortie contient :',
-                'data' => 'Search'])
+                'data' => 'Mot clé'])
             ->add('dateStart', DateType::class, ['label'=>'Entre :'])
             ->add('dateEnd', DateType::class, ['label'=>'et :'])
-            ->add('eventOrganizer', CheckboxType::class, ['label'=>'Sortie dont je suis l\'organisateur(trice) :'])
-            ->add('eventSuscriber', CheckboxType::class, ['label'=>'Sortie auquelles je suis inscrit(e) :'])
-            ->add('eventNotSuscriber', CheckboxType::class, ['label'=>'Sortie auquelles je ne suis pas inscrit(e) :'])
-            ->add('eventOld', CheckboxType::class, ['label'=>'Sortie passées :'])
+            ->add('eventOrganizer', CheckboxType::class, ['label'=>'Sortie dont je suis l\'organisateur(trice).'])
+            ->add('eventSuscriber', CheckboxType::class, ['label'=>'Sortie auquelles je suis inscrit(e).'])
+            ->add('eventNotSuscriber', CheckboxType::class, ['label'=>'Sortie auquelles je ne suis pas inscrit(e).'])
+            ->add('eventOld', CheckboxType::class, ['label'=>'Sortie passées.'])
             ->add('search', SubmitType::class, ['label'=>'Rechercher'])
         ;
     }

@@ -6,13 +6,11 @@ header {
     box-shadow: 0px 13px 12px -2px rgba(0, 0, 0, 0.33);
 }
 
+
 body {
     font-family: 'Ubuntu','Roboto', sans-serif;
     background-color: #f5f1f1;
-    background-image: url("img/background-beach-and-sea.jpg");
-    background-size: cover;
-    background-position: center;
-    margin: 0;
+    margin:0;
 }
 
 
@@ -23,8 +21,8 @@ h3 {
 }
 
 h4 {
-    font-size: 30px;
-    font-family: 'game', 'Ubuntu','Roboto', sans-serif;
+    font-size: 18px;
+    font-family: 'Ubuntu','Roboto', sans-serif;
 }
 
 a:hover {
@@ -32,23 +30,80 @@ a:hover {
 }
 
 table {
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 3px 18px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.33);
     border: 0 black solid;
 }
 
 /* POLICES*/
-.conteneur{
+.home-conteneur{
+    color: #565656;
     border: 0px black solid;
-    border-radius: 10px;
-    padding-bottom: 15px;
+    border-radius: 15px;
+    margin: 0px;
     overflow: hidden;
     background-color: rgba(255,255,255,.90);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.23);
 }
 
+.home-hello{
+    font-size: 50px;
+    font-family: 'game', 'Ubuntu','Roboto', sans-serif;
+}
 
+.login{
+    background-image:
+        linear-gradient(rgba(180, 180, 186, 0.5), rgba(238, 238, 236, 0.5)),
+        url("img/background-beach-and-sea.jpg");
+    background-size: cover;
+    background-position: center;
+    margin:0;
+    height:1100px;
+}
+
+.login-contact{
+    color: #2a0653;
+}
+
+.login-boutton{
+    background-color: #0b7e99;
+    color: white;
+    padding: 10px;
+    height: 58px;
+    width: 90%;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+.home-search-boutton{
+    background-color: #0b7e99;
+    color: white;
+    padding: 10px;
+    height: 58px;
+    width: 80%;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+.home-create-event-boutton{
+    background-color: #0b7e99;
+    color: white;
+    padding: 10px;
+    height: 58px;
+    width: 80%;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
 
 /* POLICES*/
 @font-face {

@@ -5,49 +5,85 @@
 {% block header %}{% endblock %}
 
 {% block body %}
-    <div class="row my-3"></div>
-    <div class="col-sm-2 my-3 text-dark text-center align-items-center">
-        <header class="pb-0 mb-0">SORTIR.COM</header>
-    </div>
-    <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-            <div class="conteneur">
-                <div class="p-5">
-                    <form method="post">
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
+    <div class="login">
+        <div class="row"></div>
+        <div class="col-sm-2 my-3 text-dark text-center align-items-center">
+            <header class="pb-0 mb-0"><img src="../../public/css/img/logo-sortir-com.png" alt="Retour"></header>
+        </div>
+        <div class="col-12-sm py-5"></div>
+        <div class="row">
+            <div class="col-sm"></div>
+            {# Encadré du formulaire #}
+            <div class="col-sm-3">
+                <div class="conteneur">
+                    <div class="p-5">
+                        <form method="post">
+                            {# formulaire de connexion #}
+                            <h1 class="h3 mb-3 pb-3 font-weight-bold">S'identifier</h1>
 
-                        {% if app.user %}
-                            <div class="mb-3">
-                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                            </div>
-                        {% endif %}
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
 
-                        <h1 class="h3 mb-3 font-weight-normal">S'identifier</h1>
-                        <label for="inputEmail">Email</label>
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                        <label for="inputPassword">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
 
-                        <button class="btn btn-lg btn-primary" type="submit">
-                            Connexion
-                        </button>
-
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                            {# formulaire de connexion - v1 version Adrien #}
+                            <label class="col-sm px-0 py-1" for="inputEmail">
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control py-3" placeholder="Saisissez votre email" required autofocus>
                             </label>
-                        </div>
-                        Première visite sur Sortir.com ? Contacter {# app.user.. admin #} {'toto'}. {# déclencher sur le terme 'contacter' action boite mail #}
-                    </form>
+
+                            <label class="col-sm px-0 py-1" for="inputPassword">
+                                <input type="password" name="password" id="inputPassword" class="form-control py-3" placeholder="Mot de passe" required>
+                            </label>
+
+                            {# formulaire de connexion - v2 avec logintype, les messages d'erreurs ne marche pas #}
+                            {# <div class="pb-3">
+                                {{ form_start(loginForm) }}
+                                <div class="py-3">{{ form_widget(loginForm.email) }}</div>
+                                <div class="py-3">{{ form_widget(loginForm.password) }}</div>
+                                {{ form_end(loginForm) }}
+                            </div> #}
+
+                            {# boutton connexion #}
+                            <div class="col-sm px-0 pt-1 pb-3">
+                                <button class="login-boutton" type="submit">
+                                    Connexion
+                                </button>
+                            </div>
+
+                            {# ??? #}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            {# Se souvenir de moi / mot de passe oublié #}
+                            <div class="row m-0 px-0 py-3">
+                                <div class="col-sm px-0 checkbox">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                                    </label>
+                                </div>
+                                <div class="col-sm px-0 text-right">
+                                    <a  href="{# {{ url('home_home') }} #}">Mot de passe oublié?</a>
+                                </div>
+                            </div>
+
+                            {# Inscription contacter admin #}
+                            <div class="pb-3">
+                                <div class="login-contact">
+                                    <b>
+                                        Première visite sur Sortir.com ?
+                                        Contacter {# app.user.. admin #} {'toto'}. {# déclencher sur le terme 'contacter' action boite mail #}
+                                    </b>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm"></div>
     </div>
-
 {% endblock %}
