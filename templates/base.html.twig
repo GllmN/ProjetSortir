@@ -57,23 +57,7 @@
         {% block body %}
 
             {# permet l'affichage d'un message lorsque l'utilisateur a réussis son inscription !  #}
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
 
-            {% for message in app.flashes('danger') %}
-                <div class="alert alert-danger">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
-            {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning">
-                    {{ message }}
-                </div>
-            {% endfor %}
 
         {% endblock %}
     </body>
