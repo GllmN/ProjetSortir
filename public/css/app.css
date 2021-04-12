@@ -26,7 +26,7 @@ h4 {
 }
 
 a{
-
+    color: white;
 }
 
 a:hover {
@@ -75,7 +75,6 @@ table {
 
 .home-search-boutton{
     background-color: #0b7e99;
-    color: white;
     padding: 10px;
     height: 58px;
     width: 100%;
@@ -86,11 +85,15 @@ table {
     cursor: pointer;
 }
 
+.home-search-boutton > div > a{
+    color: white;
+}
+
 
 
 .login{
     background-image:
-        linear-gradient(rgba(180, 180, 186, 0.5), rgba(238, 238, 236, 0.5)),
+        linear-gradient(rgba(117, 117, 124, 0.5), rgba(238, 238, 236, 0.5)),
         url("img/background-beach-and-sea.jpg");
     background-size: cover;
     background-position: center;
