@@ -25,8 +25,14 @@ h4 {
     font-family: 'Ubuntu','Roboto', sans-serif;
 }
 
+a{
+    color: white;
+
+}
+
 a:hover {
     color: #007bff;
+    text-underline: none;
 }
 
 table {
@@ -57,7 +63,7 @@ table {
     color: white;
     padding: 10px;
     height: 58px;
-    width: 80%;
+    width: 100%;
     font-size: 21px;
     font-weight: bold;
     border-radius: 5px;
@@ -68,12 +74,11 @@ table {
 .home-create-event-boutton{
     background-color: #0b7e99;
     color: white;
-    padding: 10px;
-    height: 58px;
-    width: 80%;
-    font-size: 21px;
+    height: 70px;
+    width: 100%;
+    font-size: 28px;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 0;
     cursor: pointer;
 }
