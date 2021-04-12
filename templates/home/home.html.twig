@@ -110,7 +110,7 @@
                     <th class="align-middle" scope="col">Organisateur</th>
                     <th class="text-center align-middle" scope="col">Date de la sortie</th>
                     <th class="text-center align-middle" scope="col">Clôture</th>
-                    <th class="text-center align-middle" scope="col">Inscrits / Places</th>
+                    <th class="text-center align-middle" scope="col">Places restantes</th>
                     <th class="text-center align-middle" scope="col">Etat</th>
                     <th class="text-center align-middle" scope="col">Inscrits</th>
                     <th class="text-center align-middle" scope="col">Actions</th>
@@ -124,9 +124,9 @@
                     <td class="align-middle">{{ event.organizer }}</td>
                     <td class="text-center align-middle">{{ event.dateAndHour | date("d-m-Y") }}</td>
                     <td class="text-center align-middle">{{ event.registrationLimit | date("d-m-Y")  }}</td>
-                    <td class="text-center align-middle">??/{{ event.numberOfPlaces }}</td>
+                    <td class="text-center align-middle">{{ event.numberOfPlaces }}</td>
                     <td class="text-center align-middle">{{ event.status }}</td>
-                    <td class="text-center align-middle">??</td>
+                    <td class="text-center align-middle">{{ event.NbRegistration }}</td>
                     <td class="text-center align-middle">
                         <button type="button" class="btn btn-link">
                             <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
