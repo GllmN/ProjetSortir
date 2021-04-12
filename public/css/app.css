@@ -25,8 +25,19 @@ h4 {
     font-family: 'Ubuntu','Roboto', sans-serif;
 }
 
+.redLink { color: #FF0000; }
+
+.orangeLink { color: #ff7700
+}
+
+.greenLink { color: green}
+
+.blueLink { color: #0b2399 }
+
+
+
 a{
-    color: white;
+    color: black;
 }
 
 a:hover {
@@ -35,11 +46,13 @@ a:hover {
 }
 
 table {
-    border-radius: 15px;
+    border-radius: 50px;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0,0,0,0.33);
     border: 0 black solid;
 }
+
+
 
 /* CLASSES*/
 .base-img-logo > a > img{
