@@ -22,6 +22,7 @@ class HomeController extends AbstractController
      */
     public function home(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request) {
 
+        $em->getRepository(Event::class)->updateBDD();
         if ($this->getUser()) {
             //création d'un formulaire filter dans l'acceuil
             $filterForm = $this->createForm(FilterType::class);

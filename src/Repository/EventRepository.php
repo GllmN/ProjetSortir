@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Event;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+
 
 
 /**
@@ -21,9 +23,26 @@ class EventRepository extends ServiceEntityRepository
     }
 
     public function getAll(){
+        $date = new \DateTime();
         $req = $this->createQueryBuilder('event')
+            ->where('event.registrationLimit> :date')->setParameter('date', $date)
             ->orderBy('event.registrationLimit', 'ASC');
+
         return $req->getQuery()->getResult();
     }
 
+    public function updateBDD(){
+        $date = new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris'));
+        //Moins 1 jour sur la date du jour
+        $date->modify("-1 day");
+
+        //Recup des sorties avec une date limite d'inscription supérieur à la date du jour
+        //Passage en status 3-Closed
+        $req = $this->createQueryBuilder('event')
+            ->update(Event::class, 'event')->set('event.status', '?1')
+            ->where('event.registrationLimit< :date')
+            ->setParameter(1, '3')
+            ->setParameter('date', $date);
+        $req->getQuery()->execute();
+    }
 }
