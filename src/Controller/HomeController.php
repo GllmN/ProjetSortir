@@ -37,7 +37,6 @@ class HomeController extends AbstractController
             $result = $em->getRepository(Event::class)->search($keyWord);
             dump($result);
             exit();
-
         }
 
         if ($this->getUser()) {
