@@ -29,7 +29,9 @@
         {% block header %}
             <header class="row justify-content-between align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
                 <div class="col-sm-2 text-white text-center align-items-center">
-                    {#  <a class="pb-0 mb-0" href="{{ url('home_home') }}"><img src="../public/c alt="Retour"></a>#}
+                    <div class="base-img-logo">
+                        <a class="pb-0 mb-0" href="{{ url('home_home') }}"><img src="{{ asset('css/img/logo-sortir-com.png') }}" alt="Retour"></a>
+                    </div>
                 </div>
                 <nav class="fa fa-bars my-2 my-md-0 me-md-3">
                     {% if app.user.roles.0.1 == "ROLE_ADMIN" %}

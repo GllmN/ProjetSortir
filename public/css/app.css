@@ -26,13 +26,12 @@ h4 {
 }
 
 a{
-    color: white;
 
 }
 
 a:hover {
     color: #007bff;
-    text-underline: none;
+    text-decoration: greenyellow;
 }
 
 table {
@@ -42,7 +41,11 @@ table {
     border: 0 black solid;
 }
 
-/* POLICES*/
+/* CLASSES*/
+.base-img-logo > a > img{
+    height: 130px;
+}
+
 .home-conteneur{
     color: #565656;
     border: 0px black solid;
@@ -58,6 +61,18 @@ table {
     font-family: 'game', 'Ubuntu','Roboto', sans-serif;
 }
 
+.home-boutton-create-event{
+    background-color: #0b7e99;
+    color: white;
+    height: 70px;
+    width: 100%;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+}
+
 .home-search-boutton{
     background-color: #0b7e99;
     color: white;
@@ -71,17 +86,7 @@ table {
     cursor: pointer;
 }
 
-.home-create-event-boutton{
-    background-color: #0b7e99;
-    color: white;
-    height: 70px;
-    width: 100%;
-    font-size: 28px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: 0;
-    cursor: pointer;
-}
+
 
 .login{
     background-image:
@@ -91,6 +96,11 @@ table {
     background-position: center;
     margin:0;
     height:1100px;
+}
+
+.login-img-logo > div > header > img{
+    margin: 60px;
+    height: 220px;
 }
 
 .login-conteneur{
