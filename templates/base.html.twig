@@ -9,6 +9,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- CSS -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <!-- Polices -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> -->
+
         <!-- Favicon -->
 
         <!-- Scrip JS -->
@@ -27,10 +31,10 @@
     </head>
     <body>
         {% block header %}
-            <header class="row justify-content-between align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
+            <header class="row justify-content-between align-items-center p-3 mb-3 shadow-sm">
                 <div class="col-sm-2 text-white text-center align-items-center">
                     <div class="base-img-logo">
-                        <a class="pb-0 mb-0" href="{{ url('home_home') }}"><img src="{{ asset('css/img/logo-sortir-com.png') }}" alt="Retour"></a>
+                        <a class="pb-0 mb-0" href="{{ url('home_home') }}">{# <img src="{{ asset('css/img/logo-sortir-com.png') }}" alt="Retour"> #}SORTIR.COM!</a>
                     </div>
                 </div>
                 <nav class="fa fa-bars my-2 my-md-0 me-md-3">
