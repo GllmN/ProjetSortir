@@ -52,6 +52,32 @@ table {
     font-family: 'game', 'Ubuntu','Roboto', sans-serif;
 }
 
+.home-search-boutton{
+    background-color: #0b7e99;
+    color: white;
+    padding: 10px;
+    height: 58px;
+    width: 80%;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+.home-create-event-boutton{
+    background-color: #0b7e99;
+    color: white;
+    padding: 10px;
+    height: 58px;
+    width: 80%;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
 .login{
     background-image:
         linear-gradient(rgba(180, 180, 186, 0.5), rgba(238, 238, 236, 0.5)),
@@ -89,31 +115,7 @@ table {
     cursor: pointer;
 }
 
-.home-search-boutton{
-    background-color: #0b7e99;
-    color: white;
-    padding: 10px;
-    height: 58px;
-    width: 80%;
-    font-size: 21px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-}
 
-.home-create-event-boutton{
-    background-color: #0b7e99;
-    color: white;
-    padding: 10px;
-    height: 58px;
-    width: 80%;
-    font-size: 21px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-}
 
 /* POLICES*/
 @font-face {
