@@ -125,7 +125,7 @@
                 <tr class="table-sm">
                     <td class="align-middle pl-4">{{ event.id }}</td>
                     <td class="align-middle pl-4">{{ event.eventName }}.</td>
-                    <td class="align-middle">{{ event.organizer }}</td>
+                    <td class="align-middle"><a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a></td>
                     <td class="text-center align-middle">{{ event.dateAndHour | date("d-m-Y") }}</td>
                     <td class="text-center align-middle">{{ event.registrationLimit | date("d-m-Y")  }}</td>
                     <td class="text-center align-middle">{{ event.numberOfPlaces }}</td>

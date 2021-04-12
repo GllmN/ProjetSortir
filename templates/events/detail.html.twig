@@ -8,13 +8,13 @@
     Limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }},
     Statut : {{ event.status }},
     Nb de place : {{ event.numberOfPlaces }}
-    Organisateur : {{ event.organizer }}<br>
+    Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
 
 
     Participants : <br>
     {% for part in event.participants %}
-        Nom : {{ part.firstName }}
-        Prénom : {{ part.lastName }}<br>
+        Nom : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.firstName }}</a><br>
+        Prénom : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.lastName }}</a><br>
     {% endfor %}
 
 
