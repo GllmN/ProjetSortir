@@ -9,8 +9,13 @@
     Statut : {{ event.status }},
     Nb de place : {{ event.numberOfPlaces }}
     Organisateur : {{ event.organizer }}<br>
-    Participants :  <br>
-    (id de l'event : {{ event.id }})
+
+
+    Participants : <br>
+    {% for part in event.participants %}
+        Nom : {{ part.firstName }}
+        Prénom : {{ part.lastName }}<br>
+    {% endfor %}
 
 
 {% endblock %}
