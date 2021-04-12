@@ -26,10 +26,22 @@ class FilterType extends AbstractType
                 'data' => 'Mot clé'])
             ->add('dateStart', DateType::class, ['label'=>'Entre :'])
             ->add('dateEnd', DateType::class, ['label'=>'et :'])
-            ->add('eventOrganizer', CheckboxType::class, ['label'=>'Sortie dont je suis l\'organisateur(trice).'])
-            ->add('eventSuscriber', CheckboxType::class, ['label'=>'Sortie auquelles je suis inscrit(e).'])
-            ->add('eventNotSuscriber', CheckboxType::class, ['label'=>'Sortie auquelles je ne suis pas inscrit(e).'])
-            ->add('eventOld', CheckboxType::class, ['label'=>'Sortie passées.'])
+            ->add('eventOrganizer', CheckboxType::class, [
+                'label'=>'Sortie dont je suis l\'organisateur(trice).',
+                'required'=>false,
+            ])
+            ->add('eventSuscriber', CheckboxType::class, [
+                'label'=>'Sortie auquelles je suis inscrit(e).',
+                'required'=>false,
+            ])
+            ->add('eventNotSuscriber', CheckboxType::class, [
+                'label'=>'Sortie auquelles je ne suis pas inscrit(e).',
+                'required'=>false,
+            ])
+            ->add('eventOld', CheckboxType::class, [
+                'label'=>'Sortie passées.',
+                'required'=>false,
+            ])
             ->add('search', SubmitType::class, ['label'=>'Rechercher'])
         ;
     }
@@ -37,7 +49,9 @@ class FilterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Event::class,
+            // Suppression de l'association avec l'event
+            // car par d'entity de ce formulaire dans l'entité Event
+            //'data_class' => Event::class,
         ]);
     }
 }

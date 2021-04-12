@@ -18,16 +18,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route(path="", name="home", methods={"GET"})
+     * @Route(path="", name="home", methods={"GET", "POST"})
      */
     public function home(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request) {
 
+        //Verification des dates de fin d'inscription / à la date du jour
         $em->getRepository(Event::class)->updateBDD();
 
+        //création d'un formulaire filter dans l'acceuil
+        $filterForm = $this->createForm(FilterType::class);
+
+        $filterForm->handleRequest($request);
+
+        // Filter mot clé
+        if ($filterForm->isSubmitted() && $filterForm->isValid()){
+            $keyWord = $filterForm['keyWord']->getData();
+
+            $result = $em->getRepository(Event::class)->search($keyWord);
+            dump($result);
+            exit();
+
+        }
+
         if ($this->getUser()) {
-            //création d'un formulaire filter dans l'acceuil
-            $filterForm = $this->createForm(FilterType::class);
             $donnes = $em->getRepository(Event::class)->getAll();
+
             $event = $paginator->paginate(
                 $donnes,
                 $request->query->getInt('page', 1),
@@ -36,6 +51,10 @@ class HomeController extends AbstractController
             return $this->render('home/home.html.twig',
                 ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
+
+
+
+
         return $this->redirectToRoute('app_login');
     }
 

@@ -45,4 +45,17 @@ class EventRepository extends ServiceEntityRepository
             ->setParameter('date', $date);
         $req->getQuery()->execute();
     }
+
+    //Les filtres
+    public function search($keyWord){
+
+        // recuperer les méthodes du querybuilder (alias de l'entité)
+        $qb = $this->createQueryBuilder('event')
+            ->Where('event.eventName LIKE :eventName')
+            ->setParameter('eventName', '%'.$keyWord.'%')
+        ;
+
+        return $qb->getQuery()->getResult();
+        }
+
 }
