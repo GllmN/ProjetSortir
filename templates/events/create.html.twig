@@ -2,6 +2,11 @@
 
 {% block body %}
     <h2>Création d'une sortie</h2>
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="row">
         <div class="col-sm">
             {{ form_start(eventForm) }}
