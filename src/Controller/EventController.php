@@ -137,27 +137,28 @@ class EventController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function registration(EntityManagerInterface $entityManager){
-
+        // on récupère l'id de l'event
         /** @var Event $event */
         $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
 
         $today = new DateTime();
-
+        // on récupère l'id de l'utilisateur
         $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
 
-
+        // si la liste des participants contient notre User, affiche un message warning !
         if ($event->getParticipants()->contains($user)) {
             $this->addFlash('warning', "Vous êtes déja inscrit à cet event ! ");
             return $this->redirectToRoute("home_home");
         }
 
-
+        // si le nombre de places est supérieur ou égale à 1 et que la date limite d'inscription est supérieur à la date du jour..
         if ($event->getNumberOfPlaces() >= 1 && $event->getRegistrationLimit() > $today){
-
+        // On ajoute le user à la liste des participants..
             $event->addParticipant($this->getUser());
 
-
+        //On ajoute +1 au nombre d'inscrit
             $event->setNbRegistration($event->getNbRegistration() + 1);
+        // on retire -1 au nombre de place
             $event->setNumberOfPlaces($event->getNumberOfPlaces() - 1);
 
 
@@ -188,10 +189,10 @@ class EventController extends AbstractController
 
         $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
 
-
+        // Si l'utilisateur fait partie de la liste des participants alors..
         if ($event->getParticipants()->contains($user)) {
 
-
+            // On retire le user à la liste des participants..
             $event->removeParticipant($this->getUser());
 
             $event->setNbRegistration($event->getNbRegistration() - 1);
