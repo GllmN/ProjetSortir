@@ -132,6 +132,9 @@
                             <a href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
                         </button>
                         <button type="button" class="btn btn-link">
+                            <a href="{{ url('sortie_remove_registration', {'id': event.id}) }}">Se désister</a>
+                        </button>
+                        <button type="button" class="btn btn-link">
                             <a href="{{ url('sortie_afficher', {'id': event.id}) }}">Afficher la sortie</a>
                         </button>
                         <button type="button" class="btn btn-link">

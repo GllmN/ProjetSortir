@@ -173,4 +173,45 @@ class EventController extends AbstractController
         return $this->render('home/home.html.twig');
         //return $this->redirectToRoute('home_home');
     }
+
+    /**
+     * @Route(path="/removeRegistration", name="remove_registration")
+     * @param EntityManagerInterface $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function removeRegistration(EntityManagerInterface $entityManager){
+
+        /** @var Event $event */
+        $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
+
+        $today = new DateTime();
+
+        $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
+
+
+        if ($event->getParticipants()->contains($user)) {
+
+
+            $event->removeParticipant($this->getUser());
+
+            $event->setNbRegistration($event->getNbRegistration() - 1);
+            $event->setNumberOfPlaces($event->getNumberOfPlaces() + 1);
+
+
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            $this->addFlash('success', "Bien joué tu as été désinscrit !!");
+            return $this->redirectToRoute("home_home");
+        }
+            else {
+            $this->addFlash('danger', "Annulation impossible ou alors tu n'es pas déjà inscrit à l'event");
+            return $this->redirectToRoute('home_home');
+        }
+        return $this->render('home/home.html.twig');
+        //return $this->redirectToRoute('home_home');
+    }
+
+
+
 }
