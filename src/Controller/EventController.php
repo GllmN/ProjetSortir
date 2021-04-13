@@ -109,13 +109,27 @@ class EventController extends AbstractController
      * @Route(path="/modifier", name="modifier")
      */
     public function modify(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository){
-        $id = $request->get('id');
-        $event = $entityManager->getRepository(Event::class)->find($id);
+        //Récup id de l'utilisateur connecté
+        $userId = $entityManager->getRepository(User::class)->find($this->getUser());
+        $userId = $userId->getId();
+
+
+        //Récup de l'id de l'event
+        $eventId = $request->get('id');
+        $event = $entityManager->getRepository(Event::class)->find($eventId);
+
+        //Récup de l'oraginsateur
+        $organizer = $event->getOrganizer()->getId();
+
+
 
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($userId !== $organizer){
+            $this->addFlash('danger', 'Vous n\'êtes pas l\'organisateur de cette sortie');
+            return $this->redirectToRoute('home_home');
+        } elseif ($form->isSubmitted() && $form->isValid()){
 
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)
@@ -140,7 +154,7 @@ class EventController extends AbstractController
 
         $location = $repository->findAll();
 
-        return $this->render('events/modify.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location, 'eventId'=>$id]);
+        return $this->render('events/modify.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location, 'eventId'=>$eventId]);
     }
 
     /**
@@ -153,7 +167,7 @@ class EventController extends AbstractController
         $event->setStatus($status);
 
         $em->persist($event);
-        $em->flush($event);
+        $em->flush();
         $this->addFlash('success', 'La Sortie '. $event->getEventName() .' est annulée');
 
         return $this->redirectToRoute('home_home');
