@@ -146,6 +146,7 @@ table {
 .login-boutton{
     background-color: #0b7e99;
     color: white;
+    text-transform: uppercase;
     padding: 10px;
     height: 58px;
     width: 100%;
@@ -162,6 +163,22 @@ table {
     font-size: 120px;
     font-family: 'terror', 'Ubuntu', 'Roboto', sans-serif;
 }
+
+
+/*ID*/
+
+
+/*#changer {
+    cursor: pointer;
+    margin: 0px;
+    padding: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: 0px black solid;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}*/
 
 /* POLICES*/
 @font-face {
