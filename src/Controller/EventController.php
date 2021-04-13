@@ -103,9 +103,9 @@ class EventController extends AbstractController
      * @Route(path="/afficher", name="afficher")
      */
     public function detail(Request $request, EntityManagerInterface $entityManager){
+        //Récup de l'id de l'event via l'URL
         $id = $request->get('id');
         $event = $entityManager->getRepository(Event::class)->find($id);
-
         return $this->render('events/detail.html.twig', ['event'=>$event]);
     }
 
@@ -175,14 +175,9 @@ class EventController extends AbstractController
      * @Route(path="/annuler", name="annuler")
      */
     public function cancel(Request $request, EntityManagerInterface $em){
+        //Récup de l'id de l'event par l'URL
         $id = $request->get('id');
         $event = $em->getRepository(Event::class)->find($id);
-        //$status = $em->getRepository(EventStatus::class)->find(6);
-//        $event->setStatus($status);
-//
-//        $em->persist($event);
-//        $em->flush();
-//        $this->addFlash('success', 'La Sortie '. $event->getEventName() .' est annulée');
 
         return $this->render('events/annuler.html.twig', ['event'=> $event]);
     }

@@ -2,7 +2,7 @@
 
 {% block body %}
     <h2>Annulation</h2>
-    <form action="{{ url('#') }}">
+    <form action="#">
         Nom de la sortie : {{ event.eventName }}<br>
         Date de la sortie : {{ event.dateAndHour | date("d/m/Y") }}<br>
         Campus : {{ event.campus | upper }}<br>

@@ -6,23 +6,6 @@
 {% block body %}
     <div class="col-sm py-2"></div>
     <div class="home">
-        {#   {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        {% for message in app.flashes('danger') %}
-            <div class="alert alert-danger">
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        {% for message in app.flashes('warning') %}
-            <div class="alert alert-warning">
-                {{ message }}
-            </div>
-        {% endfor %}  #}
         <div class="col-12-sm py-5"></div>
         {# Filtre les sorties #}
         <div class="row">
@@ -131,7 +114,7 @@
                     <tr class="table-sm">
                         <td class="align-middle pl-4">{{ event.id }}</td>
                         <td class="align-middle pl-4">{{ event.eventName }}.</td>
-                        <td class="align-middle"><a class = "redLink"href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer.getPseudo }}</a></td>
+                        <td class="align-middle"><a class = "redLink"href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer.getLastName }}</a></td>
                         <td class="text-center align-middle">{{ event.dateAndHour | date("d-m-Y") }}</td>
                         <td class="text-center align-middle">{{ event.registrationLimit | date("d-m-Y")  }}</td>
                         <td class="text-center align-middle">{{ event.numberOfPlaces }}</td>

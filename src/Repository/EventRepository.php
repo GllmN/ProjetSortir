@@ -25,7 +25,8 @@ class EventRepository extends ServiceEntityRepository
     public function getAll(){
         $date = new \DateTime();
         $req = $this->createQueryBuilder('event')
-            ->where('event.registrationLimit> :date')->setParameter('date', $date)
+            ->andWhere('event.registrationLimit> :date')
+            ->setParameter('date', $date)
             ->orderBy('event.registrationLimit', 'ASC');
 
         return $req->getQuery()->getResult();
