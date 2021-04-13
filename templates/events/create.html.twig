@@ -19,7 +19,8 @@
 
         </div>
         <div class="col-sm">
-            {{ form_row(eventForm.campus) }}
+            Votre Campus :
+            {{ app.user.campus }}<br><br>
             {{ form_row(eventForm.city) }}
              {{ form_row(eventForm.location) }}
             <ul style="list-style: none" id="ullocation">

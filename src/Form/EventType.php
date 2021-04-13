@@ -32,10 +32,9 @@ class EventType extends AbstractType
             ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
             ->add('duration',null,['label'=>'Durée'])
             ->add('description',null,['label'=>'Description et infos'])
-            ->add('campus',null,['label'=>'Campus'])
+            //->add('campus',null,['label'=>'Campus'])
             ->add('city',null,['label'=>'Ville'])
             ->add('location',null,['label'=>'Lieu'])
-            //->add('cityGetLat', null, ['label'=>'Latitude'])
 
             ->add('save', SubmitType::class, ['label'=>'Enregistrer'])
             ->add('publish', SubmitType::class, ['label'=>'Publier la sortie'])

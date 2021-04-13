@@ -14,7 +14,8 @@
 
         </div>
         <div class="col-sm">
-            {{ form_row(eventForm.campus) }}
+            Votre Campus :
+            {{ app.user.campus }}<br>
             {{ form_row(eventForm.city) }}
             {{ form_row(eventForm.location) }}
             <ul style="list-style: none" id="ullocation">
@@ -31,7 +32,7 @@
             {{ form_row(eventForm.publish) }}
             {{ form_end(eventForm) }}
 
-            <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>
+            <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler la Sortie (à faire)</a>
         </div>
     </div>
 {% endblock %}

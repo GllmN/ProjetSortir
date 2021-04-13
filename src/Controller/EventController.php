@@ -51,9 +51,14 @@ class EventController extends AbstractController
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
+        //Controle sur la date pour ne pas créer de sorties dans la passé
+        //Contrôle sur date de sortie et date limite d'inscription
+        if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
+            $this->addFlash('danger', 'La date dans le passé');
+            $this->redirectToRoute('sortie_creation');
+        }
 
-
-        if($form->isSubmitted() && $form->isValid() && $event->getDateAndHour()>=$dateDuJour && $event->getRegistrationLimit()>=$dateDuJour){
+        if($form->isSubmitted() && $form->isValid() && $event->getDateAndHour()>$dateDuJour && $event->getRegistrationLimit()>$dateDuJour){
 
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)
@@ -76,12 +81,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('home_home');
         }
 
-        //Controle sur la date pour ne pas créer de sorties dans la passé
-        //Contrôle sur date de sortie et date limite d'inscription
-        if(($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
-            $this->addFlash('danger', 'La date dans le passé');
-            $this->redirectToRoute('sortie_creation');
-        }
+
 
         $location = $repository->findAll();
         //dump($location);
