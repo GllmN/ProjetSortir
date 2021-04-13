@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Cities;
 use App\Entity\Event;
 
 
@@ -34,6 +35,7 @@ class EventType extends AbstractType
             ->add('campus',null,['label'=>'Campus'])
             ->add('city',null,['label'=>'Ville'])
             ->add('location',null,['label'=>'Lieu'])
+            //->add('cityGetLat', null, ['label'=>'Latitude'])
 
             ->add('save', SubmitType::class, ['label'=>'Enregistrer'])
             ->add('publish', SubmitType::class, ['label'=>'Publier la sortie'])

@@ -51,9 +51,6 @@ class HomeController extends AbstractController
                 ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
 
-
-
-
         return $this->redirectToRoute('app_login');
     }
 

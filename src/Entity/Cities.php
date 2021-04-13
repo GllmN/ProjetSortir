@@ -45,7 +45,7 @@ class Cities
     private $insee;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="float")
      */
     private $lat;
 
