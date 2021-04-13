@@ -8,9 +8,9 @@
     Limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }},
     Statut : {{ event.status }},
     Nb de place : {{ event.numberOfPlaces }}
-    Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
 
     CAMPUS : {{ event.campus }}<br>
+    Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
 
     Participants : <br>
     {% for part in event.participants %}

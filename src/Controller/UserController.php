@@ -52,9 +52,8 @@ class UserController extends AbstractController
      * @Route(path="/viewProfil", name="view_profil", methods={"GET", "POST"})
      */
     public function viewProfil(Request $request, EntityManagerInterface $entityManager){
+
         // je récupère l'id de l'utilisateur en question
-
-
         $id = $request->get('id');
         $viewProfil = $entityManager->getRepository(User::class)->find($id);
 

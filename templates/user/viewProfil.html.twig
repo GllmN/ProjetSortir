@@ -9,6 +9,11 @@
             <h1>Vous êtes sur la page de :</h1>
 
             <h2 class="redLink">{{ user.pseudo }} </h2>
+            Nom : {{ user.firstName }}<br>
+            Prénom : {{ user.lastName }}<br>
+            Téléphone : {{ user.phone }}<br>
+            Email : {{ user.email }}<br>
+            {# campus à rajouter #}
         </div>
         <img src="{{ user.photo }}">
         <div class="col-sm"></div>

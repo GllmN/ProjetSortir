@@ -131,7 +131,7 @@
                     <tr class="table-sm">
                         <td class="align-middle pl-4">{{ event.id }}</td>
                         <td class="align-middle pl-4">{{ event.eventName }}.</td>
-                        <td class="align-middle"><a class = "redLink"href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a></td>
+                        <td class="align-middle"><a class = "redLink"href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer.getPseudo }}</a></td>
                         <td class="text-center align-middle">{{ event.dateAndHour | date("d-m-Y") }}</td>
                         <td class="text-center align-middle">{{ event.registrationLimit | date("d-m-Y")  }}</td>
                         <td class="text-center align-middle">{{ event.numberOfPlaces }}</td>
@@ -145,9 +145,6 @@
                             <button type="button" class="btn btn-link">
                                 <a class = "blueLink" href="{{ url('sortie_afficher', {'id': event.id}) }}">Afficher la sortie</a>
                             </button>
-                            <button type="button" class="btn btn-link">
-                                <a class = "orangeLink" href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier la sortie</a>
-                            </button>
                             {% endif %}
                             {% if app.user not in event.participants %}
                                 <button type="button" class="btn btn-link">
@@ -156,6 +153,9 @@
                                 <button type="button" class="btn btn-link">
                                     <a class = "blueLink" href="{{ url('sortie_afficher', {'id': event.id}) }}">Afficher la sortie</a>
                                 </button>
+
+                            {% endif %}
+                            {% if app.user.getId == event.organizer.getId %}
                                 <button type="button" class="btn btn-link">
                                     <a class = "orangeLink" href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier la sortie</a>
                                 </button>

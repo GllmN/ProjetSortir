@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Campus;
 use App\Entity\Event;
 use App\Entity\EventStatus;
 use App\Entity\User;
@@ -25,7 +26,7 @@ class EventController extends AbstractController
     /**
      * @Route(path="/creation", name="creation")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository) : Response{
+    public function create(Request $request, EntityManagerInterface $em, LocationRepository $repository) : Response{
         //status:
         //1-created
         //2-open
@@ -42,11 +43,14 @@ class EventController extends AbstractController
         $event = new Event();
         $event->setDateAndHour(new DateTime('NOW', new DateTimeZone('EUROPE/Paris')));
         $event->setRegistrationLimit(new DateTime('NOW', new DateTimeZone('EUROPE/Paris')));
-        //Récup de l'user connecté avec son id
-        $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId()) ;
 
-        //modif de l'objet avec l'organisateur
+        //Récup de l'user connecté avec son id
+        $user = $em->getRepository(User::class)->find($this->getUser()->getId()) ;
+
+        //modif de l'objet avec l'organisateur et le Campus
         $event->setOrganizer($user);
+
+        //$event->setCampus($campus);
 
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -63,20 +67,20 @@ class EventController extends AbstractController
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)
             if ($form->get('save')->isClicked()){
-                $statusCreate = $entityManager->getRepository(EventStatus::class)->find(1);
+                $statusCreate = $em->getRepository(EventStatus::class)->find(1);
 
                 $this->addFlash('success','Sortie créée mais non publier !');
             }
             //Si l'utilisateur clique sur le bouton Publier('publish')
             //La sortie est enregistrée en BDD avec le statut open(id2)
             elseif($form->get('publish')->isClicked()){
-                $statusCreate = $entityManager->getRepository(EventStatus::class)->find(2);
+                $statusCreate = $em->getRepository(EventStatus::class)->find(2);
 
                 $this->addFlash('success','Sortie publiée !');
             }
             $event->setStatus($statusCreate);
-            $entityManager->persist($event);
-            $entityManager->flush();
+            $em->persist($event);
+            $em->flush();
 
             return $this->redirectToRoute('home_home');
         }
