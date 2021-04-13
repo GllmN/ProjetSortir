@@ -67,7 +67,8 @@ class AppFixtures extends Fixture
         $user->setPassword($this->encoder->encodePassword($user, 'admin'));
         $user->setRoles(['ROLE_ADMIN']);
         $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
-        $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
+        $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
+        //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
         $manager->persist($user);
 
@@ -83,7 +84,8 @@ class AppFixtures extends Fixture
             $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
             $user->setRoles(['ROLE_USER']);
             $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
-            $user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
+            $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
+            //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
             $manager->persist($user);
         }

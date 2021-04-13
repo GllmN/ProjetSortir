@@ -44,7 +44,7 @@ class UserType extends AbstractType
                 'required' => true
             ])
             // voir page symfony sur l'upload
-            ->add('photo',TextType::class,  ['label' => 'Photo:'])
+            //->add('photo',TextType::class,  ['label' => 'Photo:'])
             ->add('save', SubmitType::class, ['label'=>'Enregistrer'])
         ;
     }
