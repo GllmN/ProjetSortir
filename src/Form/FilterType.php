@@ -27,14 +27,32 @@ class FilterType extends AbstractType
                 'class'=> Campus::class,
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Veuillez choisir'
+                'placeholder' => 'Veuillez choisir un campus',
+                'required'=>false
             ])
             ->add('keyWord', TextType::class, [
                 'label'=>'Le nom de la sortie contient :',
-                'data' => 'Mot clé',
-                'required'=>false])
-            ->add('dateStart', DateType::class, ['label'=>'Entre :'])
-            ->add('dateEnd', DateType::class, ['label'=>'et :'])
+                'attr' => ['placeholder'=>'Veuillez saisir un mot clé'],
+                'required'=>false
+            ])
+            ->add('dateStart', DateType::class, [
+                'label'=>'Entre :',
+                'format'=>'d/M/y',
+                'placeholder' => [
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jours',
+                    'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
+                ],
+                'required'=>false
+            ])
+            ->add('dateEnd', DateType::class, [
+                'label'=>'et :',
+                'format'=>'d/M/y',
+                'placeholder' => [
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jours',
+                    'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
+                ],
+                'required'=>false
+            ])
             ->add('eventOrganizer', CheckboxType::class, [
                 'label'=>'Sortie dont je suis l\'organisateur(trice).',
                 'required'=>false,

@@ -47,7 +47,9 @@ class EventRepository extends ServiceEntityRepository
     }
 
     //Les filtres sur les événement
-    public function filterEvent($keyWord, $campus){
+    public function filterEvent($keyWord, $campus, $dateStart, $dateEnd){
+
+                //                $eventOrganizer, $eventSuscriber, $eventNotSuscriber, $eventOld
 
         // recuperer les méthodes du querybuilder (alias de l'entité)
         $qb = $this->createQueryBuilder('event');
@@ -61,6 +63,24 @@ class EventRepository extends ServiceEntityRepository
             $qb ->andWhere('event.campus = :campus')
                 ->setParameter('campus', $campus)
             ;}
+
+        // dateStart
+        if(!empty($dateEnd) || !empty($dateStart)){
+            $qb ->andWhere('event.dateAndHour = :dateAndHour')
+                ->setParameter('dateAndHour', $dateStart)
+            ;}
+
+        // dateEnd
+        if(!empty($dateEnd) || !empty($dateStart)){
+            $qb ->andWhere('event.dateAndHour = :dateAndHour')
+                ->setParameter('dateAndHour', $dateEnd)
+            ;}
+
+//        // eventOrganizer
+//        if($eventOrganizer == true){
+//            $qb ->andWhere('event = :')
+//                ->setParameter('dateAndHour', $dateEnd)
+//            ;}
 
         return $qb->getQuery()->getResult();
         }

@@ -76,7 +76,7 @@
                             <div class="col-sm">
                                 <h3>Informations du jour</h3>
                                 <p class="home-hello">HELLO {{ app.user.LastName }} !</p>
-                                <h4>Aujourd'hui, nous somme le : <br>{{ "now"|date('d/m/Y') }} </h4>
+                                <h4>Aujourd'hui, nous somme le : {{ "now"|date('d/m/Y') }} </h4>
                                 <br>
                                 <h4>La météo : <br> [...] </h4>
                             </div>
@@ -159,9 +159,9 @@
                 </tbody>
             </table>
 
-            {{ knp_pagination_render(list) }}
+            {# {{ knp_pagination_render(list) }} #}
 
-            <nav aria-label="Page navigation example">
+            {#  <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
@@ -170,7 +170,7 @@
                         </a>
                     </li>
                     <li class="page-item"><a class="page-link" href="">1</a></li>
-                    <li class="page-item"><a class="page-link" href="{{ knp_pagination_render(list) }}">2</a></li>
+                    <li class="page-item"><a class="page-link" href=" {{ knp_pagination_render(list) }} ">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
@@ -179,7 +179,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> #}
 
 
         </div>
