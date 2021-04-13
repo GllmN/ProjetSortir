@@ -33,9 +33,7 @@ class HomeController extends AbstractController
         // Filtrer les sorties , recherche par mot clé
         if ($filterForm->isSubmitted() && $filterForm->isValid()){
             $keyWord = $filterForm['keyWord']->getData();
-
             $result = $em->getRepository(Event::class)->filterSearch($keyWord);
-
             // Pagination
             $event = $paginator->paginate(
                 $result,
@@ -46,7 +44,7 @@ class HomeController extends AbstractController
             return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
 
-        // Récuper
+        // Récuperer les utilisateur
         if ($this->getUser()) {
             $donnes = $em->getRepository(Event::class)->getAll();
 

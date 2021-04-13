@@ -10,6 +10,10 @@
     Nb de place : {{ event.numberOfPlaces }}
     Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
 
+    {# TEST FILTRE CAMPUS #}
+
+    CAMPUS:{{ event.campus }}
+
 
     Participants : <br>
     {% for part in event.participants %}

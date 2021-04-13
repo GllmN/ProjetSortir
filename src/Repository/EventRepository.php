@@ -58,4 +58,8 @@ class EventRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
         }
 
+    public function filterCampus($campus){
+
+
+    }
 }
