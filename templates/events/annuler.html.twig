@@ -6,7 +6,6 @@
     Date de la sortie : {{ event.dateAndHour | date("d/m/Y")  }}<br>
     Campus : {{ event.campus | upper }}<br>
     Lieu : {{ event.location }}<br>
-    Motif :
-    <textarea id="motif" name="motif">
+    <label for="motif">Motif : </label><textarea id="motif" name="motif">
     </textarea>
 {% endblock %}
