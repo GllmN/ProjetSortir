@@ -26,6 +26,7 @@ class FilterType extends AbstractType
                 'class'=> Campus::class,
                 'multiple' => false,
                 'expanded' => false,
+
             ])
             ->add('keyWord', TextType::class, [
                 'label'=>'Le nom de la sortie contient :',
