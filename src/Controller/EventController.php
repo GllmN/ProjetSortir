@@ -134,8 +134,10 @@ class EventController extends AbstractController
             $this->redirectToRoute('sortie_creation');
         }
 
+        //Si l'utilisateur connecté n'est pas l'organisateur de la sortie
+        //l'Utilisateur ne peut pas modifier la sortie
         if ($userId !== $organizer){
-            $this->addFlash('danger', 'Fail! tu n\'êtes pas l\'organisateur de cette sortie');
+            $this->addFlash('danger', 'FAIL!!!! Tu n\'es pas l\'organisateur de cette sortie');
             return $this->redirectToRoute('home_home');
         } elseif ($form->isSubmitted() && $form->isValid()){
 
@@ -262,7 +264,5 @@ class EventController extends AbstractController
         return $this->render('home/home.html.twig');
         //return $this->redirectToRoute('home_home');
     }
-
-
 
 }

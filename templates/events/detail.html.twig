@@ -10,16 +10,11 @@
     Nb de place : {{ event.numberOfPlaces }}
     Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
 
-    {# TEST FILTRE CAMPUS #}
-
-    CAMPUS:{{ event.campus }}
-
+    CAMPUS : {{ event.campus }}<br>
 
     Participants : <br>
     {% for part in event.participants %}
-        Nom : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.firstName }}</a><br>
-        Prénom : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.lastName }}</a><br>
+        Pseudo du participant : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a><br>
     {% endfor %}
-
 
 {% endblock %}
