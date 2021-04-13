@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\Campus;
 use App\Entity\Event;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -26,7 +27,7 @@ class FilterType extends AbstractType
                 'class'=> Campus::class,
                 'multiple' => false,
                 'expanded' => false,
-
+                'placeholder' => 'Veuillez choisir'
             ])
             ->add('keyWord', TextType::class, [
                 'label'=>'Le nom de la sortie contient :',

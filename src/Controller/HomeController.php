@@ -32,8 +32,13 @@ class HomeController extends AbstractController
 
         // Filtrer les sorties , recherche par mot clé
         if ($filterForm->isSubmitted() && $filterForm->isValid()){
+
+            $campus = $filterForm['campus']->getData()->getId();
             $keyWord = $filterForm['keyWord']->getData();
-            $result = $em->getRepository(Event::class)->filterSearch($keyWord);
+
+            $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus);
+
+
             // Pagination
             $event = $paginator->paginate(
                 $result,
