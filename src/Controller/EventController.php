@@ -54,7 +54,7 @@ class EventController extends AbstractController
         //Controle sur la date pour ne pas créer de sorties dans la passé
         //Contrôle sur date de sortie et date limite d'inscription
         if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
-            $this->addFlash('danger', 'La date dans le passé');
+            $this->addFlash('danger', 'Tu n\'as pas le pouvoir de voyager dans le temps');
             $this->redirectToRoute('sortie_creation');
         }
 
@@ -109,10 +109,13 @@ class EventController extends AbstractController
      * @Route(path="/modifier", name="modifier")
      */
     public function modify(Request $request, EntityManagerInterface $entityManager, LocationRepository $repository){
+        $dateDuJour = new DateTime('NOW', new DateTimeZone('EUROPE/Paris'));
+        //-1 jour sur la date courante pour pouvoir créer une sortie pour le jour même
+        $dateDuJour->modify('-1 day');
+
         //Récup id de l'utilisateur connecté
         $userId = $entityManager->getRepository(User::class)->find($this->getUser());
         $userId = $userId->getId();
-
 
         //Récup de l'id de l'event
         $eventId = $request->get('id');
@@ -121,13 +124,18 @@ class EventController extends AbstractController
         //Récup de l'oraginsateur
         $organizer = $event->getOrganizer()->getId();
 
-
-
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
+        //Controle sur la date pour ne pas créer de sorties dans la passé
+        //Contrôle sur date de sortie et date limite d'inscription
+        if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
+            $this->addFlash('danger', 'Tu n\'as pas le pouvoir de voyager dans le temps');
+            $this->redirectToRoute('sortie_creation');
+        }
+
         if ($userId !== $organizer){
-            $this->addFlash('danger', 'Vous n\'êtes pas l\'organisateur de cette sortie');
+            $this->addFlash('danger', 'Fail! tu n\'êtes pas l\'organisateur de cette sortie');
             return $this->redirectToRoute('home_home');
         } elseif ($form->isSubmitted() && $form->isValid()){
 
@@ -143,7 +151,7 @@ class EventController extends AbstractController
             elseif($form->get('publish')->isClicked()){
                 $statusCreate = $entityManager->getRepository(EventStatus::class)->find(2);
 
-                $this->addFlash('success','Sortie publiée !');
+                $this->addFlash('success','T\'es un BOSS !! Sortie publiée !');
             }
             $event->setStatus($statusCreate);
             $entityManager->persist($event);
@@ -161,6 +169,7 @@ class EventController extends AbstractController
      * @Route(path="/annuler", name="annuler")
      */
     public function cancel(Request $request, EntityManagerInterface $em){
+
         $id = $request->get('id');
         $event = $em->getRepository(Event::class)->find($id);
         $status = $em->getRepository(EventStatus::class)->find(6);
@@ -171,6 +180,16 @@ class EventController extends AbstractController
         $this->addFlash('success', 'La Sortie '. $event->getEventName() .' est annulée');
 
         return $this->redirectToRoute('home_home');
+    }
+
+    /**
+     * @Route(path="/supprimer", name="supprimer")
+     */
+    public function delete(Request $request, EntityManagerInterface $em){
+
+
+
+        return $this->render('events/delete.html.twig');
     }
 
     /**

@@ -141,6 +141,9 @@
                         <button type="button" class="btn btn-link">
                             <a class = "orangeLink" href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier la sortie</a>
                         </button>
+                            <button type="button" class="btn btn-link">
+                                <a class = "orangeLink" href="{{ url('sortie_annuler', {'id': event.id}) }}">Annuler</a>
+                            </button>
                         {% endif %}
                         {% if app.user not in event.participants %}
                             <button type="button" class="btn btn-link">

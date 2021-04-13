@@ -9,11 +9,6 @@ selectElement.addEventListener('change',
     li.forEach(function (el){
         el.style.display="none";
     });
-
     document.getElementById(value).style.display="block";
-
     });
 
-function confirmation(){
-    alert("Voulez allez annuler cette Sortie");
-}
