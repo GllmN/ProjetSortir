@@ -47,7 +47,7 @@ class EventRepository extends ServiceEntityRepository
     }
 
     //Les filtres
-    public function search($keyWord){
+    public function filterSearch($keyWord){
 
         // recuperer les méthodes du querybuilder (alias de l'entité)
         $qb = $this->createQueryBuilder('event')

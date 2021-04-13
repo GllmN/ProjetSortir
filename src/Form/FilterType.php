@@ -23,7 +23,8 @@ class FilterType extends AbstractType
             ->add('campus', ChoiceType::class, ['data' => 'Choisissez votre campus'] )
             ->add('keyWord', TextType::class, [
                 'label'=>'Le nom de la sortie contient :',
-                'data' => 'Mot clé'])
+                'data' => 'Mot clé',
+                'required'=>false])
             ->add('dateStart', DateType::class, ['label'=>'Entre :'])
             ->add('dateEnd', DateType::class, ['label'=>'et :'])
             ->add('eventOrganizer', CheckboxType::class, [

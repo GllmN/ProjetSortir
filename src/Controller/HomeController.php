@@ -30,25 +30,34 @@ class HomeController extends AbstractController
 
         $filterForm->handleRequest($request);
 
-        // Filter mot clé
+        // Filtrer les sorties , recherche par mot clé
         if ($filterForm->isSubmitted() && $filterForm->isValid()){
             $keyWord = $filterForm['keyWord']->getData();
 
-            $result = $em->getRepository(Event::class)->search($keyWord);
-            dump($result);
-            exit();
+            $result = $em->getRepository(Event::class)->filterSearch($keyWord);
+
+            // Pagination
+            $event = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+                5
+            );
+
+            return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
 
+        // Récuper
         if ($this->getUser()) {
             $donnes = $em->getRepository(Event::class)->getAll();
 
+            // Pagination
             $event = $paginator->paginate(
                 $donnes,
                 $request->query->getInt('page', 1),
                 5
             );
-            return $this->render('home/home.html.twig',
-                ['list' => $event,'filterForm' => $filterForm->createView()]);
+
+            return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
 
         return $this->redirectToRoute('app_login');
