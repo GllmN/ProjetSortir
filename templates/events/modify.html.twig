@@ -32,7 +32,7 @@
             {{ form_row(eventForm.publish) }}
             {{ form_end(eventForm) }}
 
-            <a id="cancel" class="btn btn-secondary" href="{{ url('sortie_supprimer',{'id' : eventId }) }}">Supprimer la Sortie</a>
+            <a onclick="confirmation()" id="cancel" class="btn btn-secondary" href="#">Supprimer la Sortie</a>
         </div>
     </div>
 {% endblock %}
