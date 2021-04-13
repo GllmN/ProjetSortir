@@ -48,10 +48,7 @@ class HomeController extends AbstractController
               // app flashes message erreur date
             };
 
-
-
             //$result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
-
 
             // Pagination /!\ remplacer le $result par le $event dans le render
                 //            $event = $paginator->paginate(
