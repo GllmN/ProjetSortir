@@ -15,6 +15,8 @@ body {
     margin:0;
 }
 
+
+
 h3 {
     font-size: 25px;
     font-weight: bold;
@@ -41,6 +43,17 @@ a:hover {
     text-decoration: none;
     font-weight: bold;
 }
+
+/******CONFORT PAT POUR TEST*********/
+.btn-link:hover{
+    text-decoration: none;
+}
+#Sortie{
+    color: white;
+    text-decoration: none;
+}
+/************************************/
+
 
 table {
     border-radius: 15px;
