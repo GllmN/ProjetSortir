@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Annulation</h2>
+    Nom de la sortie : {{ event.eventName }}<br>
+    Date de la sortie : {{ event.dateAndHour | date("d/m/Y")  }}<br>
+    Campus : {{ event.campus | upper }}<br>
+    Lieu : {{ event.location }}<br>
+    <label for="motif">Motif : </label><textarea id="motif" name="motif">
+    </textarea>
+{% endblock %}
