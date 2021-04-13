@@ -11,10 +11,10 @@
 
     CAMPUS : {{ event.campus }}<br>
     Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
+    Et participants: <br>
 
-    Participants : <br>
     {% for part in event.participants %}
-        Pseudo du participant : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a><br>
+        Pseudo : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a><br>
     {% endfor %}
 
 {% endblock %}
