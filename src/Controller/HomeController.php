@@ -33,17 +33,24 @@ class HomeController extends AbstractController
         // Filtrer les sorties , recherche par mot clé
         if ($filterForm->isSubmitted() && $filterForm->isValid()){
 
+            $campus = $filterForm['campus']->getData();
+
+            $keyWord = $filterForm['keyWord']->getData();
+
             $dateStart = $filterForm['dateStart']->getData();
 
             $dateEnd = $filterForm['dateEnd']->getData();
 
-            $campus = $filterForm['campus']->getData();
+            if($dateEnd > $dateStart) {
+                $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
+            } else{
+                echo'erreur';
+              // app flashes message erreur date
+            };
 
 
-            $keyWord = $filterForm['keyWord']->getData();
 
-
-            $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
+            //$result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
 
 
             // Pagination /!\ remplacer le $result par le $event dans le render

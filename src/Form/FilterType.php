@@ -69,7 +69,11 @@ class FilterType extends AbstractType
                 'label'=>'Sortie passées.',
                 'required'=>false,
             ])
-            ->add('search', SubmitType::class, ['label'=>'Rechercher'])
+            ->add('search', SubmitType::class, [
+                'label'=>'Rechercher',
+                //'attr' => ['class' => ''],
+
+            ])
         ;
     }
 

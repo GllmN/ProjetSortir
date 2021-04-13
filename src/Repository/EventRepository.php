@@ -47,9 +47,9 @@ class EventRepository extends ServiceEntityRepository
     }
 
     //Les filtres sur les événement
-    public function filterEvent($keyWord, $campus, $dateStart, $dateEnd){
+    public function filterEvent($keyWord, $campus, $dateStart, $dateEnd, $eventOrganizer, $eventSuscriber, $eventNotSuscriber, $eventOld){
 
-                //                $eventOrganizer, $eventSuscriber, $eventNotSuscriber, $eventOld
+
 
         // recuperer les méthodes du querybuilder (alias de l'entité)
         $qb = $this->createQueryBuilder('event');
@@ -65,22 +65,40 @@ class EventRepository extends ServiceEntityRepository
             ;}
 
         // dateStart
-        if(!empty($dateEnd) || !empty($dateStart)){
-            $qb ->andWhere('event.dateAndHour = :dateAndHour')
-                ->setParameter('dateAndHour', $dateStart)
+        if((!empty($dateEnd) || !empty($dateStart))){
+            $qb ->andWhere('event.dateAndHour > :dateAndHourStart')
+                ->setParameter('dateAndHourStart', $dateStart)
             ;}
 
         // dateEnd
         if(!empty($dateEnd) || !empty($dateStart)){
-            $qb ->andWhere('event.dateAndHour = :dateAndHour')
+            $qb ->andWhere('event.dateAndHour < :dateAndHourEnd')
+                ->setParameter('dateAndHourEnd', $dateEnd)
+            ;}
+
+        // eventOrganizer
+        if($eventOrganizer == true){
+            $qb ->andWhere('event.organisateur :')
                 ->setParameter('dateAndHour', $dateEnd)
             ;}
 
-//        // eventOrganizer
-//        if($eventOrganizer == true){
-//            $qb ->andWhere('event = :')
-//                ->setParameter('dateAndHour', $dateEnd)
-//            ;}
+        // eventSuscriber
+        if($eventSuscriber == true){
+            $qb ->andWhere('event = :')
+                ->setParameter('dateAndHour', $dateEnd)
+            ;}
+
+        // eventNotSuscriber
+        if($eventNotSuscriber == true){
+            $qb ->andWhere('event = :')
+                ->setParameter('dateAndHour', $dateEnd)
+            ;}
+
+        // eventOld
+        if($eventNotSuscriber == true){
+            $qb ->andWhere('event = :')
+                ->setParameter('dateAndHour', $dateEnd)
+            ;}
 
         return $qb->getQuery()->getResult();
         }
