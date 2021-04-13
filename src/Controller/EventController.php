@@ -140,9 +140,24 @@ class EventController extends AbstractController
 
         $location = $repository->findAll();
 
-        return $this->render('events/modify.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location]);
+        return $this->render('events/modify.html.twig', ['eventForm'=>$form->createView(), 'location'=>$location, 'eventId'=>$id]);
     }
 
+    /**
+     * @Route(path="/annuler", name="annuler")
+     */
+    public function cancel(Request $request, EntityManagerInterface $em){
+        $id = $request->get('id');
+        $event = $em->getRepository(Event::class)->find($id);
+        $status = $em->getRepository(EventStatus::class)->find(6);
+        $event->setStatus($status);
+
+        $em->persist($event);
+        $em->flush($event);
+        $this->addFlash('success', 'La Sortie '. $event->getEventName() .' est annulée');
+
+        return $this->redirectToRoute('home_home');
+    }
 
     /**
      * @Route(path="/registration", name="registration")

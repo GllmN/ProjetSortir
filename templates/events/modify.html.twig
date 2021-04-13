@@ -32,7 +32,7 @@
             {{ form_row(eventForm.publish) }}
             {{ form_end(eventForm) }}
 
-            <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler la Sortie (à faire)</a>
+            <a onclick="confirmation()" id="cancel" class="btn btn-secondary" href="{{ url('sortie_annuler',{'id' : eventId }) }}">Annuler la Sortie</a>
         </div>
     </div>
 {% endblock %}

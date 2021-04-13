@@ -14,3 +14,6 @@ selectElement.addEventListener('change',
 
     });
 
+function confirmation(){
+    alert("Voulez allez annuler cette Sortie");
+}
