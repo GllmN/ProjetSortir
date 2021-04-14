@@ -25,6 +25,7 @@ class HomeController extends AbstractController
 
         //Verification des dates de fin d'inscription / à la date du jour
         $em->getRepository(Event::class)->updateBDD();
+        $em->getRepository(Event::class)->updateBDDArchive();
 
         //Récup id de l'utilisateur connecté
         $userId = $em->getRepository(User::class)->find($this->getUser());

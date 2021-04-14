@@ -32,7 +32,7 @@ class EventController extends AbstractController
         //1-created
         //2-open
         //3-closed
-        //4-in progresse
+        //4-in progress
         //5-finished
         //6-canceled
         //7-archived
