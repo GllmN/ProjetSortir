@@ -267,7 +267,11 @@ class EventController extends AbstractController
         $user = $entityManager->getRepository(User::class)->find($this->getUser()->getId());
 
         // Si l'utilisateur fait partie de la liste des participants alors..
-        if ($event->getParticipants()->contains($user)) {
+        //Récup statut de la sortie
+        $statutEvent = $event->getStatus()->getId();
+
+        //Vérif si la sortie est en statut 2-ouverte ou 3-cloturé
+        if ($event->getParticipants()->contains($user) && $statutEvent == 2 || $statutEvent == 3) {
 
             // On retire le user à la liste des participants..
             $event->removeParticipant($this->getUser());
