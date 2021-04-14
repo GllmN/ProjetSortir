@@ -22,11 +22,17 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
+    //Select avec une date de limite d'inscription suppérieur à la date du jour
+    //Compris entre les intervalles 2-open et 3-open inclus
     public function getAll(){
         $date = new \DateTime();
         $req = $this->createQueryBuilder('event')
             ->andWhere('event.registrationLimit> :date')
+            ->andWhere('event.status > :begin')
+            ->andWhere('event.status < :end')
             ->setParameter('date', $date)
+            ->setParameter('begin', 2)
+            ->setParameter('end', 3)
             ->orderBy('event.registrationLimit', 'ASC');
 
         return $req->getQuery()->getResult();
