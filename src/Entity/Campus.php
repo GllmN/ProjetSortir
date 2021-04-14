@@ -19,16 +19,18 @@ class Campus
      */
     private $id;
 
-
     /**
-     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="campus", orphanRemoval=true)
+     * @ORM\Column(type="string", length=50)
      */
-    private $events;
+    private $campus;
+
 
 
     public function __construct()
     {
         $this->events = new ArrayCollection();
+        $this->campus = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,6 +83,58 @@ class Campus
     public function __toString()
     {
         return $this->campus;
+    }
+
+    public function addCampus(Event $campus): self
+    {
+        if (!$this->campus->contains($campus)) {
+            $this->campus[] = $campus;
+            $campus->setCampus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCampus(Event $campus): self
+    {
+        if ($this->campus->removeElement($campus)) {
+            // set the owning side to null (unless already changed)
+            if ($campus->getCampus() === $this) {
+                $campus->setCampus(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setCampus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getCampus() === $this) {
+                $user->setCampus(null);
+            }
+        }
+
+        return $this;
     }
 
 }

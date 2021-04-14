@@ -50,11 +50,7 @@ class Event
      */
     private $description;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="events")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $campus;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Cities::class, inversedBy="events")
@@ -90,6 +86,12 @@ class Event
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="eventsUtilisateur")
      */
     private $participants;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $campus;
 
     public function __construct()
     {

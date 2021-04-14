@@ -68,6 +68,14 @@ class User implements UserInterface
      */
     private $events;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $campus;
+
+
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -202,12 +210,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCampus(): ?string
+    public function getCampus(): ?Campus
     {
         return $this->campus;
     }
 
-    public function setCampus(string $campus): self
+    public function setCampus(?Campus $campus): self
     {
         $this->campus = $campus;
 

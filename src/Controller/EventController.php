@@ -50,7 +50,7 @@ class EventController extends AbstractController
         //modif de l'objet avec l'organisateur et le Campus
         $event->setOrganizer($user);
 
-        //$event->setCampus($campus);
+        $event->setCampus($user->getCampus());
 
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);

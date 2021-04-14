@@ -56,6 +56,8 @@ class AppFixtures extends Fixture
 
         //-----------TABLE USER------------
 
+
+        $allCampus = $manager->getRepository(Campus::class)->findAll();
         //on crée un admin
         $user = new User();
         $user->setPseudo($faker->userName);
@@ -66,7 +68,7 @@ class AppFixtures extends Fixture
         // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
         $user->setPassword($this->encoder->encodePassword($user, 'admin'));
         $user->setRoles(['ROLE_ADMIN']);
-        $user->setCampus(mt_rand(1, 3));
+        $user->setCampus($faker->randomElement($allCampus));
         $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
         //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
@@ -83,7 +85,7 @@ class AppFixtures extends Fixture
             // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
             $user->setPassword($this->encoder->encodePassword($user, 'user'));
             $user->setRoles(['ROLE_USER']);
-            $user->setCampus(mt_rand(1, 3));
+            $user->setCampus($faker->randomElement($allCampus));
 
             //($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
 
@@ -93,6 +95,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($user);
         }
+
 
         //on crée des organisateurs
         for($i = 0; $i < 15; $i++) {
@@ -105,7 +108,7 @@ class AppFixtures extends Fixture
             // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
             $user->setPassword($this->encoder->encodePassword($user, 'orga'));
             $user->setRoles(['ROLE_ORGANISATEUR']);
-            $user->setCampus(mt_rand(1, 3));
+            $user->setCampus($faker->randomElement($allCampus));
             $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
             //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
@@ -117,7 +120,7 @@ class AppFixtures extends Fixture
 
         //-----------TABLE EVENT------------
         //on récupère tous les users, les status, les campus pour pouvoir les associer en tant qu'organisateur d'événement ci-dessous
-        $allCampus = $manager->getRepository(Campus::class)->findAll();
+        //$allCampus = $manager->getRepository(Campus::class)->findAll();
         $allCities = $manager->getRepository(Cities::class)->findAll();
         $allStatus = $manager->getRepository(EventStatus::class)->findAll();
         $allUsers = $manager->getRepository(User::class)->findAll();
