@@ -146,6 +146,7 @@ class AppFixtures extends Fixture
             $event->setEventName($faker->sentence(5));
             $event->setDateAndHour($faker->dateTimeBetween('- 6 months', 'now') );
             $event->setRegistrationLimit($faker->dateTimeBetween('- 6 months', '+ 6 months'));
+            $event->setInitialPlaces(NumberOfPlaces);
             $event->setNumberOfPlaces(mt_rand(15, 100));
             $event->setDuration(mt_rand(60, 600));
             $event->setDescription($faker->realText(100));

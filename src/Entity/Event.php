@@ -43,6 +43,13 @@ class Event
     /**
      * @ORM\Column(type="integer")
      */
+    private $initialPlaces;
+
+
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $duration;
 
     /**
@@ -149,6 +156,16 @@ class Event
         $this->numberOfPlaces = $numberOfPlaces;
 
         return $this;
+    }
+
+    public function getInitialPlaces(): ?int
+    {
+        return $this->initialPlaces;
+    }
+
+    public function setInitialPlaces(int $initialPlaces): self
+    {
+        $this->initialPlaces = $initialPlaces;
     }
 
     public function getDuration(): ?int
