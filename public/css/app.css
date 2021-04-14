@@ -31,6 +31,12 @@ button:focus {
     outline: 0 !important;
 }
 
+h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
 h3 {
     font-size: 25px;
     font-weight: bold;

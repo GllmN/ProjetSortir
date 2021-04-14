@@ -1,43 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>Création d'une sortie</h2>
-    {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
-    <div class="row">
-        <div class="col-sm">
-            {{ form_start(eventForm) }}
-            {{ form_row(eventForm.eventName) }}
-            {{ form_row(eventForm.dateAndHour) }}
-            {{ form_row(eventForm.registrationLimit)}}
-            {{ form_row(eventForm.numberOfPlaces) }}
-            {{ form_row(eventForm.duration) }}
-            {{ form_row(eventForm.description) }}
+    <div class="col-sm py-2"></div>
+    <div class="create-event">
+        <div class="col-12-sm py-2"></div>
+        {# Création des sorties #}
+        <div class="row">
+            <div class="col-sm-1 "></div>
+            <div class="col-sm-10 mx-0 px-0 py-0">
+                <div class="create-event-conteneur">
+                    <h2 class="ml-5">Création d'une sortie</h2>
+                    <div class="row py-5">
 
-        </div>
-        <div class="col-sm">
-            Votre Campus :
-            {{ app.user.campus }}<br><br>
-            {{ form_row(eventForm.city) }}
-             {{ form_row(eventForm.location) }}
-            <ul style="list-style: none" id="ullocation">
-                {% for lieu in location %}
-                    <li id="{{ lieu.id }}" style="display: none">
-                        <label for="rue" class="required">Rue</label>
-                        <input class="form-control" type="text" name="rue" id="rue" value="{{ lieu.street }}">
-                        <label for="cp" class="required">Code postal</label>
-                        <input class="form-control" type="text" name="cp" id="cp" value="{{ lieu.zipCode }}">
-                    </li>
-                {% endfor %}
-            </ul>
-            {{ form_row(eventForm.save) }}
-            {{ form_row(eventForm.publish) }}
-            {{ form_end(eventForm) }}
+                        {# bloc de gauche : nom / date / nombre de place #}
+                        <div class="col-sm mx-5">
+                            {% for message in app.flashes('danger') %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            <div class="row">
+                                <div class="col-sm">
+                                    {{ form_start(eventForm) }}
+                                    {{ form_row(eventForm.eventName) }}
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            {{ form_row(eventForm.dateAndHour) }}
+                                        </div>
+                                        {{ form_row(eventForm.registrationLimit)}}
+                                    </div>
+                                    {{ form_row(eventForm.numberOfPlaces) }}
+                                    {{ form_row(eventForm.duration) }}
+                                    {{ form_row(eventForm.description) }}
+                                </div>
+                            </div>
+                        </div>
 
-            <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>
+                        {# bloc de droite: campus / ville / lieu #}
+                        <div class="col-sm">
+                            <div class="col-sm">
+                                Votre Campus :
+                                {{ app.user.campus }}<br><br>
+                                {{ form_row(eventForm.city) }}
+                                 {{ form_row(eventForm.location) }}
+                                <ul style="list-style: none" id="ullocation">
+                                    {% for lieu in location %}
+                                        <li id="{{ lieu.id }}" style="display: none">
+                                            <label for="rue" class="required">Rue</label>
+                                            <input class="form-control" type="text" name="rue" id="rue" value="{{ lieu.street }}">
+                                            <label for="cp" class="required">Code postal</label>
+                                            <input class="form-control" type="text" name="cp" id="cp" value="{{ lieu.zipCode }}">
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    {# bloc du bas: bouttons #}
+                    <div>
+                        {{ form_row(eventForm.save) }}
+                        {{ form_row(eventForm.publish) }}
+                        {{ form_end(eventForm) }}
+                        <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
