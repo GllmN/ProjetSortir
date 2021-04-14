@@ -54,10 +54,11 @@
 
                             {# boutton connexion #}
                             <div class="col-sm px-0 pt-1 pb-3">
-                                <button class="login-boutton" type="submit" >
+                                <button class="login-boutton" id="boutton" type="submit" >
                                     Connexion
                                 </button>
                             </div>
+
 
                             {# faille csrf #}
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -90,4 +91,5 @@
             <div class="col-sm"></div>
         </div>
     </div>
+
 {% endblock %}

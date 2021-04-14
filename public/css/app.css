@@ -16,6 +16,20 @@ body {
 }
 
 
+button{
+    color: #fff;
+    background-color: #0b7e99;
+    transition: all 0.5s ease-out;
+}
+
+button:hover {
+    color: #0b7e99;
+    background-color: #ffffff;
+}
+
+button:focus {
+    outline: 0 !important;
+}
 
 h3 {
     font-size: 25px;
@@ -25,6 +39,10 @@ h3 {
 h4 {
     font-size: 18px;
     font-family: 'Ubuntu','Roboto', sans-serif;
+}
+
+nav{
+    color:grey;
 }
 
 .redLink { color: #FF0000; }
@@ -110,11 +128,6 @@ table {
     cursor: pointer;
 }
 
-.home-separator-conteneur{
-    background-color: #0b7e99;
-    height: 100px;
-}
-
 .home-boutton-search{
     background-color: #0b7e99;
     color:white;
@@ -126,6 +139,11 @@ table {
     border-radius: 5px;
     border: 0;
     cursor: pointer;
+}
+
+.home-separator-conteneur{
+    background-color: #0b7e99;
+    height: 100px;
 }
 
 .login{
@@ -157,19 +175,19 @@ table {
     color: #2a0653;
 }
 
-.login-boutton{
-    background-color: #0b7e99;
-    color: white;
-    text-transform: uppercase;
-    padding: 10px;
-    height: 58px;
-    width: 100%;
-    font-size: 21px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-}
+/*.login-boutton{*/
+/*    background-color: #0b7e99;*/
+/*    color: white;*/
+/*    text-transform: uppercase;*/
+/*    padding: 10px;*/
+/*    height: 58px;*/
+/*    width: 100%;*/
+/*    font-size: 21px;*/
+/*    font-weight: bold;*/
+/*    border-radius: 5px;*/
+/*    border: 0;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .login-titre {
     text-align: center;
@@ -180,19 +198,20 @@ table {
 
 
 /*ID*/
-
-
-/*#changer {
+#boutton {
     cursor: pointer;
     margin: 0px;
     padding: 10px;
-    font-size: 20px;
+    font-size: 21px;
     text-transform: uppercase;
-    border: 0px black solid;
-    border-radius: 10px;
+    border: 0px;
     overflow: hidden;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}*/
+    height: 58px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 
 /* POLICES*/
 @font-face {

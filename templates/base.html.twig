@@ -34,26 +34,28 @@
             <header class="row justify-content-between align-items-center p-3 mb-3 shadow-sm">
                 <div class="col-sm-2 text-white text-center align-items-center">
                     <div class="base-img-logo">
-                        <a class="pb-0 mb-0" href="{{ url('home_home') }}">{# <img src="{{ asset('css/img/logo-sortir-com.png') }}" alt="Retour"> #}SORTIR.COM!</a>
+                        <a class="pb-0 mb-0" id="titre-bandeau" href="{{ url('home_home') }}">{# <img src="{{ asset('css/img/logo-sortir-com.png') }}" alt="Retour"> #}SORTIR.COM!</a>
                     </div>
                 </div>
                 <nav class="fa fa-bars my-2 my-md-0 me-md-3">
                     {% if app.user.roles.0.1 == "ROLE_ADMIN" %}
-                        <a class="p-3 text-white" href="{{ url('admin_campus') }}">Campus</a>
-                        <a class="p-3 text-white" href="{{ url('admin_ville') }}">Villes</a>
+                        <a class="p-3 text-white" href="{{ url('admin_campus') }}">CAMPUS</a>
+                        <a class="p-3 text-white" href="{{ url('admin_ville') }}">VILLES</a>
+                        |
                     {% else %}
                         {# n'affiche pas "Campus" et "City" si USER #}
                     {% endif %}
 
-                    <a class="p-3 text-white" href="{{ url('home_home') }}">Accueil</a>
-                    <a class="p-3 text-white" href="{{ url('profil_user') }}">Mon profil</a>
+                    <a class="p-3 text-white" href="{{ url('home_home') }}">ACCUEIL</a>
+                    <a class="p-3 text-white" href="{{ url('profil_user') }}">MON PROFIL</a>
 
                     {% if app.user %}
                         {# <span class="p-3 text-white" >Bonjour {{ app.user.LastName }} !</span> #}
                     {% else %}
-                        <a class="p-3 text-white" href="{{ path('app_login') }}">Login</a>
+                        <a class="p-3 text-white" href="{{ path('app_login') }}">LOGIN</a>
                     {% endif %}
-                    <a class="p-3 text-white" href="{{ url('app_logout') }}">Deconnexion</a>
+                        |
+                    <a class="p-3 text-white" href="{{ url('app_logout') }}">DECONNEXION</a>
                 </nav>
                 {# <a class="btn btn-outline-primary" href="#">Sign up</a>  #}
             </header>
