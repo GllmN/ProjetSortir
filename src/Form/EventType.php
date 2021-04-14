@@ -10,6 +10,7 @@ use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +30,7 @@ class EventType extends AbstractType
                 'label'=>'Date limite d\'inscription',
                 'format'=>"dd-MM-yyyy",
                 ])
+
             ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
             ->add('duration',null,['label'=>'Durée'])
             ->add('description',null,['label'=>'Description et infos'])
