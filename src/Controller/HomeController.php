@@ -31,6 +31,11 @@ class HomeController extends AbstractController
         $userId = $userId->getId();
 
 
+        //$userSub =
+
+        //Récup id de l'utilisateur connecté
+
+
         //création d'un formulaire filter dans l'acceuil
         $filterForm = $this->createForm(FilterType::class);
 
@@ -49,6 +54,7 @@ class HomeController extends AbstractController
 
             $eventOrganizer = $filterForm['eventOrganizer']->getData();
 
+            $eventSubscriber = $filterForm['eventSubscriber']->getData();
 
 
 
@@ -61,12 +67,12 @@ class HomeController extends AbstractController
 
             if($dateEnd > $dateStart) {
                 $result = $em->getRepository(Event::class)
-                    ->filterEvent($keyWord, $campus, $dateStart ,$dateEnd, $userId ,$eventOrganizer);
+                    ->filterEvent($keyWord, $campus, $dateStart ,$dateEnd, $userId ,$eventOrganizer, $eventSubscriber);
             } else{
-                $this->addFlash('warning', "Hello, pour plus de précision rentre les dates ;-)");
+                $this->addFlash('warning', "Hello, pour plus de précisions renseigner les dates ;-)");
             };
 
-            $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd,  $userId, $eventOrganizer);
+            $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd,  $userId, $eventOrganizer, $eventSubscriber);
 
             // Pagination /!\ remplacer le $result par le $event dans le render
                 //            $event = $paginator->paginate(
