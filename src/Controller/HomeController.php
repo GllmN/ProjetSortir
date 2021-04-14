@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Event;
+use App\Entity\User;
 use App\Form\FilterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -25,6 +26,11 @@ class HomeController extends AbstractController
         //Verification des dates de fin d'inscription / à la date du jour
         $em->getRepository(Event::class)->updateBDD();
 
+        //Récup id de l'utilisateur connecté
+        $userId = $em->getRepository(User::class)->find($this->getUser());
+        $userId = $userId->getId();
+
+
         //création d'un formulaire filter dans l'acceuil
         $filterForm = $this->createForm(FilterType::class);
 
@@ -41,9 +47,11 @@ class HomeController extends AbstractController
 
             $dateEnd = $filterForm['dateEnd']->getData();
 
-//            $eventOrganizer = $filterForm['eventOrganiserID']->getData();
-//            dump($eventOrganizer);
-//            exit();
+            $eventOrganizer = $filterForm['eventOrganizer']->getData();
+
+
+
+
 
 //            $eventSubscriber = $filterForm['eventSubscriber']->getParticipant();
 
@@ -52,13 +60,13 @@ class HomeController extends AbstractController
             //$eventOld = $filterForm['eventOld']->getData();
 
             if($dateEnd > $dateStart) {
-                $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
+                $result = $em->getRepository(Event::class)
+                    ->filterEvent($keyWord, $campus, $dateStart ,$dateEnd, $userId ,$eventOrganizer);
             } else{
-                echo'erreur';
-              // app flashes message erreur date
+                $this->addFlash('warning', "Hello, pour plus de précision rentre les dates ;-)");
             };
 
-            //$result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
+            $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd,  $userId, $eventOrganizer);
 
             // Pagination /!\ remplacer le $result par le $event dans le render
                 //            $event = $paginator->paginate(
