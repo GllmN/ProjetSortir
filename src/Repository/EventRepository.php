@@ -60,21 +60,20 @@ class EventRepository extends ServiceEntityRepository
 
     /**
      * @throws -met la BDD à jour quand on revient sur l'accueil
-     * passage en statut 3 -cloturé quand la date de fin d'inscription
+     * passage en statut 7 -archivé quand la date de fin d'inscription
      * a dépassée la date du jour
      */
     public function updateBDDArchive(){
         $date = new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris'));
         //Moins 1 jour sur la date du jour
-        $date->modify("-1 day");
-
+        $date->modify("-30 day");
 
         //Recup des sorties avec une date limite d'inscription supérieur à la date du jour
         //Passage en status 3-Closed
         $req = $this->createQueryBuilder('event')
             ->update(Event::class, 'event')->set('event.status', '?1')
-            ->where('event.registrationLimit< :date')
-            ->setParameter(1, '3')
+            ->where('event.dateAndHour< :date')
+            ->setParameter(1, '7')
             ->setParameter('date', $date);
         $req->getQuery()->execute();
     }
