@@ -29,7 +29,6 @@ class EventType extends AbstractType
                 'label'=>'Date limite d\'inscription',
                 'format'=>"dd-MM-yyyy",
                 ])
-            ->add('initialPlaces',null,['label'=>'Nombre de place initial'])
             ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
             ->add('duration',null,['label'=>'Durée'])
             ->add('description',null,['label'=>'Description et infos'])
