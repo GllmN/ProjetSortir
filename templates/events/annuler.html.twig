@@ -2,14 +2,12 @@
 
 {% block body %}
     <h2>Annulation</h2>
-    <form action="#">
+
         Nom de la sortie : {{ event.eventName }}<br>
         Date de la sortie : {{ event.dateAndHour | date("d/m/Y") }}<br>
         Campus : {{ event.campus | upper }}<br>
         Lieu : {{ event.location }}<br><br>
-        <label for="motif">Motif : </label><br>
-        <textarea id="motif" name="motif">
-    </textarea><br>
-        <input type="submit">
-    </form>
+
+    {{ form_start(eventCancel) }}
+    {{ form_end(eventCancel) }}
 {% endblock %}

@@ -8,6 +8,7 @@ use App\Entity\Campus;
 use App\Entity\Event;
 use App\Entity\EventStatus;
 use App\Entity\User;
+use App\Form\EventCancelType;
 use App\Form\EventType;
 use App\Repository\LocationRepository;
 use DateTime;
@@ -135,14 +136,14 @@ class EventController extends AbstractController
         //Contrôle sur date de sortie et date limite d'inscription
         if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
             $this->addFlash('danger', 'Tu n\'as pas le pouvoir de voyager dans le temps');
-            $this->redirectToRoute('sortie_creation');
+            $this->redirectToRoute('home_home');
         }
 
         //Si l'utilisateur connecté n'est pas l'organisateur de la sortie
         //l'Utilisateur ne peut pas modifier la sortie
         if ($userId !== $organizer){
             $this->addFlash('danger', 'FAIL!!!! Tu n\'es pas l\'organisateur de cette sortie');
-            return $this->redirectToRoute('home_home');
+            return $this->redirectToRoute('sortie_creation');
         } elseif ($form->isSubmitted() && $form->isValid()){
 
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
@@ -179,7 +180,28 @@ class EventController extends AbstractController
         $id = $request->get('id');
         $event = $em->getRepository(Event::class)->find($id);
 
-        return $this->render('events/annuler.html.twig', ['event'=> $event]);
+        $form= $this->createForm(EventCancelType::class);
+        $form->handleRequest($request);
+
+        if ($form->get('cancel')->isClicked()){
+            return $this->redirectToRoute('home_home');
+        }
+
+        if ($form->isSubmitted() && $form->isValid()){
+            if  ( $form->get('save') && $form->get('motif')->isEmpty()){
+                $this->addFlash('danger', 'Il nous faut un motif!!!');
+            }elseif ($form->get('save')->isClicked()){
+                //mise à jour de la sortie
+                //Avec statut 6-Canceled
+                $statusCreate = $em->getRepository(EventStatus::class)->find(6);
+                $event->setStatus($statusCreate);
+                $em->persist($event);
+                $em->flush();
+
+                $this->addFlash('success', 'La sortie a été annulée!');
+            }
+        }
+        return $this->render('events/annuler.html.twig', ['eventCancel'=> $form->createView(), 'event'=> $event]);
     }
 
     /**
