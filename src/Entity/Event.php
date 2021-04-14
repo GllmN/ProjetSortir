@@ -36,7 +36,7 @@ class Event
     private $registrationLimit;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $numberOfPlaces;
 
