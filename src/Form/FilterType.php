@@ -57,11 +57,11 @@ class FilterType extends AbstractType
                 'label'=>'Sortie dont je suis l\'organisateur(trice).',
                 'required'=>false,
             ])
-            ->add('eventSuscriber', CheckboxType::class, [
+            ->add('eventSubscriber', CheckboxType::class, [
                 'label'=>'Sortie auquelles je suis inscrit(e).',
                 'required'=>false,
             ])
-            ->add('eventNotSuscriber', CheckboxType::class, [
+            ->add('eventNotSubscriber', CheckboxType::class, [
                 'label'=>'Sortie auquelles je ne suis pas inscrit(e).',
                 'required'=>false,
             ])
@@ -69,13 +69,8 @@ class FilterType extends AbstractType
                 'label'=>'Sortie passées.',
                 'required'=>false,
             ])
-            ->add('search', SubmitType::class, [
-                'label'=>'Rechercher',
-                //'attr' => ['class' => ''],
-
-            ])
-        ;
-    }
+            // suppression du button pour mieux l'intégrer au CSS
+            ;}
 
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -42,11 +42,13 @@
                                 <div class="col-sm">
                                     <div class="mt-0 pt-3 ml-5 align-middle">Autres critères :</div>
                                     <div class="mt-0 pt-3 ml-5 pl-3 align-middle">{{ form_row(filterForm.eventOrganizer) }}</div>
-                                    <div class="my-0 pt-0 ml-5 pl-3 align-middle">{{ form_row(filterForm.eventSuscriber) }}</div>
-                                    <div class="my-0 pt-0 ml-5 pl-3 align-middle">{{ form_row(filterForm.eventNotSuscriber) }}</div>
+                                    <div class="my-0 pt-0 ml-5 pl-3 align-middle">{{ form_row(filterForm.eventSubscriber) }}</div>
+                                    <div class="my-0 pt-0 ml-5 pl-3 align-middle">{{ form_row(filterForm.eventNotSubscriber) }}</div>
                                     <div class="my-0 pt-0 ml-5 pl-3 align-middle">{{ form_row(filterForm.eventOld) }}</div>
                                     <div class="py-3">
-                                        <div class="home-boutton-search">{{ form_row(filterForm.search) }}</div>
+                                        <div class="home-boutton-search">
+                                            <button>Rechercher</button>
+                                        </div>
                                     </div>
                                     {{ form_end(filterForm) }}
                                 </div>

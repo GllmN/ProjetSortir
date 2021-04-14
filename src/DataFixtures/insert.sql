@@ -21,6 +21,7 @@ INSERT INTO `location` (`id`, `street`, `zip_code`, `name`) VALUES
 (6, 'Saint Fiacre', 44690, 'Visite de cave'),
 (7, 'Tour de Bretagne' , 44000, 'Saut en parachute de la tour'),
 (8, 'Rue du Stade de France',  93000, 'Match de foot');
+(9, 'Faire caca derrière des arbres', 01100, 'Tour dans la forêt');
 
 INSERT INTO `cities` (`id`, `city`, `departement`, `insee`, `postal_code`, `lat`, `lng`) VALUES
 (1, 'L\'Abergement-Clémenciat', '01', '01001', '01400', 46.15678199203189, 4.92469920318725),

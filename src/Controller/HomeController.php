@@ -41,6 +41,16 @@ class HomeController extends AbstractController
 
             $dateEnd = $filterForm['dateEnd']->getData();
 
+//            $eventOrganizer = $filterForm['eventOrganiserID']->getData();
+//            dump($eventOrganizer);
+//            exit();
+
+//            $eventSubscriber = $filterForm['eventSubscriber']->getParticipant();
+
+            //$eventNotSubscriber = $filterForm['eventSubscriber']->getData();
+
+            //$eventOld = $filterForm['eventOld']->getData();
+
             if($dateEnd > $dateStart) {
                 $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd);
             } else{

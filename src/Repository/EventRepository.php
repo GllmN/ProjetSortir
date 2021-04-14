@@ -54,8 +54,8 @@ class EventRepository extends ServiceEntityRepository
     }
 
     //Les filtres sur les événement
-    public function filterEvent($keyWord, $campus, $dateStart, $dateEnd, $eventOrganizer, $eventSuscriber, $eventNotSuscriber, $eventOld){
-
+    public function filterEvent($keyWord, $campus, $dateStart, $dateEnd ){
+     //   $eventOrganizer,$eventSubscriber, $eventNotSubscriber, $eventOld
 
 
         // recuperer les méthodes du querybuilder (alias de l'entité)
@@ -84,28 +84,28 @@ class EventRepository extends ServiceEntityRepository
             ;}
 
         // eventOrganizer
-        if($eventOrganizer == true){
-            $qb ->andWhere('event.organisateur :')
-                ->setParameter('dateAndHour', $dateEnd)
-            ;}
+//        if($eventOrganizer == true){
+//            $qb ->andWhere('user.roles = :eventOrganiserID')
+//                ->setParameter('eventOrganiserID', $eventOrganizer)
+//            ;}
 
-        // eventSuscriber
-        if($eventSuscriber == true){
-            $qb ->andWhere('event = :')
-                ->setParameter('dateAndHour', $dateEnd)
-            ;}
-
-        // eventNotSuscriber
-        if($eventNotSuscriber == true){
-            $qb ->andWhere('event = :')
-                ->setParameter('dateAndHour', $dateEnd)
-            ;}
-
-        // eventOld
-        if($eventNotSuscriber == true){
-            $qb ->andWhere('event = :')
-                ->setParameter('dateAndHour', $dateEnd)
-            ;}
+////        // eventSubscriber
+//        if($eventSubscriber == true){
+//            $qb ->andWhere('event. = :event')
+//                ->setParameter('dateAndHour', $dateEnd)
+//            ;}
+////
+//        // eventNotSubscriber
+//        if($eventNotSubscriber == true){
+//            $qb ->andWhere('event = :')
+//                ->setParameter('dateAndHour', $dateEnd)
+//            ;}
+//
+//        // eventOld
+//        if($eventNotSuscriber == true){
+//            $qb ->andWhere('event = :')
+//                ->setParameter('dateAndHour', $dateEnd)
+//            ;}
 
         return $qb->getQuery()->getResult();
         }
