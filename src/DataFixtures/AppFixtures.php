@@ -55,9 +55,8 @@ class AppFixtures extends Fixture
 
 
         //-----------TABLE USER------------
-
-
         $allCampus = $manager->getRepository(Campus::class)->findAll();
+
         //on crée un admin
         $user = new User();
         $user->setPseudo($faker->userName);
@@ -125,6 +124,8 @@ class AppFixtures extends Fixture
         $allStatus = $manager->getRepository(EventStatus::class)->findAll();
         $allUsers = $manager->getRepository(User::class)->findAll();
         $allLocation = $manager->getRepository(Location::class)->findAll();
+
+
 
         //plein de création d'événements
         for($i = 0; $i < 100; $i++) {

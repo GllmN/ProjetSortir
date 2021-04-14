@@ -20,12 +20,10 @@ INSERT INTO `location` (`id`, `street`, `zip_code`, `name`) VALUES
 (5, 'Avenue Franklin', 44000, 'Cours de PHP'),
 (6, 'Saint Fiacre', 44690, 'Visite de cave'),
 (7, 'Tour de Bretagne' , 44000, 'Saut en parachute de la tour'),
-(8, 'Rue du Stade de France',  93000, 'Match de foot');
+(8, 'Rue du Stade de France',  93000, 'Match de foot'),
 (9, 'Faire caca derrière des arbres', 01100, 'Tour dans la forêt');
 
 INSERT INTO `cities` (`id`, `city`, `departement`, `insee`, `postal_code`, `lat`, `lng`) VALUES
-(1, 'L\'Abergement-Clémenciat', '01', '01001', '01400', 46.15678199203189, 4.92469920318725),
-(2, 'L\'Abergement-de-Varey', '01', '01002', '01640', 46.01008562499999, 5.42875916666667),
 (3, 'Ambérieu-en-Bugey', '01', '01004', '01500', 45.95840939226519, 5.3759920441989),
 (4, 'Ambérieux-en-Dombes', '01', '01005', '01330', 46.00012039215686, 4.9106016993464),
 (5, 'Ambléon', '01', '01006', '01300', 45.74642690476188, 5.60249178571429),
