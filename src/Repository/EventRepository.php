@@ -79,8 +79,8 @@ class EventRepository extends ServiceEntityRepository
     }
 
     //Les filtres sur les événement
-    public function filterEvent($keyWord,$campus,$dateStart,$dateEnd,$userId,$eventOrganizer,$userSubscriber,$eventSubscriber){
-     //   $eventOrganizer,$eventSubscriber, $eventNotSubscriber, $eventOld
+    public function filterEvent($keyWord,$campus,$dateStart,$dateEnd,$userId,$eventOrganizer){
+     //  $eventOrganizer,$eventSubscriber, $eventNotSubscriber, $eventOld
 
         $test='1340';
 
@@ -109,7 +109,6 @@ class EventRepository extends ServiceEntityRepository
                 ->setParameter('dateAndHourEnd', $dateEnd)
             ;}
 
-
         // eventOrganizer
         // Si la checkbox est cocher (checkbox = true en base)
         if($eventOrganizer){
@@ -118,10 +117,10 @@ class EventRepository extends ServiceEntityRepository
             ;}
 
         // eventSubscriber
-        if($eventSubscriber){
-            $qb ->andWhere('event. = :eventSuscriber')
-                ->setParameter('eventSuscriber', $userSubscriber)
-            ;}
+//        if($eventSubscriber){
+//            $qb ->andWhere('eventUser.userId = :eventSuscriber')
+//                ->setParameter('eventSuscriber', $userSub)
+//            ;}
 //
 //        // eventNotSubscriber
 //        if($eventNotSubscriber == true){

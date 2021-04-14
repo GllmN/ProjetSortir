@@ -31,11 +31,11 @@ class HomeController extends AbstractController
         $userId = $em->getRepository(User::class)->find($this->getUser());
         $userId = $userId->getId();
 
-
-        //$userSub =
+        //Récup de l'id de l'event
+        //$eventId = $request->get('id');
+        //$userSub = $em->getRepository(Event::class)->find($eventId);
 
         //Récup id de l'utilisateur connecté
-
 
         //création d'un formulaire filter dans l'acceuil
         $filterForm = $this->createForm(FilterType::class);
@@ -46,34 +46,24 @@ class HomeController extends AbstractController
         if ($filterForm->isSubmitted() && $filterForm->isValid()){
 
             $campus = $filterForm['campus']->getData();
-
             $keyWord = $filterForm['keyWord']->getData();
-
             $dateStart = $filterForm['dateStart']->getData();
-
             $dateEnd = $filterForm['dateEnd']->getData();
-
             $eventOrganizer = $filterForm['eventOrganizer']->getData();
 
-            $eventSubscriber = $filterForm['eventSubscriber']->getData();
-
-
-
-
-//            $eventSubscriber = $filterForm['eventSubscriber']->getParticipant();
-
+            //$eventSubscriber = $filterForm['eventSubscriber']->getData();
             //$eventNotSubscriber = $filterForm['eventSubscriber']->getData();
-
             //$eventOld = $filterForm['eventOld']->getData();
 
             if($dateEnd > $dateStart) {
                 $result = $em->getRepository(Event::class)
-                    ->filterEvent($keyWord, $campus, $dateStart ,$dateEnd, $userId ,$eventOrganizer, $eventSubscriber);
+                    ->filterEvent($keyWord, $campus, $dateStart ,$dateEnd, $userId ,$eventOrganizer);
             } else{
                 $this->addFlash('warning', "Hello, pour plus de précisions renseigner les dates ;-)");
             };
 
-            $result = $em->getRepository(Event::class)->filterEvent($keyWord, $campus , $dateStart ,$dateEnd,  $userId, $eventOrganizer, $eventSubscriber);
+            $result = $em->getRepository(Event::class)
+                ->filterEvent($keyWord, $campus , $dateStart ,$dateEnd,  $userId, $eventOrganizer);
 
             // Pagination /!\ remplacer le $result par le $event dans le render
                 //            $event = $paginator->paginate(
