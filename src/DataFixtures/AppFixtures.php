@@ -147,11 +147,13 @@ class AppFixtures extends Fixture
             $event->setDateAndHour($faker->dateTimeBetween('- 6 months', 'now') );
             $event->setRegistrationLimit($faker->dateTimeBetween('- 6 months', '+ 6 months'));
             $event->setNumberOfPlaces(mt_rand(15, 100));
+            $event->setNbRegistration(mt_rand(1, 15));
             $event->setInitialPlaces($event->getNumberOfPlaces());
+            $event->setNumberOfPlaces(($event->getNumberOfPlaces()) - ($event->getNbRegistration()));
             $event->setDuration(mt_rand(60, 600));
             $event->setDescription($faker->realText(100));
             //nb_registration
-            $event->setNbRegistration(mt_rand(1, 15));
+
 
             //on sauvegarde dans la boucle
             $manager->persist($event);

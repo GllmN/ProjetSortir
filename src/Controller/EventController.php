@@ -64,19 +64,16 @@ class EventController extends AbstractController
         }
 
         if($form->isSubmitted() && $form->isValid() && $event->getDateAndHour()>$dateDuJour && $event->getRegistrationLimit()>$dateDuJour){
-
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)
             if ($form->get('save')->isClicked()){
                 $statusCreate = $em->getRepository(EventStatus::class)->find(1);
-
                 $this->addFlash('success','Sortie créée mais non publier !');
             }
             //Si l'utilisateur clique sur le bouton Publier('publish')
             //La sortie est enregistrée en BDD avec le statut open(id2)
             elseif($form->get('publish')->isClicked()){
                 $statusCreate = $em->getRepository(EventStatus::class)->find(2);
-
                 $this->addFlash('success','Sortie publiée !');
             }
             $event->setStatus($statusCreate);
