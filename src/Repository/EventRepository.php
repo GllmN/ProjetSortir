@@ -67,8 +67,7 @@ class EventRepository extends ServiceEntityRepository
         $date = new \DateTime('NOW', new \DateTimeZone('EUROPE/Paris'));
         //Moins 1 jour sur la date du jour
         $date->modify("-1 day");
-        dump($date);
-        exit();
+
 
         //Recup des sorties avec une date limite d'inscription supérieur à la date du jour
         //Passage en status 3-Closed
