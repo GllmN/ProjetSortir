@@ -138,7 +138,7 @@
                                 </button>
 
                             {% endif %}
-                            {% if app.user.getId == event.organizer.getId %}
+                            {% if app.user.getId == event.organizer.getId or app.user.roles.0.1 == "ROLE_ADMIN" %}
                                 <button type="button" class="btn btn-link">
                                     <a class="orangeLink" href="{{ url('sortie_modifier', {'id': event.id}) }}">Modifier
                                         la sortie</a>
