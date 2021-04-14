@@ -10,13 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
     /**
      * @Route(path="/monprofil", name="profil_user", methods={"GET", "POST"})
      */
-    public function profilUser(Request $request, EntityManagerInterface $entityManager){
+    public function profilUser(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder){
 
         // Récupération des données de l'utilisateur
         $profilUser = $this->getUser();
@@ -31,6 +32,14 @@ class UserController extends AbstractController
 
             // Si le champs est valide et soumis
             if ($profilUserForm->isSubmitted() && $profilUserForm->isValid()){
+
+                // encode the plain password
+                $profilUser->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $profilUser,
+                        $profilUserForm->get('password')->getData()
+                    ));
+
 
                 // On envoie sur la BDD
                 $entityManager->persist($profilUser);
