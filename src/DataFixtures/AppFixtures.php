@@ -62,7 +62,7 @@ class AppFixtures extends Fixture
         $user->setFirstName($faker->firstName());
         $user->setLastName($faker->firstName());
         $user->setPhone('0667676767');
-        $user->setEmail($faker->email);
+        $user->setEmail('admin@admin.com');
         // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
         $user->setPassword($this->encoder->encodePassword($user, 'admin'));
         $user->setRoles(['ROLE_ADMIN']);
@@ -81,8 +81,26 @@ class AppFixtures extends Fixture
             $user->setPhone('0606060606');
             $user->setEmail($faker->email);
             // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
-            $user->setPassword($this->encoder->encodePassword($user, 'yoyoyo'));
+            $user->setPassword($this->encoder->encodePassword($user, 'user'));
             $user->setRoles(['ROLE_USER']);
+            $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+            $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
+            //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
+
+            $manager->persist($user);
+        }
+
+        //on crée des organisateurs
+        for($i = 0; $i < 15; $i++) {
+            $user = new User();
+            $user->setPseudo($faker->userName.$i);
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->firstName());
+            $user->setPhone('0606060606');
+            $user->setEmail($faker->email);
+            // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
+            $user->setPassword($this->encoder->encodePassword($user, 'orga'));
+            $user->setRoles(['ROLE_ORGANISATEUR']);
             $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
             $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
             //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
