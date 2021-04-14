@@ -128,7 +128,7 @@ class AppFixtures extends Fixture
 
 
         //plein de création d'événements
-        for($i = 0; $i < 100; $i++) {
+        for($i = 0; $i < 200; $i++) {
 
             $event = new Event();
 
@@ -144,8 +144,8 @@ class AppFixtures extends Fixture
             $event->setLocation($faker->randomElement($allLocation));
 
             $event->setEventName($faker->sentence(5));
-            $event->setDateAndHour($faker->dateTimeBetween('- 6 months', 'now') );
-            $event->setRegistrationLimit($faker->dateTimeBetween('- 6 months', '+ 6 months'));
+            $event->setDateAndHour($faker->dateTimeBetween('- 2 months', '+ 6 months') );
+            $event->setRegistrationLimit($faker->dateTimeBetween('-1 months', '+ 6 months'));
             $event->setNumberOfPlaces(mt_rand(15, 100));
             $event->setNbRegistration(mt_rand(1, 15));
             $event->setInitialPlaces($event->getNumberOfPlaces());
