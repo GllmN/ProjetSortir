@@ -29,7 +29,7 @@ class EventType extends AbstractType
             ->add('registrationLimit',DateType::class,[
                 'label'=>'Date limite d\'inscription',
                 'format'=>"dd-MM-yyyy",
-                ])
+            ])
 
             ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
             ->add('duration',null,['label'=>'Durée'])
