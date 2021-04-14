@@ -53,21 +53,26 @@ class EventController extends AbstractController
 
         $event->setCampus($user->getCampus());
 
+
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         //Controle sur la date pour ne pas créer de sorties dans la passé
         //Contrôle sur date de sortie et date limite d'inscription
         if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
+            $event->setInitialPlaces(($event->getNumberOfPlaces()));
+
             $this->addFlash('danger', 'Tu n\'as pas le pouvoir de voyager dans le temps');
             $this->redirectToRoute('sortie_creation');
         }
 
         if($form->isSubmitted() && $form->isValid() && $event->getDateAndHour()>$dateDuJour && $event->getRegistrationLimit()>$dateDuJour){
+
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)
             if ($form->get('save')->isClicked()){
                 $statusCreate = $em->getRepository(EventStatus::class)->find(1);
+
                 $this->addFlash('success','Sortie créée mais non publier !');
             }
             //Si l'utilisateur clique sur le bouton Publier('publish')
