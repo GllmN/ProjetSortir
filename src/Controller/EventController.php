@@ -224,8 +224,12 @@ class EventController extends AbstractController
             return $this->redirectToRoute("home_home");
         }
 
+        //Récup statut de la sortie
+        $statutEvent = $event->getStatus()->getId();
+
         // si le nombre de places est supérieur ou égale à 1 et que la date limite d'inscription est supérieur à la date du jour..
-        if ($event->getNumberOfPlaces() >= 1 && $event->getRegistrationLimit() > $today ){
+        //Plus vérification du statut 2-ouvert
+        if ($event->getNumberOfPlaces() >= 1 && $event->getRegistrationLimit() > $today && $statutEvent == 2 ){
         // On ajoute le user à la liste des participants..
             $event->addParticipant($this->getUser());
 
