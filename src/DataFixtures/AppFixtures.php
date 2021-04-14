@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
         // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
         $user->setPassword($this->encoder->encodePassword($user, 'admin'));
         $user->setRoles(['ROLE_ADMIN']);
-        $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+        $user->setCampus(mt_rand(1, 3));
         $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
         //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
@@ -83,7 +83,11 @@ class AppFixtures extends Fixture
             // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
             $user->setPassword($this->encoder->encodePassword($user, 'user'));
             $user->setRoles(['ROLE_USER']);
-            $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+            $user->setCampus(mt_rand(1, 3));
+
+            //($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+
+
             $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
             //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
@@ -101,7 +105,7 @@ class AppFixtures extends Fixture
             // encodePassword(1er argument = $user, 2eme argument = le mot de passe)
             $user->setPassword($this->encoder->encodePassword($user, 'orga'));
             $user->setRoles(['ROLE_ORGANISATEUR']);
-            $user->setCampus($faker->randomElement(['Saint-Herblain','Nantes','Orvault','Rezé','Paris','Lyon','Pau','Montreal','Strasbourg','Londres','Mexico']));
+            $user->setCampus(mt_rand(1, 3));
             $user->setPhoto("https://picsum.photos/seed/" . $user->getUsername() . "/400/400");
             //$user->setPhoto($faker->imageUrl(640, 480, 'animals', true));
 
@@ -138,11 +142,11 @@ class AppFixtures extends Fixture
             $event->setEventName($faker->sentence(5));
             $event->setDateAndHour($faker->dateTimeBetween('- 6 months', 'now') );
             $event->setRegistrationLimit($faker->dateTimeBetween('- 6 months', '+ 6 months'));
-            $event->setNumberOfPlaces(mt_rand(0, 100));
+            $event->setNumberOfPlaces(mt_rand(15, 100));
             $event->setDuration(mt_rand(60, 600));
             $event->setDescription($faker->realText(100));
             //nb_registration
-            $event->setNbRegistration(mt_rand(1, 1));
+            $event->setNbRegistration(mt_rand(1, 15));
 
             //on sauvegarde dans la boucle
             $manager->persist($event);

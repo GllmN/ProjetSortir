@@ -28,11 +28,11 @@ class EventRepository extends ServiceEntityRepository
         $date = new \DateTime();
         $req = $this->createQueryBuilder('event')
             ->andWhere('event.registrationLimit> :date')
-            ->andWhere('event.status >= :begin')
-            ->andWhere('event.status <= :end')
-            ->setParameter('date', $date)
-            ->setParameter('begin', 2)
-            ->setParameter('end', 3)
+//            ->andWhere('event.status >= :begin')
+//            ->andWhere('event.status <= :end')
+           ->setParameter('date', $date)
+//            ->setParameter('begin', 2)
+//          ->setParameter('end', 3)
             ->orderBy('event.registrationLimit', 'ASC');
 
         return $req->getQuery()->getResult();

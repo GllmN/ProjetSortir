@@ -19,10 +19,6 @@ class Campus
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $campus;
 
     /**
      * @ORM\OneToMany(targetEntity=Event::class, mappedBy="campus", orphanRemoval=true)
