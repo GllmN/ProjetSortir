@@ -65,28 +65,28 @@ class HomeController extends AbstractController
             $result = $em->getRepository(Event::class)
                 ->filterEvent($keyWord, $campus , $dateStart ,$dateEnd,  $userId, $eventOrganizer);
 
-            // Pagination /!\ remplacer le $result par le $event dans le render
-                //            $event = $paginator->paginate(
-                //                $result,
-                //                $request->query->getInt('page', 1),
-                //                5
-                //            );
+             //Pagination /!\ remplacer le $result par le $event dans le render
+                            $event = $paginator->paginate(
+                                $result,
+                                $request->query->getInt('page', 1),
+                                15
+                            );
 
-            return $this->render('home/home.html.twig', ['list' => $result,'filterForm' => $filterForm->createView()]);
+            return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
 
         // Récuperer les utilisateur
         if ($this->getUser()) {
             $donnes = $em->getRepository(Event::class)->getAll();
 
-//            // Pagination
-//            $event = $paginator->paginate(
-//                $donnes,
-//                $request->query->getInt('page', 1),
-//                5
-//            );
+            // Pagination
+            $event = $paginator->paginate(
+                $donnes,
+                $request->query->getInt('page', 1),
+                15
+            );
 
-            return $this->render('home/home.html.twig', ['list' => $donnes,'filterForm' => $filterForm->createView()]);
+            return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
         }
 
         return $this->redirectToRoute('app_login');

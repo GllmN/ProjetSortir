@@ -148,12 +148,17 @@
                                 </button>
                             {% endif %}
                         </td>
+
                     </tr>
                 {% endfor %}
+
                 </tbody>
             </table>
 
-            {# {{ knp_pagination_render(list) }} #}
+            <div class="pagination" id="pagination">
+                {{ knp_pagination_render(list) }}
+            </div>
+
 
             {# <nav aria-label="Page navigation example">
                     <ul class="pagination">
