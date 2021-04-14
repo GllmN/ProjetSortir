@@ -212,7 +212,7 @@ class EventController extends AbstractController
     public function registration(EntityManagerInterface $entityManager){
         // on récupère l'id de l'event
         /** @var Event $event */
-        $event = $entityManager->getRepository(Event::class)->find($_GET['initialPlaces']);
+        $event = $entityManager->getRepository(Event::class)->find($_GET['id']);
 
         $today = new DateTime();
         // on récupère l'id de l'utilisateur
