@@ -225,7 +225,7 @@ class EventController extends AbstractController
         }
 
         // si le nombre de places est supérieur ou égale à 1 et que la date limite d'inscription est supérieur à la date du jour..
-        if ($event->getNumberOfPlaces() >= 1 && $event->getRegistrationLimit() > $today){
+        if ($event->getNumberOfPlaces() >= 1 && $event->getRegistrationLimit() > $today ){
         // On ajoute le user à la liste des participants..
             $event->addParticipant($this->getUser());
 
