@@ -24,11 +24,13 @@ class EventType extends AbstractType
             ->add('eventName', TextType::class,['label'=>'Nom de la sortie'])
             ->add('dateAndHour',DateTimeType::class,[
                 'label'=>'Date et heure de la sortie',
-                'date_format'=>'ddMMyyyy',
+                'date_widget'=>'single_text',
+                'time_widget'=> 'single_text',
             ])
             ->add('registrationLimit',DateType::class,[
                 'label'=>'Date limite d\'inscription',
-                'format'=>"ddMMyyyy",
+                'widget'=> 'single_text',
+                'required'=>false
             ])
 
             ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
