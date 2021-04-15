@@ -53,20 +53,19 @@ class EventController extends AbstractController
 
         $event->setCampus($user->getCampus());
 
-
         $form= $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         //Controle sur la date pour ne pas créer de sorties dans la passé
         //Contrôle sur date de sortie et date limite d'inscription
-        if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
-            $event->setInitialPlaces(($event->getNumberOfPlaces()));
-
+        if($form->isSubmitted() &&  ($event->getDateAndHour()<=$dateDuJour || $event->getRegistrationLimit()<=$dateDuJour)){
             $this->addFlash('danger', 'Tu n\'as pas le pouvoir de voyager dans le temps');
             $this->redirectToRoute('sortie_creation');
         }
 
-        if($form->isSubmitted() && $form->isValid() && $event->getDateAndHour()>$dateDuJour && $event->getRegistrationLimit()>$dateDuJour){
+        if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour()>$dateDuJour) && ($event->getRegistrationLimit()>$dateDuJour)){
+
+            $event->setInitialPlaces(($event->getNumberOfPlaces()));
 
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)
@@ -136,9 +135,9 @@ class EventController extends AbstractController
 
         //Controle sur la date pour ne pas créer de sorties dans la passé
         //Contrôle sur date de sortie et date limite d'inscription
-        if($form->isSubmitted() && $form->isValid() && ($event->getDateAndHour() || $event->getRegistrationLimit())<=$dateDuJour){
+        if($form->isSubmitted() &&  ($event->getDateAndHour()<=$dateDuJour || $event->getRegistrationLimit()<=$dateDuJour)){
             $this->addFlash('danger', 'Tu n\'as pas le pouvoir de voyager dans le temps');
-            $this->redirectToRoute('home_home');
+            $this->redirectToRoute('sortie_creation');
         }
 
         //Si l'utilisateur connecté n'est pas l'organisateur de la sortie
@@ -147,6 +146,7 @@ class EventController extends AbstractController
             $this->addFlash('danger', 'FAIL!!!! Tu n\'es pas l\'organisateur de cette sortie');
             return $this->redirectToRoute('sortie_creation');
         } elseif ($form->isSubmitted() && $form->isValid()){
+            $event->setInitialPlaces(($event->getNumberOfPlaces()));
 
             //Si l'utilisateur clique sur le bouton Enregistrer('save')
             //La sortie est enregistrée en BDD avec le statut created(id1)

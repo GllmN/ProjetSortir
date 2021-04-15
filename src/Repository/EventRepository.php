@@ -69,7 +69,7 @@ class EventRepository extends ServiceEntityRepository
         $date->modify("-30 day");
 
         //Recup des sorties avec une date limite d'inscription supérieur à la date du jour
-        //Passage en status 3-Closed
+        //Passage en status 7-archivage
         $req = $this->createQueryBuilder('event')
             ->update(Event::class, 'event')->set('event.status', '?1')
             ->where('event.dateAndHour< :date')
@@ -81,8 +81,6 @@ class EventRepository extends ServiceEntityRepository
     //Les filtres sur les événement
     public function filterEvent($keyWord,$campus,$dateStart,$dateEnd,$userId,$eventOrganizer){
      //  $eventOrganizer,$eventSubscriber, $eventNotSubscriber, $eventOld
-
-        $test='1340';
 
         // recuperer les méthodes du querybuilder (alias de l'entité)
         $qb = $this->createQueryBuilder('event');

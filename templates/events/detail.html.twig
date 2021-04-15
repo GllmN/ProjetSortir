@@ -3,6 +3,8 @@
 {% block body %}
 <h2>Afficher une sortie</h2>
 
+
+
     Nom de la sortie : {{ event.eventName }}<br>
     Date et heure de la sortie : {{ event.dateAndHour | date("d/m/y") }}<br>
     Date limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }}<br>
