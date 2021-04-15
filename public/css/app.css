@@ -27,6 +27,7 @@ button:hover {
     background-color: #ffffff;
 }
 
+/* Enlève le cadre autour du boutton pour les personnes malvoyant*/
 button:focus {
     outline: 0 !important;
 }
@@ -105,6 +106,20 @@ table {
     overflow: hidden;
     background-color: rgba(255,255,255,.90);
     box-shadow: 0 3px 10px rgba(0,0,0,0.23);
+}
+
+.create-boutton{
+    background-color: #0b7e99;
+    color:white;
+    padding: 10px;
+    height: 50px;
+    width: 100%;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+
 }
 
 .home {

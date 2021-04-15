@@ -70,10 +70,19 @@
                         </div>
                     </div>
                     {# bloc du bas: bouttons #}
-                    <div class="row text-center align-middle" >
+                    <div class="row py-3" >
+                        <div class="col-sm"></div>
                         <div class="row align-middle">{{ form_row(eventForm.save) }}</div>
                         <div class="row align-middle">{{ form_row(eventForm.publish) }}</div>
-
+{#                        <div class="row ">#}
+{#                            <div class="p-3">#}
+{#                                <button class="create-boutton" >Enregistrer</button>#}
+{#                            </div>#}
+{#                            <div class="p-3">#}
+{#                                <button class="create-boutton">Publier</button>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <div class="col-sm"></div>
                     </div><a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>
                     {{ form_end(eventForm) }}
                 </div>
