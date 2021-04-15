@@ -3,13 +3,18 @@
 {% block body %}
 <h2>Afficher une sortie</h2>
 
-    {{ event.eventName }} =>
-    Début : {{ event.dateAndHour | date("d/m/y") }},
-    Limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }},
-    Statut : {{ event.status }},
-    Nb de place : {{ event.numberOfPlaces }}
-
+    Nom de la sortie : {{ event.eventName }}<br>
+    Date et heure de la sortie : {{ event.dateAndHour | date("d/m/y") }}<br>
+    Date limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }}<br>
+    Nombre de place : {{ event.numberOfPlaces }}<br>
+    Durée : {{ event.duration }} minutes<br>
+    Description : {{ event.description }}<br>
     CAMPUS : {{ event.campus }}<br>
+    Lieu : {{ event.location }}<br>
+    Ville : {{ event.city.city }}<br>
+    Code Postal : {{ event.city.postalCode }}<br>
+
+
     Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
     Et participants: <br>
 
@@ -17,5 +22,16 @@
         -Pseudo : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a>
         Nom : <a >{{ part.firstName }}</a><br>
     {% endfor %}
+
+    {% if app.user not in event.participants %}
+        <button type="button" class="btn btn-link">
+            <a class="greenLink" href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
+        </button>
+    {% endif %}
+    {% if app.user in event.participants %}
+        <button type="button" class="btn btn-link">
+            <a href="{{ url('sortie_remove_registration', {'id': event.id}) }}" id="close">Se désister</a>
+        </button>
+    {% endif %}
 
 {% endblock %}
