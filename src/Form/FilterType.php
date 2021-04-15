@@ -41,6 +41,7 @@ class FilterType extends AbstractType
                 'placeholder' => [
                     'year' => 'Année', 'month' => 'Mois', 'day' => 'Jours',
                     'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
+
                 ],
                 'required'=>false
             ])
