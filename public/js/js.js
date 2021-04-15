@@ -17,3 +17,8 @@ selectElement.addEventListener('change',
 function confirmation(){
     alert("Voulez allez annuler cette Sortie");
 }
+
+/***Dtae Picker**/
+$('#datepicker').datepicker({
+    uiLibrary: 'bootstrap4'
+});
