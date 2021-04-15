@@ -33,7 +33,10 @@ class EventType extends AbstractType
                 'required'=>false
             ])
 
-            ->add('numberOfPlaces',null,['label'=>'Nombre de place'])
+            ->add('numberOfPlaces',null,[
+                'label'=>'Nombre de place',
+                'required'=> true,
+            ])
             ->add('duration',null,['label'=>'Durée'])
             ->add('description',null,['label'=>'Description et infos'])
             //->add('campus',null,['label'=>'Campus'])
