@@ -37,21 +37,12 @@ class FilterType extends AbstractType
             ])
             ->add('dateStart', DateType::class, [
                 'label'=>'Entre :',
-                'format'=>'d/M/y',
-                'placeholder' => [
-                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jours',
-                    'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
-
-                ],
+                'widget'=> 'single_text',
                 'required'=>false
             ])
             ->add('dateEnd', DateType::class, [
                 'label'=>'et :',
-                'format'=>'d/M/y',
-                'placeholder' => [
-                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jours',
-                    'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',
-                ],
+                'widget'=> 'single_text',
                 'required'=>false
             ])
             ->add('eventOrganizer', CheckboxType::class, [
