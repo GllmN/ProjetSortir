@@ -116,6 +116,7 @@ class EventRepository extends ServiceEntityRepository
                 ->setParameter('eventOrganizer', $userId)
             ;}
 
+
         // eventSubscriber
 //        if($eventSubscriber){
 //            $qb ->andWhere('eventUser.userId = :eventSuscriber')

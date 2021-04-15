@@ -69,7 +69,7 @@ class HomeController extends AbstractController
                             $event = $paginator->paginate(
                                 $result,
                                 $request->query->getInt('page', 1),
-                                15
+                                10
                             );
 
             return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
@@ -83,7 +83,7 @@ class HomeController extends AbstractController
             $event = $paginator->paginate(
                 $donnes,
                 $request->query->getInt('page', 1),
-                15
+                10
             );
 
             return $this->render('home/home.html.twig', ['list' => $event,'filterForm' => $filterForm->createView()]);
