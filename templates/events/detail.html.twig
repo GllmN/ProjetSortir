@@ -1,39 +1,115 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>Afficher une sortie</h2>
+    <div class="col-sm py-2"></div>
+    <div>
+        <div class="col-12-sm py-5"></div>
+        {# myProfil #}
+        <div class="row">
+            <div class="col-sm-1 "></div>
+            <div class="col-sm-10 mx-0 px-0 py-0">
+                {# encadré de myProfil #}
+                <div class="viewEvent-conteneur">
 
+                    <div class="py-5 ml-5 text-center">
+                        <h2>Details de la sortie</h2>
+                    </div>
+                    <div class="row my-5 mx-5">
+                        <div class="col-sm">
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Nom de la sortie :
+                                </div>
+                                {{ event.eventName }}
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                            Date et heure de la sortie :
+                                </div>
+                                {{ event.dateAndHour | date("d/m/y") }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Date limite d'inscription :
+                                </div>
+                                {{ event.registrationLimit | date("d/m/Y") }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Nombre de place :
+                                </div>
+                                {{ event.numberOfPlaces }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Durée : </div>
+                                {{ event.duration }} minutes<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Description :
+                                </div>
+                                {{ event.description }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    CAMPUS :
+                                </div>
+                                {{ event.campus }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Lieu :
+                                </div>
+                                {{ event.location }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Ville :
+                                </div>
+                                {{ event.city.city }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Code Postal :
+                                </div>
+                                {{ event.city.postalCode }}<br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Organisateur :
+                                </div>
+                                <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
+                            </div>
+                            <div class="viewEvent-border-radius">
+                                <div class="viewEventBold">
+                                    Et participants:
+                                </div>
+                                {% for part in event.participants %}
+                                - Pseudo : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a>
+                            Nom : <a >{{ part.firstName }}</a><br>
+                                {% endfor %}
+                                <br>
+                            </div>
+                            <div class="viewEvent-border-radius">
 
+                            {% if app.user not in event.participants %}
+                                <button>
+                                    <a class="greenLink" href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
+                                </button>
+                            {% endif %}
+                            {% if app.user in event.participants %}
 
-    Nom de la sortie : {{ event.eventName }}<br>
-    Date et heure de la sortie : {{ event.dateAndHour | date("d/m/y") }}<br>
-    Date limite d'inscription : {{ event.registrationLimit | date("d/m/Y") }}<br>
-    Nombre de place : {{ event.numberOfPlaces }}<br>
-    Durée : {{ event.duration }} minutes<br>
-    Description : {{ event.description }}<br>
-    CAMPUS : {{ event.campus }}<br>
-    Lieu : {{ event.location }}<br>
-    Ville : {{ event.city.city }}<br>
-    Code Postal : {{ event.city.postalCode }}<br>
+                                <button>
+                                    <a href="{{ url('sortie_remove_registration', {'id': event.id}) }}" id="close">Se désister</a>
+                                </button>
 
-
-    Organisateur : <a href="{{ url('view_profil', {'id' : event.organizer.getId}) }}">{{ event.organizer }}</a><br>
-    Et participants: <br>
-
-    {% for part in event.participants %}
-        -Pseudo : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a>
-        Nom : <a >{{ part.firstName }}</a><br>
-    {% endfor %}
-
-    {% if app.user not in event.participants %}
-        <button type="button" class="btn btn-link">
-            <a class="greenLink" href="{{ url('sortie_registration', {'id': event.id}) }}">S'inscrire</a>
-        </button>
-    {% endif %}
-    {% if app.user in event.participants %}
-        <button type="button" class="btn btn-link">
-            <a href="{{ url('sortie_remove_registration', {'id': event.id}) }}" id="close">Se désister</a>
-        </button>
-    {% endif %}
-
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
