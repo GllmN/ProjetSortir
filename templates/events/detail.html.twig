@@ -14,7 +14,8 @@
     Et participants: <br>
 
     {% for part in event.participants %}
-        Pseudo : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a><br>
+        -Pseudo : <a href="{{ url('view_profil', {'id' : part.getId}) }}">{{ part.pseudo }}</a>
+        Nom : <a >{{ part.firstName }}</a><br>
     {% endfor %}
 
 {% endblock %}
