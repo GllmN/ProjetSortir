@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="col-sm py-2"></div>
+    <div class="col-sm py-4"></div>
     <div class="create-event">
         <div class="col-12-sm py-2"></div>
         {# Création des sorties #}
         <div class="row">
             <div class="col-sm-2 "></div>
             <div class="col-sm-8 mx-0 px-0 py-0">
+                {# encadré create #}
                 <div class="create-event-conteneur">
                     <h2 class="py-5 ml-5">Création d'une sortie</h2>
-                    <div class="row pt-5 pb-3">
+                    <div class="row pt-3 pb-3">
 
                         {# bloc de gauche : nom / date / nombre de place #}
                         <div class="col-sm mr-3 ml-5">
@@ -27,7 +28,7 @@
                                         <div class="col-sm-6">
                                             {{ form_row(eventForm.dateAndHour) }}
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6 pt-2">
                                             {{ form_row(eventForm.registrationLimit)}}
                                         </div>
                                     </div>
@@ -36,11 +37,7 @@
                                             {{ form_row(eventForm.numberOfPlaces) }}
                                         </div>
                                         <div class="col-sm">
-                                            <div class="row">
-                                                <div class="col-sm">{{ form_row(eventForm.duration) }}</div>
-                                                <div class="col-sm">Minutes</div>
-                                            </div>
-
+                                            {{ form_row(eventForm.duration) }}
                                         </div>
                                     </div>
                                     {{ form_row(eventForm.description) }}
@@ -51,16 +48,19 @@
                         {# bloc de droite: campus / ville / lieu #}
                         <div class="col-sm mr-5 ml-3">
                             <div class="col-sm">
-                                Votre Campus :
-                                {{ app.user.campus }}<br><br>
-                                {{ form_row(eventForm.city) }}
-                                 {{ form_row(eventForm.location) }}
-                                <ul style="list-style: none" id="ullocation">
+                                <div class=" mt-4 pt-3">
+                                    Votre Campus :
+                                    <b>{{ app.user.campus }}</b>
+                                </div>
+                                <br>
+                                <div class="pt-2">{{ form_row(eventForm.city) }}</div>
+                                {{ form_row(eventForm.location) }}
+                                <ul style="list-style: none; padding: 0;" id="ullocation">
                                     {% for lieu in location %}
                                         <li id="{{ lieu.id }}" style="display: none">
                                             <label for="rue" class="required">Rue</label>
                                             <input class="form-control" type="text" name="rue" id="rue" value="{{ lieu.street }}">
-                                            <label for="cp" class="required">Code postal</label>
+                                            <label for="cp" class="pt-2 required">Code postal</label>
                                             <input class="form-control" type="text" name="cp" id="cp" value="{{ lieu.zipCode }}">
                                         </li>
                                     {% endfor %}
@@ -70,20 +70,32 @@
                         </div>
                     </div>
                     {# bloc du bas: bouttons #}
-                    <div class="row py-3" >
-                        <div class="col-sm"></div>
-                        <div class="row align-middle">{{ form_row(eventForm.save) }}</div>
-                        <div class="row align-middle">{{ form_row(eventForm.publish) }}</div>
-{#                        <div class="row ">#}
-{#                            <div class="p-3">#}
-{#                                <button class="create-boutton" >Enregistrer</button>#}
-{#                            </div>#}
-{#                            <div class="p-3">#}
-{#                                <button class="create-boutton">Publier</button>#}
-{#                            </div>#}
-{#                        </div>#}
-                        <div class="col-sm"></div>
-                    </div><a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>
+                    <div class="row py-5 align-middle text-center" >
+{#
+{#                        <div class="row align-middle p-3">{{ form_row(eventForm.publish) }}</div>#}
+                        <div class="col-sm-3  "></div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm">
+                                    {{ form_row(eventForm.save) }}
+{#                                    <button name="event[publish]" class="create-boutton-publish-and-save">Publier</button>#}
+                                </div>
+                                <div class="col-sm">
+                                    {{ form_row(eventForm.publish) }}
+{#                                    <button name="event[save]" class="create-boutton-publish-and-save">Enregistrer</button>#}
+                                </div>
+                                <div class="col-sm text-center">
+                                    <div class="create-boutton-annuler">
+                                        <a href="{{ path('home_home') }}">Annuler</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+{#                            <a class="btn btn-secondary" href="{{ path('home_home') }}">Annuler</a>#}
+{#                        <div class="col-sm"></div>#}
+                    </div>
                     {{ form_end(eventForm) }}
                 </div>
             </div>

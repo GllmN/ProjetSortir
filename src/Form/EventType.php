@@ -37,14 +37,14 @@ class EventType extends AbstractType
                 'label'=>'Nombre de place',
                 'required'=> true,
             ])
-            ->add('duration',null,['label'=>'Durée'])
+            ->add('duration',null,['label'=>'Durée en minutes'])
             ->add('description',null,['label'=>'Description et infos'])
             //->add('campus',null,['label'=>'Campus'])
             ->add('city',null,['label'=>'Ville'])
             ->add('location',null,['label'=>'Lieu'])
 
-            ->add('save', SubmitType::class, ['label'=>'Enregistrer'])
-            ->add('publish', SubmitType::class, ['label'=>'Publier la sortie'])
+            ->add('save', SubmitType::class, ['label'=>'Enregistrer', 'attr'=>['class'=>'create-boutton-publish-and-save' ]])
+            ->add('publish', SubmitType::class, ['label'=>'Publier','attr'=>['class'=>'create-boutton-publish-and-save' ]])
         ;
     }
 

@@ -15,6 +15,11 @@ body {
     margin:0;
 }
 
+a:hover {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 button{
     color: #fff;
@@ -31,6 +36,7 @@ button:hover {
 button:focus {
     outline: 0 !important;
 }
+
 
 h2 {
     font-size: 30px;
@@ -63,11 +69,7 @@ nav{
 
 
 
-a:hover {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
+
 
 /******CONFORT PAT POUR TEST*********/
 .btn-link:hover{
@@ -98,6 +100,15 @@ table {
     font-family:'terror', sans-serif;
 }
 
+.create-event{
+    background-image: linear-gradient(rgba(236, 236, 243, 0.8), rgba(190, 190, 186, 0.5)),
+    url("img/background-create-paris.jpg");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    min-height: 750px;
+}
+
 .create-event-conteneur{
     color: #565656;
     border: 0px black solid;
@@ -108,18 +119,35 @@ table {
     box-shadow: 0 3px 10px rgba(0,0,0,0.23);
 }
 
-.create-boutton{
+.create-boutton-annuler > a{
+    background-color: #0b7e99;
+    color: #fff;
+    display: block;
+    padding: 10px;
+    width: 150px;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.create-boutton-annuler> a:hover {
+    color: #0b7e99;
+    background-color: #ffffff;
+}
+
+.create-boutton-publish-and-save{
     background-color: #0b7e99;
     color:white;
     padding: 10px;
     height: 50px;
-    width: 100%;
+    width: 150px;
     font-size: 21px;
     font-weight: bold;
     border-radius: 5px;
     border: 0;
     cursor: pointer;
-
 }
 
 .home {
@@ -147,16 +175,23 @@ table {
     font-family: 'terror', 'Ubuntu','Roboto', sans-serif;
 }
 
-.home-boutton-create-event{
+.home-boutton-create-event > a{
     background-color: #0b7e99;
-    color: white;
-    height: 70px;
+    color: #fff;
+    display: block;
+    padding: 20px;
     width: 100%;
     font-size: 28px;
     font-weight: bold;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.home-boutton-create-event > a:hover {
+    color: #0b7e99;
+    background-color: #ffffff;
 }
 
 .home-boutton-search{
@@ -172,10 +207,7 @@ table {
     cursor: pointer;
 }
 
-.home-separator-conteneur{
-    background-color: #0b7e99;
-    height: 100px;
-}
+
 
 .viewProfil-BorderRadius{
     padding-bottom: 5px;

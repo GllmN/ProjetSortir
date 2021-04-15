@@ -25,13 +25,6 @@
                                         {{ form_row(filterForm.campus) }}
                                         {{ form_row(filterForm.keyWord) }}
                                         <div class="row">
-                                            {# TEST AFFICHAGE DATE BOOTSTRAP EN DATE
-                                                <div class="form-group row">
-                                                    <label for="example-date-input" class="col-2 col-form-label">{{ form_row(filterForm.dateEnd) }}</label>
-                                                    <div class="col-10">
-                                                        <input class="form-control" type="date" value="2021-04-16" id="example-date-input">
-                                                    </div>
-                                                </div> #}
                                             <div class="col-sm">{{ form_row(filterForm.dateStart) }}</div>
                                             <div class="col-sm">{{ form_row(filterForm.dateEnd) }}</div>
                                         </div>
@@ -76,13 +69,11 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10 mx-0 px-0">
-
                 <div class="mx-0 px-0 py-3 text-center align-middle">
-                    <button class="home-boutton-create-event">
-                        <a class ="home-boutton-search" href="{{ url('sortie_creation') }}" id="Sortie" name="Créer une sortie">Créer une sortie</a>
-                    </button>
+                    <div class="home-boutton-create-event">
+                        <a  href="{{ url('sortie_creation') }}" >Créer une sortie</a>
+                    </div>
                 </div>
-
         </div>
     </div>
 
