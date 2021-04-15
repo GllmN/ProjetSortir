@@ -177,6 +177,22 @@ table {
     height: 100px;
 }
 
+.myProfil {
+    margin: 0;
+    min-height: 650px;
+}
+
+.myProfil-conteneur{
+    color: #565656;
+    border: 0px black solid;
+    border-radius: 15px;
+    margin: 0px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,.90);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.23);
+}
+
+
 .login{
     background-image:
         linear-gradient(rgba(117, 117, 124, 0.5), rgba(238, 238, 236, 0.5)),
