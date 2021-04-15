@@ -4,36 +4,36 @@
 
 {% block body %}
 <div class="col-sm py-2"></div>
-<div class="myProfil">
+<div>
     <div class="col-12-sm py-5"></div>
     {# myProfil #}
     <div class="row">
         <div class="col-sm-1 "></div>
         <div class="col-sm-10 mx-0 px-0 py-0">
             {# encadré de myProfil #}
-            <div class="myProfil-conteneur">
+            <div class="viewProfil-conteneur">
 
                <div class="py-5 ml-5 text-center">  <h2>Vous êtes sur la page de : </h2>
-                   <h2 class="redLink myProfil-title"> {{ user.pseudo }}  </h2>
+                   <h2 class="redLink viewProfil-title"> {{ user.pseudo }}  </h2>
                </div>
                  <div class="row my-5 mx-5">
                     <div class="col-sm">
-                        <div class="myProfil-BorderRadius">
+                        <div class="viewProfil-BorderRadius">
                         Nom : {{ user.firstName }}<br>
                         </div>
-                        <div class="myProfil-BorderRadius">
+                        <div class="viewProfil-BorderRadius">
                         Prénom : {{ user.lastName }}<br>
                         </div>
-                        <div class="myProfil-BorderRadius">
+                        <div class="viewProfil-BorderRadius">
                             Téléphone : {{ user.phone }}<br>
                         </div>
-                        <div class="myProfil-BorderRadius">
+                        <div class="viewProfil-BorderRadius">
                         Email : {{ user.email }}<br>
                         </div>
                         {# campus à rajouter #}
 
                     </div>
-                     <div class="col-sm myProfil-picture">
+                     <div class="col-sm viewProfil-picture">
                         <img src="{{ user.photo }}">
                      </div>
                 </div>

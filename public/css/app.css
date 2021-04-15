@@ -177,7 +177,7 @@ table {
     height: 100px;
 }
 
-.myProfil-BorderRadius{
+.viewProfil-BorderRadius{
     padding-bottom: 5px;
     padding-top: 5px;
     margin-top: 15px;
@@ -188,15 +188,15 @@ table {
     font-size: 35px;
 }
 
-.myProfil-title{
+.viewProfil-title{
     margin-top: 30px;
 }
 
-.myProfil-picture{
+.viewProfil-picture{
     margin-left: 125px;
 }
 
-.myProfil-conteneur{
+.viewProfil-conteneur{
     color: #565656;
     border: 0px black solid;
     border-radius: 15px;
@@ -204,6 +204,17 @@ table {
     overflow: hidden;
     background-color: rgba(255,255,255,.90);
     box-shadow: 0 3px 10px rgba(0,0,0,0.23);
+}
+
+.myProfil-picture{
+    margin-left: 125px;
+    margin-top: 125px;
+}
+
+
+
+form[name="user"] label {
+    font-weight: bold;
 }
 
 .login{
