@@ -201,6 +201,7 @@ class EventController extends AbstractController
                 $em->flush();
 
                 $this->addFlash('success', 'La sortie a été annulée!');
+                return $this->redirectToRoute('home_home');
             }
         }
         return $this->render('events/annuler.html.twig', ['eventCancel'=> $form->createView(), 'event'=> $event]);
